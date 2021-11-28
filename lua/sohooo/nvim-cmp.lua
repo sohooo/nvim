@@ -1,7 +1,12 @@
 -- Setup nvim-cmp.
-  local cmp = require'cmp'
+local cmp = require('cmp')
+local lspkind = require('lspkind')
 
   cmp.setup({
+    formatting = {
+      format = lspkind.cmp_format(),
+    },
+
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)

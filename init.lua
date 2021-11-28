@@ -35,6 +35,7 @@ require('packer').startup(function()
     use 'folke/which-key.nvim'
     use 'folke/todo-comments.nvim'
 
+    use 'onsails/lspkind-nvim' -- icons in lsp popups etc
     use 'hoob3rt/lualine.nvim'
     use 'kdheepak/tabline.nvim'
     use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
