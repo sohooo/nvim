@@ -15,6 +15,7 @@ local lspkind = require('lspkind')
 
     -- mappings ------------------------------------------------------------
     mapping = {
+      -- hit 'K' again to enter docs popup; 'q' to quit it
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
