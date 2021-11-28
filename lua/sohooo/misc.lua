@@ -35,6 +35,15 @@ vim.cmd([[
   tnoremap <Esc><Esc> <C-\><C-n>
 ]])
 
+-- vim-go
+vim.cmd([[
+  let g:go_imports_mode='gopls'
+  let g:go_imports_autosave=1
+  let g:go_auto_type_info = 1
+  let g:go_fmt_autosave = 1
+  let g:go_fmt_options = { 'gofmt': '-s' }
+]])
+
 -- strip on save {{{
 -- http://vim.wikia.com/wiki/Remove_unwanted_spaces
 vim.cmd([[

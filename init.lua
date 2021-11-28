@@ -48,6 +48,7 @@ require('packer').startup(function()
 
   -- languages {{{
     use 'sheerun/vim-polyglot' -- the full kitchen sink
+    use 'fatih/vim-go'
   -- }}}
 
   -- editing tools {{{
