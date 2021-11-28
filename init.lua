@@ -79,12 +79,13 @@ require('packer').startup(function()
 
   -- completion, snippets {{{
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
   -- }}}
 
   -- colorschemes {{{
