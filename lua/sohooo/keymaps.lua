@@ -87,7 +87,7 @@ wk.register({
     c = {
       name = "+actions",
       a = { vim.lsp.buf.code_action, "Code Action" },
-      a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
+      -- a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
       r = { vim.lsp.buf.rename, "Rename" },
       s = { vim.lsp.buf.formatting, "Reformat File" },
     },
