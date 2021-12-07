@@ -17,7 +17,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-local servers = { 'solargraph', 'gopls' }
+local servers = { 'solargraph', 'gopls', 'elixirls', 'sumneko_lua' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -25,9 +25,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- map buffer local keybindings when the language server attaches
 -- ruby/solargraph
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#solargraph
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#solargraph
 require('lspconfig').solargraph.setup {
   on_attach = on_attach,
   settings = {
@@ -42,6 +41,44 @@ require('lspconfig').solargraph.setup {
     }
   }
 }
+
+-- elixir
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#elixirls
+require'lspconfig'.elixirls.setup{
+    cmd = { "~/Code/elixir/ls/language_server.sh" };
+}
+
+-- lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+require'lspconfig'.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -65,7 +102,4 @@ for type, icon in pairs(signs) do
   local hl = "LspDiagnosticsSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
--- TOOD: install?
--- require('lspkind').init({})
 

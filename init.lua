@@ -32,7 +32,7 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig' -- configurations for built-in LSP client
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'tpope/vim-dispatch' -- async build/test dispatcher
-    use 'folke/which-key.nvim'
+    use 'folke/which-key.nvim' -- key bindings
     use 'folke/todo-comments.nvim'
 
     use 'onsails/lspkind-nvim' -- icons in lsp popups etc
