@@ -58,7 +58,7 @@ require('packer').startup(function()
     use 'mbbill/undotree'
     use 'tpope/vim-repeat' -- make '.' usable for plugins
     use 'tpope/vim-surround' -- quoting/parenthesizing made simple
-    use "terrortylor/nvim-comment" -- comment with gc
+    use 'numToStr/Comment.nvim' -- smart commenting plugin
     use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
     use 'ggandor/lightspeed.nvim'
     use 'sickill/vim-pasta' -- pasting with indentation adjusted
@@ -156,7 +156,7 @@ require('sohooo/focus')
 
 require('tabout').setup()
 require('colorizer').setup()
-require('nvim_comment').setup()
+require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 
