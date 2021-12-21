@@ -24,7 +24,8 @@ local lspkind = require('lspkind')
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
     -- tab completion
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
