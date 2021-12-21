@@ -45,7 +45,7 @@ require('lspconfig').solargraph.setup {
 -- elixir
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#elixirls
 require'lspconfig'.elixirls.setup{
-    cmd = { "~/Code/elixir/ls/language_server.sh" };
+    cmd = { os.getenv("HOME") .. "/Code/elixir/ls/language_server.sh" };
 }
 
 -- lua
