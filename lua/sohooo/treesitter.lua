@@ -2,8 +2,8 @@
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-  ensure_installed = "maintained",
-  -- ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "all",
+  -- ensure_installed = { -- one of "all", "maintained" (parsers with maintainers, deprecated!), or a list of languages
   --   "bash",
   --   "css",
   --   "go",
