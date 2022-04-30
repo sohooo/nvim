@@ -60,7 +60,7 @@ require('packer').startup(function()
     use 'tpope/vim-surround' -- quoting/parenthesizing made simple
     use 'numToStr/Comment.nvim' -- smart commenting plugin
     use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
-    use 'ggandor/lightspeed.nvim'
+    use 'ggandor/leap.nvim' -- fast jumping with s|S
     use 'sickill/vim-pasta' -- pasting with indentation adjusted
     use 'stefandtw/quickfix-reflector.vim' -- Change code right in the quickfix window
     use 'windwp/nvim-autopairs'
@@ -143,7 +143,6 @@ require('sohooo/todo-comments')
 require('sohooo/telescope')
 require('sohooo/lsp')
 require('sohooo/toggleterm')
-require('sohooo/lightspeed')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/indent_blankline')
@@ -159,6 +158,9 @@ require('colorizer').setup()
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
+require('leap').set_default_keymaps()
+
+
 
 require('sohooo/keymaps')
 
