@@ -1,11 +1,3 @@
--- Highlight on yank
-vim.cmd([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]])
-
 -- vim-test
 -- https://github.com/vim-test/vim-test#ruby
 vim.cmd([[
@@ -44,23 +36,6 @@ vim.cmd([[
   let g:go_fmt_options = { 'gofmt': '-s' }
   let g:go_doc_keywordprg_enabled = 0
   " let g:go_def_mapping_enabled = 0
-]])
-
--- strip on save {{{
--- http://vim.wikia.com/wiki/Remove_unwanted_spaces
-vim.cmd([[
-  function! StripTrailingWhitespace() abort
-    if !&binary && &filetype != 'diff'
-      let l:winview = winsaveview()
-      silent! %s/\s\+$//e
-      call winrestview(l:winview)
-    endif
-  endfunction
-
-  augroup strip_on_save
-    autocmd!
-    autocmd BufWritePre * call StripTrailingWhitespace()
-  augroup end
 ]])
 
 -- }}}

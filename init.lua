@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.7.0
+-- NVIM v0.8.0-dev+96-gd9dcfd021 LuaJIT 2.1.0-beta3
 
 -- plugins {{{
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -151,7 +151,6 @@ require('sohooo/nvim-cmp')
 require('sohooo/nvim-tree')
 require('sohooo/trouble')
 require('sohooo/focus')
-----require('sohooo/spellsitter')
 
 require('tabout').setup()
 require('colorizer').setup()
@@ -160,7 +159,6 @@ require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 require('leap').set_default_keymaps()
 
-
-
+require('sohooo/autocmds')
 require('sohooo/keymaps')
 
