@@ -120,6 +120,7 @@ vim.o.expandtab = true            -- insert spaces on <tab>
 vim.o.updatetime = 250            -- decrease update time (4000)
 vim.o.timeoutlen = 500            -- wait for seq. to complete (1000)
 vim.wo.signcolumn = 'yes'         -- always draw sign col
+vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
 --Set colorscheme (order is important here)
