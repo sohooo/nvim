@@ -45,6 +45,7 @@ require('packer').startup(function()
     use 'rmagatti/goto-preview'
     use 'norcalli/nvim-colorizer.lua'
     use 'beauwilliams/focus.nvim'
+    use 'karb94/neoscroll.nvim'
   -- }}}
 
   -- languages {{{
@@ -158,6 +159,7 @@ require('colorizer').setup()
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
+require('neoscroll').setup()
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')

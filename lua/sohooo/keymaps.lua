@@ -6,7 +6,7 @@ wk.setup {}
 wk.register({
   -- insert mode
   ["kj"]    = { "<Esc>", "normal mode", mode = "i" },
-  ["<C-l>"] = { "<C-x><C-l>", "line compl", mode = "i" },
+  -- ["<C-l>"] = { "<C-x><C-l>", "line compl", mode = "i" },
 
   -- visual mode
   [">"] = { ">gv", "indent more", mode = "v" },
