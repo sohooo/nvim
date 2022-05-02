@@ -4,3 +4,8 @@ sohooo.vim
 .DS_Store
 
 plugin/packer_compiled.lua
+shada/
+site/
+telescope_history
+undo/
+nvim/

@@ -151,7 +151,7 @@ require('sohooo/indent_blankline')
 require('sohooo/neogit')
 require('sohooo/nvim-cmp')
 require('sohooo/nvim-tree')
-require('sohooo/trouble')
+-- require('sohooo/trouble')
 require('sohooo/focus')
 
 require('tabout').setup()
