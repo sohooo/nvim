@@ -26,7 +26,6 @@ wk.register({
   ["<space>l"] = { "<cmd>nohlsearch<cr>", "remove search hl" },
   ["j"] = { "gj", "ignore wrap j" },
   ["k"] = { "gk", "ignore wrap k" },
-  ["Y"] = { "yg_", "yank till end" },
   ["J"] = { "mzJ`z", "join w/ fixed cursor" },
   ["n"] = { "nzzzv", "keep matches centered" },
   ["N"] = { "Nzzzv", "keep matches centered" },
