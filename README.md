@@ -1,21 +1,19 @@
-> a __modern__ and __highly opinionated__ lua config for neovim 0.7+
+> my __highly opinionated__ neovim 0.7+ lua config
 
 ## Features
 
-- nvim 0.7+ lua-based config
-- complete package with useful plugins, bindings and colorschemes
-- fully portable; place this repo anywhere you want
-- modern telescope and lsp setup
-- nicely structured and fine-tuned `init.loa` config for easy extension/modification
+- modern nvim 0.7+ lua-based config with telescope and lsp
+- complete package with useful plugins, autocommands, bindings and colorschemes
+- fully portable; place this repo anywhere you want (see below)
+- nicely structured and fine-tuned `init.loa` config
 - enhanced markdown editing with folding, fenced code hightighting and TOC
-- trailing whitespace on save are automatically removed
 - regex commands (like search/replace) with live preview
 - smart text objects: select text, then use `.` to enlage selection
 - manage git repo with [neogit](https://github.com/TimUntersberger/neogit)
 - collab editing with [instant](https://github.com/jbyuki/instant.nvim)
 - [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
 
-If you need something established and well maintained, backed by a large community to answer your questions, I recommend checking out:
+__Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
 - [AstroVim](https://astronvim.github.io)
 - [Nvchad](https://nvchad.github.io)
 
@@ -48,19 +46,13 @@ alias v='XDG_CONFIG_HOME=~/.dotfiles XDG_DATA_HOME=~/.dotfiles nvim'
 
 ## Bindings
 
-Here's a list of some useful keyboard bindings. To get an overview and search trough them, use the `:Telescope keymaps` command.
-
+Here's a list of some useful keymaps. Just start typing and wait for the context-sensitive `which-key` popup. Try it with `,` (the Leader key) and wait to see further options. Alternatively, call `:WhichKey` to see all of them. You can also search trough them with the `:Telescope keymaps`.
 
 ### Finding stuff with Telescope
 
 * `<leader> f` git_files || find_files
-* `<leader> g` git_files
 * `<leader> s` live_grep ("search")
 * `<leader> b` buffers
-* `<leader> ta` tags
-* `<leader> th` help_tags
-* `<leader> to` todos
-* `<leader><space>` find in current buffer
 
 [Telescope bindings](https://github.com/nvim-telescope/telescope.nvim#mappings) to select/open files (same for nvim-tree):
 
@@ -70,45 +62,45 @@ Here's a list of some useful keyboard bindings. To get an overview and search tr
 * `<c-x>`   open in horizontal split
 
 
-### lsp Helpers
+### other lsp/telescope keymaps
 
-* `gh`   find element
-* `gd`   go to definition
-* `gD`   go to Declaration
-* `gi`   go to implemention
+* `gd | gD` preview/goto definition
+* `gi | gI` preview/goto implemention
+* `gr | gR` preview/goto references
 * `K`    show docs
-* `gr`   go to references
-* `gd`   preview definition
 * `gs`   show signatur help
 * `gp`   go to preview actions
-* `<leader>c` code actions; `a` action, `r` rename, `s` reformat file
-* `<leader>t` telescope stuff
+* `<leader>c` code actions:
+  * `a`  action
+  * `r`  rename
+  * `s`  reformat file
+* `<leader>t` telescope stuff:
+  * `e`  toggleterm
+  * `o`  todos
+  * `r`  Trouble
+  * `s`  go to symbol
 * `<leader>g` git actions
+  * `s`  Telescope git status
+  * `g`  open Neogit; [README](https://github.com/TimUntersberger/neogit)
 * `<leader>h` help
 * `<leader>r` vim-test
 * `<space> h` show line diagnostics
 * `ctrl-n|p` jump to next|previous lsp diagnostics
-* `,s`   fix **s**tyle (format) current file
 
 
 ### Movement and others
 
 * `tab, S-tab` switch buffers (close with `,q`)
-* `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines; `sab`
+* `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines
 * `,a =`    align line/selection
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings)
 * `,u`      toggle UndoTree
-* `,tr`     toggle Trouble diagnostics
-* `,w`      toggle distraction-free writing
 * `gcc`     toggle comment on/off
-* `,c`      open Neogit
 * `kj`      remap of ESC
 * `<space> l` clear search highlight
 * `F9`      toggle paste/nopaste
 * `F10`     toggle number/nonumber
-* `,te`     toggle terminal
-* `,tt`     open Vista nvim_lsp symbols
-* `:GitBlameToggle`  show git blame info
+* `,te`     toggle terminal; `:ToggleTermSendCurrentLine` and other goodies, see [README](https://github.com/akinsho/toggleterm.nvim)
 
 
 ### Snippets
@@ -117,24 +109,13 @@ Here's a list of some useful keyboard bindings. To get an overview and search tr
 * `ctrl-j`           complete snippet
 
 
-### Fugitive
-
-Browse the git histroy with style. [Docs](https://github.com/tpope/vim-fugitive), [screencast](http://vimcasts.org/episodes/fugitive-vim-exploring-the-history-of-a-git-repository/).
-
-* `:Gdiff`    show diff
-* `:Gstatus`  toggle files with `-`
-* `:Glog -- %` load all commits which touched current file to quickfix list
-* `:Glog --grep=findme` search for 'findme' in all ancestral commit messages
-* `:Glog -Sfindme` search for 'findme' in the diff
-
-
 ## Workflows
 
 ### Search and Replace
 
 Search and replace is like nothing you've ever experienced, thanks to `Telescope` and `quickfix-reflector`. Ok, let's say you want to replace the function `foo` with `bar` in some files in the project. Watch this:
 
-- search for string: `<space> s` to open Telescope live_grep, then enter `foo`
+- search for string: `,s` to open Telescope live_grep, then enter `foo`
 - put those results into the quickfix list with `<ctrl> q` ([watch this](https://www.youtube.com/watch?v=IoyW8XYGqjM) if you have no idea what the quickfix list is)
 - now, edit the contents in the quickfix list! optionally remove lines you don't want to replace, then some kind of: `:s/foo/bar/g`. We even get a preview of our replacement.
 - if we're happy, `:w`rite the changes
@@ -148,6 +129,9 @@ Search and replace is like nothing you've ever experienced, thanks to `Telescope
 
 
 ## Misc
+
+### Terminal
+The [colorscheme](https://github.com/folke/tokyonight.nvim) and other goodies require a terminal with truecolor support. Sadly, that isn't the case for MacOS' Terminal. Currently I'm mostly using [iTerm2](https://iterm2.com).
 
 ### Fonts
 For all the icons to show correctly, please use one of the [Nerd Fonts](https://www.nerdfonts.com).

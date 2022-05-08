@@ -41,12 +41,13 @@ wk.register({
   -- ["<c-k>"] = { vim.lsp.buf.signature_help, "signature" },
   ["g"] = {
     name = "+lsp",
-    D = { vim.lsp.buf.declaration, "Declaration" },
-    d = { vim.lsp.buf.definition, "Definition" },
-    i = { vim.lsp.buf.implementation, "Implementation" },
-    -- p = { vim.lsp.diagnostic.goto_prev, "lsp prev (c-p)" },
-    -- n = { vim.lsp.diagnostic.goto_next, "lsp next (c-n)" },
-    r = { vim.lsp.buf.references, "References" },
+    -- D = { vim.lsp.buf.declaration, "Declaration" },
+    d = { require('goto-preview').goto_preview_definition, "Definition" },
+    D = { vim.lsp.buf.definition, "Definition" },
+    i = { require('goto-preview').goto_preview_implementation, "Implementation" },
+    I = { vim.lsp.buf.implementation, "Implementation" },
+    r = { require('goto-preview').goto_preview_references, "References" },
+    R = { vim.lsp.buf.references, "References" },
     ["p"] = {
       name = "+preview",
       p = { require('goto-preview').close_all_win, "Close Previews" },
@@ -88,7 +89,7 @@ wk.register({
       a = { vim.lsp.buf.code_action, "Code Action" },
       -- a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
       r = { vim.lsp.buf.rename, "Rename" },
-      s = { vim.lsp.buf.formatting, "Reformat File" },
+      s = { vim.lsp.buf.format, "Reformat File" },
     },
     g = {
       name = "+git",
