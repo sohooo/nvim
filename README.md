@@ -56,7 +56,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 
 [Telescope bindings](https://github.com/nvim-telescope/telescope.nvim#mappings) to select/open files (same for nvim-tree):
 
-* `<c-n|p>` movement
+* `<c-n|p>` (insert mode) movement, completion; scroll lsp help docs with `ctrl j|k`
 * `<c-t>`   open in tab
 * `<c-v>`   open in vertical split
 * `<c-x>`   open in horizontal split
@@ -85,7 +85,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `<leader>h` help
 * `<leader>r` vim-test
 * `<space> h` show line diagnostics
-* `ctrl-n|p` jump to next|previous lsp diagnostics
+* `c-n|p` (command mode) jump to next|previous lsp diagnostics
 
 
 ### Movement and others

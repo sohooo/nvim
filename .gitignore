@@ -9,3 +9,5 @@ site/
 telescope_history
 undo/
 nvim/
+
+rplugin.vim

@@ -44,7 +44,7 @@ require('packer').startup(function()
     use "akinsho/toggleterm.nvim"
     use 'rmagatti/goto-preview'
     use 'norcalli/nvim-colorizer.lua'
-    use 'beauwilliams/focus.nvim'
+    use 'beauwilliams/focus.nvim' -- Auto-Focusing and Auto-Resizing Splits/Windows
     use 'karb94/neoscroll.nvim'
   -- }}}
 

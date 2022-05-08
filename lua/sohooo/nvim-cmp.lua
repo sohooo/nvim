@@ -9,44 +9,52 @@ local lspkind = require('lspkind')
 
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+        vim.fn["vsnip#anonymous"](args.body) -- for vsnip
       end,
     },
 
-    -- mappings ------------------------------------------------------------
-    mapping = {
-      -- hit 'K' again to enter docs popup; 'q' to quit it
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, --`cmp.config.disable` to remove the default `<C-y>` mapping
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
+  -- mappings ------------------------------------------------------------
+    mapping = cmp.mapping.preset.insert({
+      ['<C-j>'] = cmp.mapping.scroll_docs(4),
+      ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    -- tab completion
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
-      end
-    end, { "i", "s" }),
-    },
+    }),
+    -- mapping = {
+    --   -- hit 'K' again to enter docs popup; 'q' to quit it
+    --   ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    --   ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    --   ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    --   ['<C-y>'] = cmp.config.disable, --`cmp.config.disable` to remove the default `<C-y>` mapping
+    --   ['<C-e>'] = cmp.mapping({
+    --     i = cmp.mapping.abort(),
+    --     c = cmp.mapping.close(),
+    --   }),
+      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    -- -- tab completion
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif vim.fn["vsnip#available"](1) == 1 then
+    --     feedkey("<Plug>(vsnip-expand-or-jump)", "")
+    --   elseif has_words_before() then
+    --     cmp.complete()
+    --   else
+    --     fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+    --   end
+    -- end, { "i", "s" }),
+    --
+    -- ["<S-Tab>"] = cmp.mapping(function()
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+    --     feedkey("<Plug>(vsnip-jump-prev)", "")
+    --   end
+    -- end, { "i", "s" }),
+    -- },
 
     -- sources ------------------------------------------------------------
     sources = cmp.config.sources({
