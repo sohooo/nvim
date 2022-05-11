@@ -36,8 +36,8 @@ wk.register({
 
   -- lsp stuff
   ["K"]     = { vim.lsp.buf.hover, "hover impl" },
-  ["<c-p>"] = { vim.lsp.diagnostic.goto_prev, "lsp prev" },
-  ["<c-n>"] = { vim.lsp.diagnostic.goto_next, "lsp next" },
+  ["<c-p>"] = { vim.diagnostic.goto_prev, "lsp prev" },
+  ["<c-n>"] = { vim.diagnostic.goto_next, "lsp next" },
   -- ["<c-k>"] = { vim.lsp.buf.signature_help, "signature" },
   ["g"] = {
     name = "+lsp",

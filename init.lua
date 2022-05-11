@@ -34,8 +34,9 @@ require('packer').startup(function()
     use 'tpope/vim-dispatch' -- async build/test dispatcher
     use 'folke/which-key.nvim' -- key bindings
     use 'folke/todo-comments.nvim'
-
     use 'onsails/lspkind-nvim' -- icons in lsp popups etc
+    use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
+
     use 'hoob3rt/lualine.nvim'
     use 'kdheepak/tabline.nvim'
     use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
@@ -49,7 +50,7 @@ require('packer').startup(function()
   -- }}}
 
   -- languages {{{
-    use 'sheerun/vim-polyglot' -- the full kitchen sink
+    -- use 'sheerun/vim-polyglot' -- the full kitchen sink
     use 'fatih/vim-go'
   -- }}}
 
@@ -143,7 +144,8 @@ require('sohooo/misc')
 require('sohooo/treesitter')
 require('sohooo/todo-comments')
 require('sohooo/telescope')
-require('sohooo/lsp')
+-- require('sohooo/lsp')
+require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
@@ -159,7 +161,9 @@ require('colorizer').setup()
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
-require('neoscroll').setup()
+require('neoscroll').setup({
+  easing_function = "sine"
+})
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')

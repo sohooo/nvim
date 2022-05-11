@@ -18,12 +18,12 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
 local servers = { 'solargraph', 'gopls', 'elixirls', 'sumneko_lua' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
+-- for _, lsp in ipairs(servers) do
+--   nvim_lsp[lsp].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }
+-- end
 
 -- ruby/solargraph
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#solargraph
@@ -108,19 +108,6 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    --virtual_text = false,
-    virtual_text = {
-      prefix = '■', -- Could be '●', '▎', 'x'
-      spacing = 4,
-      severity_limit = 'Warning',
-    },
-    underline = false,
-    signs = true, -- signs customized below
-    update_in_insert = true,
-  }
-)
 
 -- Change diagnostic symbols in the sign column (gutter)
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter
@@ -130,4 +117,5 @@ for type, icon in pairs(signs) do
   local hl = "LspDiagnosticsSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
 
