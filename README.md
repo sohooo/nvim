@@ -103,6 +103,13 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `,te`     toggle terminal; `:ToggleTermSendCurrentLine` and other goodies, see [README](https://github.com/akinsho/toggleterm.nvim)
 
 
+### Marks
+* `ma`        set mark `a`; [README](https://github.com/chentau/marks.nvim)
+* `m:a`       preview mark `a`
+* `dm-`       delete all marks in current line
+* `dm<space>` delete all marks in current buffer
+
+
 ### Snippets
 
 * `ctrl-p | ctrl-n`  cycle through elements

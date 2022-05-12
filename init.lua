@@ -68,6 +68,7 @@ require('packer').startup(function()
     use 'junegunn/vim-easy-align'
     use 'abecodes/tabout.nvim'
     use 'vim-test/vim-test'
+    use 'chentau/marks.nvim'
   -- }}}
 
   -- treesitter {{{
@@ -160,6 +161,7 @@ require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 require('neoscroll').setup()
+require('marks').setup{}
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
