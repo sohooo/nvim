@@ -95,6 +95,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `tab, S-tab` switch buffers (close with `,q`)
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines
 * `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
+  * to align markdown tables, try `,a | ** <cr>` :sparkles:
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings)
 * `,u`      toggle UndoTree
 * `gcc`     toggle comment on/off
