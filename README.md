@@ -60,6 +60,8 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `<c-t>`   open in tab
 * `<c-v>`   open in vertical split
 * `<c-x>`   open in horizontal split
+* toggle seletion with `(s)-tab`
+* close selected buffers with `<c-d>`
 
 
 ### other lsp/telescope keymaps
@@ -92,7 +94,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 
 * `tab, S-tab` switch buffers (close with `,q`)
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines
-* `,a =`    align line/selection
+* `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings)
 * `,u`      toggle UndoTree
 * `gcc`     toggle comment on/off
@@ -123,7 +125,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 Search and replace is like nothing you've ever experienced, thanks to `Telescope` and `quickfix-reflector`. Ok, let's say you want to replace the function `foo` with `bar` in some files in the project. Watch this:
 
 - search for string: `,s` to open Telescope live_grep, then enter `foo`
-- put those results into the quickfix list with `<ctrl> q` ([watch this](https://www.youtube.com/watch?v=IoyW8XYGqjM) if you have no idea what the quickfix list is)
+- put those results into the quickfix list with `<c-q>` ([watch this](https://www.youtube.com/watch?v=IoyW8XYGqjM) if you have no idea what the quickfix list is; send all __selected items__ to qflist with `<m-q>` btw.)
 - now, edit the contents in the quickfix list! optionally remove lines you don't want to replace, then some kind of: `:s/foo/bar/g`. We even get a preview of our replacement.
 - if we're happy, `:w`rite the changes
 
