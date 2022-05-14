@@ -15,6 +15,7 @@
 
 __Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
 - [AstroVim](https://astronvim.github.io)
+- [LunarVim](https://github.com/ChristianChiarulli/LunarVim)
 - [Nvchad](https://nvchad.github.io)
 
 
@@ -50,16 +51,16 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 
 ### Finding stuff with Telescope
 
-* `<leader> f` git_files || find_files
-* `<leader> s` live_grep ("search")
-* `<leader> b` buffers
+* `,f` git_files || find_files
+* `,s` live_grep ("search")
+* `,b` buffers
 
 [Telescope bindings](https://github.com/nvim-telescope/telescope.nvim#mappings) to select/open files (same for nvim-tree):
 
-* `<c-n|p>` (insert mode) movement, completion; scroll lsp help docs with `ctrl j|k`
-* `<c-t>`   open in tab
-* `<c-v>`   open in vertical split
-* `<c-x>`   open in horizontal split
+* `<C-n|p>` (insert mode) movement, completion; scroll lsp help docs with `<c-j|k>`
+* `<C-t>`   open in tab
+* `<C-v>`   open in vertical split
+* `<C-x>`   open in horizontal split
 * toggle seletion with `(s)-tab`
 * close selected buffers with `<c-d>`
 
@@ -72,22 +73,22 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `K`    show docs
 * `gs`   show signatur help
 * `gp`   go to preview actions
-* `<leader>c` code actions:
+* `,c` code actions:
   * `a`  action
   * `r`  rename
   * `s`  reformat file
-* `<leader>t` telescope stuff:
+* `,t` telescope stuff:
   * `e`  toggleterm
   * `o`  todos
   * `r`  Trouble
   * `s`  go to symbol
-* `<leader>g` git actions
+* `,g` git actions
   * `s`  Telescope git status
   * `g`  open Neogit; [README](https://github.com/TimUntersberger/neogit)
-* `<leader>h` help
-* `<leader>r` vim-test
-* `<space> h` show line diagnostics
-* `c-n|p` (command mode) jump to next|previous lsp diagnostics
+* `,h` help
+* `,r` vim-test
+* `,h` show line diagnostics
+* `C-n|p` (command mode) jump to next|previous lsp diagnostics
 
 
 ### Movement and others
@@ -96,13 +97,11 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines
 * `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * to align markdown tables, try `,a | ** <cr>` :sparkles:
-* `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings)
+* `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings); `I` to toggle gitignore'd files
 * `,u`      toggle UndoTree
 * `gcc`     toggle comment on/off
 * `kj`      remap of ESC
 * `<space> l` clear search highlight
-* `F9`      toggle paste/nopaste
-* `F10`     toggle number/nonumber
 * `,te`     toggle terminal; `:ToggleTermSendCurrentLine` and other goodies, see [README](https://github.com/akinsho/toggleterm.nvim)
 
 
@@ -115,8 +114,8 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 
 ### Snippets
 
-* `ctrl-p | ctrl-n`  cycle through elements
-* `ctrl-j`           complete snippet
+* `C-p|n`  cycle through elements
+* `C-j`    complete snippet
 
 
 ## Workflows
