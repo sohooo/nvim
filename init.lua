@@ -95,10 +95,15 @@ require('packer').startup(function()
   -- colorschemes {{{
     use 'cocopon/iceberg.vim'
     use 'joshdick/onedark.vim'
+
+    use 'PHSix/nvim-hybrid'
+    use 'rmehri01/onenord.nvim'
     use 'shaunsingh/moonlight.nvim'
-    use 'shaunsingh/nord.nvim'
     use 'shaunsingh/doom-vibrant.nvim'
     use 'folke/tokyonight.nvim'
+
+  -- eval
+
   -- }}}
 
 end)
@@ -125,12 +130,23 @@ vim.wo.signcolumn = 'yes'         -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
---Set colorscheme (order is important here)
-vim.o.termguicolors = true
--- vim.g.onedark_terminal_italics = 2
--- vim.cmd [[colorscheme onedark]]
-vim.cmd [[colorscheme tokyonight]]
-vim.g.tokyonight_style = "night" -- storm | night | day
+local function hifi()
+  local style = os.getenv("NVIM_STYLE")
+  return style ~= "plain"
+end
+
+if hifi() then
+  --Set colorscheme (order is important here)
+  vim.o.termguicolors = true
+  vim.cmd [[colorscheme tokyonight]]
+  vim.g.tokyonight_style = "night" -- storm | night | day
+else
+  vim.o.termguicolors = false
+  vim.cmd [[colorscheme iceberg]]
+  -- vim.g.onedark_terminal_italics = 2
+  -- vim.g.onedark_termcolors = 256
+  -- vim.cmd [[colorscheme onedark]]
+end
 -- }}}
 
 vim.g.mapleader = ','
@@ -156,7 +172,11 @@ require('sohooo/nvim-tree')
 require('sohooo/focus')
 
 require('tabout').setup()
-require('colorizer').setup()
+
+if hifi() then
+  require('colorizer').setup()
+end
+
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
