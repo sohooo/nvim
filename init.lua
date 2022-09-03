@@ -68,7 +68,7 @@ require('packer').startup(function()
     use 'junegunn/vim-easy-align'
     use 'abecodes/tabout.nvim'
     use 'vim-test/vim-test'
-    use 'chentau/marks.nvim'
+    use 'chentoast/marks.nvim'
   -- }}}
 
   -- treesitter {{{
@@ -130,12 +130,13 @@ vim.wo.signcolumn = 'yes'         -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
-local function hifi()
+function Hifi()
+  -- TODO: gutter symbols
   local style = os.getenv("NVIM_STYLE")
   return style ~= "plain"
 end
 
-if hifi() then
+if Hifi() then
   --Set colorscheme (order is important here)
   vim.o.termguicolors = true
   vim.cmd [[colorscheme tokyonight]]
@@ -173,7 +174,7 @@ require('sohooo/focus')
 
 require('tabout').setup()
 
-if hifi() then
+if Hifi() then
   require('colorizer').setup()
 end
 
