@@ -73,7 +73,10 @@ require('packer').startup(function()
 
   -- treesitter {{{
     -- Plug 'lewis6991/spellsitter.nvim'
-    use 'nvim-treesitter/nvim-treesitter'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use 'romgrk/nvim-treesitter-context'
@@ -169,8 +172,9 @@ require('sohooo/indent_blankline')
 require('sohooo/neogit')
 require('sohooo/nvim-cmp')
 require('sohooo/nvim-tree')
--- require('sohooo/trouble')
 require('sohooo/focus')
+
+-- require('sohooo/trouble')
 
 require('tabout').setup()
 

@@ -17,6 +17,9 @@ require('nvim-treesitter.configs').setup {
   --   "toml",
   --   "yaml",
   -- },
+  highlight = {
+    enable = true, -- false will disable the whole extension
+  },
   autotag = {
     enable = true,
   },
@@ -27,9 +30,6 @@ require('nvim-treesitter.configs').setup {
   },
   matchup = {
     enable = true,              -- mandatory, false will disable the whole extension
-  },
-  highlight = {
-    enable = true, -- false will disable the whole extension
   },
   incremental_selection = {
     enable = true,
@@ -79,3 +79,18 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- Users of packer.nvim have reported that when using treesitter for folds,
+-- they sometimes receive an error "No folds found", or that treesitter
+-- highlighting does not apply. A workaround for this is to set the folding
+-- options in an autocmd:
+-- vim.opt.foldmethod     = 'expr'
+-- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+---WORKAROUND
+-- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+--   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+--   callback = function()
+--     vim.opt.foldmethod     = 'expr'
+--     vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+--   end
+-- })
+---ENDWORKAROUND
