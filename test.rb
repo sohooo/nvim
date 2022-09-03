@@ -1,6 +1,6 @@
 # FIXME: documentation
 class Test
-    def funky_stuff(hi: :you)
+    def funky_stuff(hi: :you, this: :nice)
       test = false
       this = :nice
       omg_this_is_long = "hell yeah!"

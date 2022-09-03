@@ -112,7 +112,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     --virtual_text = false,
     virtual_text = {
-      prefix = '■', -- Could be '●', '▎', 'x'
+      prefix = '⋇', -- Could be '●', '▎', 'x', ■
       spacing = 4,
       severity_limit = 'Warning',
     },
@@ -124,7 +124,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Change diagnostic symbols in the sign column (gutter)
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#change-diagnostic-symbols-in-the-sign-column-gutter
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = {}
+if Hifi() then
+  signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+else
+  -- signs = { Error = "Ⓔ ", Warn = "Ⓦ ", Hint = "Ⓗ ", Info = "Ⓘ " }
+  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
+  signs = { Error = "⊗", Warn = "⋇", Hint = "⋯", Info = "⊹" }
+end
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
