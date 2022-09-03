@@ -5,6 +5,15 @@
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
 -- NVIM v0.8.0-dev+96-gd9dcfd021 LuaJIT 2.1.0-beta3
 
+function Hifi()
+  -- TODO: telescope icons
+  -- non-nerdfont compatible signs
+  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
+  -- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
+  local style = os.getenv("NVIM_STYLE")
+  return style ~= "plain"
+end
+
 -- plugins {{{
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
@@ -38,8 +47,11 @@ require('packer').startup(function()
     use 'onsails/lspkind-nvim' -- icons in lsp popups etc
     use 'hoob3rt/lualine.nvim'
     use 'kdheepak/tabline.nvim'
-    use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
-    use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+
+    if Hifi() then use 'kyazdani42/nvim-web-devicons' end
+    use 'kyazdani42/nvim-tree.lua'
+    use 'folke/trouble.nvim'
+
     use 'lukas-reineke/indent-blankline.nvim'
     use "akinsho/toggleterm.nvim"
     use 'rmagatti/goto-preview'
@@ -98,6 +110,7 @@ require('packer').startup(function()
   -- colorschemes {{{
     use 'cocopon/iceberg.vim'
     use 'joshdick/onedark.vim'
+    use 'arcticicestudio/nord-vim'
 
     use 'PHSix/nvim-hybrid'
     use 'rmehri01/onenord.nvim'
@@ -133,14 +146,6 @@ vim.wo.signcolumn = 'yes'         -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
-function Hifi()
-  -- non-nerdfont compatible signs
-  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
-  -- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
-  local style = os.getenv("NVIM_STYLE")
-  return style ~= "plain"
-end
-
 if Hifi() then
   --Set colorscheme (order is important here)
   vim.o.termguicolors = true
@@ -148,7 +153,8 @@ if Hifi() then
   vim.g.tokyonight_style = "night" -- storm | night | day
 else
   vim.o.termguicolors = false
-  vim.cmd [[colorscheme iceberg]]
+  vim.cmd [[colorscheme nord]]
+  -- vim.cmd [[colorscheme iceberg]]
   -- vim.g.onedark_terminal_italics = 2
   -- vim.g.onedark_termcolors = 256
   -- vim.cmd [[colorscheme onedark]]
@@ -187,7 +193,7 @@ end
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
-require('neoscroll').setup()
+-- require('neoscroll').setup()
 require('marks').setup{}
 require('leap').set_default_keymaps()
 

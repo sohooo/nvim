@@ -1,7 +1,7 @@
 require'lualine'.setup {
   options = {
     icons_enabled = Hifi(),
-    theme = 'iceberg',  -- moonlight | material-nvim | nord | aquarium | tokyonight
+    theme = 'nord',  -- iceberg, moonlight | material-nvim | nord | aquarium | tokyonight
     component_separators = {'', ''},
     section_separators = {'', ''},
     disabled_filetypes = {}

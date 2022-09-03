@@ -1,7 +1,7 @@
 -- Telescope
 local actions = require('telescope.actions')
 require('telescope').setup {
-  disable_devicons = false,
+  disable_devicons = not Hifi(),
   color_devicons = true,
   defaults = {
     mappings = {

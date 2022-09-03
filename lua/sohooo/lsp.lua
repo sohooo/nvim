@@ -137,3 +137,24 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- if not Hifi() then
+--   vim.cmd([[
+--   " Errors in Red
+--   hi LspDiagnosticsDefaultError guifg=Red ctermfg=Red
+--   " Warnings in Yellow
+--   hi LspDiagnosticsDefaultWarning guifg=Yellow ctermfg=Yellow
+--   " Info and Hints in White
+--   hi LspDiagnosticsDefaultInformation guifg=White ctermfg=White
+--   hi LspDiagnosticsDefaultHint guifg=White ctermfg=White
+--
+--     " hi link IndentBlanklineChar CursorLineSign
+--     " hi link DiagnosticWarn WarningMsg
+--     " hi link DiagnosticError WarningMsg
+--     " hi link DiagnosticInfo WarningMsg
+--     " hi link DiagnosticHint WarningMsg
+--     " hi link DiagnosticUnderlineWarn WarningMsg
+--     " hi link DiagnosticUnderlineError WarningMsg
+--     " hi link DiagnosticUnderlineInfo WarningMsg
+--     " hi link DiagnosticUnderlineHint WarningMsg
+--     ]])
+-- end
