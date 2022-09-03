@@ -134,7 +134,9 @@ vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
 function Hifi()
-  -- TODO: gutter symbols
+  -- non-nerdfont compatible signs
+  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
+  -- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
   local style = os.getenv("NVIM_STYLE")
   return style ~= "plain"
 end
@@ -179,10 +181,6 @@ require('sohooo/focus')
 require('tabout').setup()
 
 if Hifi() then
-  -- TODO: todo-comments
-  -- non-nerdfont compatible signs
-  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
-  -- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
   require('colorizer').setup()
 end
 
