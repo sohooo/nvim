@@ -43,6 +43,9 @@ alias v='XDG_CONFIG_HOME=~/.config XDG_DATA_HOME=~/.config nvim'
 # or some custom parent path to this repo
 # this repo would be placed in ~/.dotfiles/nvim
 alias v='XDG_CONFIG_HOME=~/.dotfiles XDG_DATA_HOME=~/.dotfiles nvim'
+
+# set NVIM_STYLE=plain to use lo-fi version, without nerdfonts
+NVIM_STYLE=plain v test.rb
 ```
 
 ## Bindings

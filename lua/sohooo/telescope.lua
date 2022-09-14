@@ -15,6 +15,7 @@ require('telescope').setup {
   pickers = {
     -- Your special builtin config goes in here
     buffers = {
+      disable_devicons = not Hifi(),
       sort_lastused = true,
       theme = "dropdown",
       -- previewer = true,
@@ -28,6 +29,7 @@ require('telescope').setup {
       }
     },
     find_files = {
+      disable_devicons = not Hifi(),
       --theme = "dropdown"
     },
   },
@@ -64,7 +66,7 @@ local M = {}
 -- Falling back to find_files if git_files can't find a .git directory
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
 M.project_files = function()
-  local opts = {} -- define here if you want to define something
+  local opts = {disable_devicons = not Hifi(),}
   local ok = pcall(require'telescope.builtin'.git_files, opts)
   if not ok then require'telescope.builtin'.find_files(opts) end
 end
