@@ -146,5 +146,5 @@ Search and replace is like nothing you've ever experienced, thanks to `Telescope
 The [colorscheme](https://github.com/folke/tokyonight.nvim) and other goodies require a terminal with truecolor support. Sadly, that isn't the case for MacOS' Terminal. Currently I'm mostly using [iTerm2](https://iterm2.com).
 
 ### Fonts
-For all the icons to show correctly, please use one of the [Nerd Fonts](https://www.nerdfonts.com).
+For all the icons to show correctly, please use one of the [Nerd Fonts](https://www.nerdfonts.com). __However__, there's also a __Lo-Fi mode/style__ available, which transparently removes all Nerdfont/Devicon requirements :sparkles: To use, just set the env var `NVIM_STYLE=plain` before calling this neovim config.
 

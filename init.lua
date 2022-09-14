@@ -70,7 +70,6 @@ require('packer').startup(function()
     use 'TimUntersberger/neogit'
     use 'mbbill/undotree'
     use 'tpope/vim-repeat' -- make '.' usable for plugins
-    use 'tpope/vim-surround' -- quoting/parenthesizing made simple
     use 'numToStr/Comment.nvim' -- smart commenting plugin
     use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
     use 'ggandor/leap.nvim' -- fast jumping with s|S
@@ -81,6 +80,8 @@ require('packer').startup(function()
     use 'abecodes/tabout.nvim'
     use 'vim-test/vim-test'
     use 'chentoast/marks.nvim'
+
+    use { "kylechui/nvim-surround", tag = "*" } -- Use for stability; omit to use `main` branch for the latest features
   -- }}}
 
   -- treesitter {{{
@@ -195,6 +196,7 @@ require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 -- require('neoscroll').setup()
 require('marks').setup{}
+require("nvim-surround").setup({})
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
