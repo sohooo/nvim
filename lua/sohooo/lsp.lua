@@ -24,6 +24,9 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- rust
+require'lspconfig'.rust_analyzer.setup{}
+
 -- ruby/solargraph
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#solargraph
 require('lspconfig').solargraph.setup {
