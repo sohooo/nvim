@@ -70,6 +70,7 @@ wk.register({
       h = { telescope.help_tags, "Help Tags" },
       a = { telescope.tags, "Tags" },
       d = { telescope.lsp_workspace_diagnostics, "LSP Diag" },
+      t = { "<cmd>TermExec cmd='!!'<cr>", "rerun Term Command" },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
       o = { "<cmd>TodoTelescope<cr>", "Show Todos" },
@@ -135,4 +136,27 @@ wk.register({
       -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
   },
 })
+
+-- filetype specific keybinds
+-- vim.cmd('autocmd FileType * lua setFiletypeKeybinds()')
+-- function setFiletypeKeybinds()
+--   local type = vim.api.nvim_buf_get_option(0, "filetype")
+--   local opts = { prefix = '<leader>', buffer = 0 }
+--
+--   if type == 'rust' then
+--     local rt = require("rust-tools")
+--     wk.register({
+--       c = {
+--         a = { rt.code_action_group.code_action_group },
+--       },
+--     }, opts)
+--
+--     -- elseif type == 'sh' then
+--     --     wk.register({
+--     --         ['W'] = {':w<CR>', 'test write'},
+--     --         ['Q'] = {':q<CR>', 'test quit'},
+--     --     }, opts)
+--   end
+-- end
+
 

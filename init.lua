@@ -63,6 +63,8 @@ require('packer').startup(function()
   -- languages {{{
     use 'sheerun/vim-polyglot' -- the full kitchen sink
     use 'fatih/vim-go'
+    use 'simrat39/rust-tools.nvim'
+    use 'mfussenegger/nvim-dap' -- Debugging
   -- }}}
 
   -- editing tools {{{
@@ -186,6 +188,7 @@ require('sohooo/focus')
 -- require('sohooo/trouble')
 
 require('tabout').setup()
+require('sohooo/rust-tools')
 
 if Hifi() then
   require('colorizer').setup()
