@@ -21,9 +21,23 @@ __Note:__ if you need something established and well maintained, backed by a lar
 
 ## Installation
 
-### self-contained/portable usage
+First, you need to [install Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim). Then, follow one of the following methods:
+- __default location__: follow `XDG` env conventions and put this config in `~/.config`
+- __portable/custom location__: custom location for this config by setting `XDG` env vars
 
-Neovim and Packer (plugin manager) follow common `XDG` env vars:
+### default location
+
+Neovim and Packer (plugin manager) follow common `XDG` env vars, so if we put the config in `~/.config`, everything will work out of the box:
+
+```bash
+cd
+mkdir .config; cd $_
+git clone https://github.com/sohooo/nvim.git
+nvim
+# plugin installation; see below
+```
+
+### self-contained/portable usage
 
 ```lua
 -- $XDG_CONFIG_HOME
@@ -35,17 +49,43 @@ Neovim and Packer (plugin manager) follow common `XDG` env vars:
 /Users/sohooo/.local/share/nvim
 ```
 
-Cloning this repo to `~/.config/nvim` will mostly work, but the plugins will be put in `XDG_DATA_HOME`. However, the following alias ensures that everything lands in `./config/nvim`:
+Cloning this repo to `~/.config/nvim` is the recommended location and will mostly work, but the plugins will be put in `XDG_DATA_HOME`. However, the following alias ensures that everything lands in `./config/nvim`:
 
 ```bash
 alias v='XDG_CONFIG_HOME=~/.config XDG_DATA_HOME=~/.config nvim'
 
-# or some custom parent path to this repo
-# this repo would be placed in ~/.dotfiles/nvim
-alias v='XDG_CONFIG_HOME=~/.dotfiles XDG_DATA_HOME=~/.dotfiles nvim'
-
 # set NVIM_STYLE=plain to use lo-fi version, without nerdfonts
 NVIM_STYLE=plain v test.rb
+```
+
+To install in another path, you would simply do the following:
+
+```bash
+cd /tmp
+mkdir config && cd $_
+
+# in /tmp/config
+git clone https://github.com/sohooo/nvim.git
+
+# start nvim using this config
+XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
+```
+
+## Plugins
+
+This config uses Packer to manage Neovim plugins. To install them, you do one of the following:
+
+```bash
+# start neovim, then run packer install
+XDG_CONFIG_HOME=/tmp/.config XDG_DATA_HOME=/tmp/.config nvim
+:PackerInstall
+
+# or, do everything with one command
+XDG_CONFIG_HOME=/tmp/.config XDG_DATA_HOME=/tmp/.config nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+
+# just to be sure, start nvim and see if everything's there ;)
+:PackerStatus
+:TSInstallInfo
 ```
 
 ## Bindings

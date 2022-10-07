@@ -6,125 +6,136 @@
 -- NVIM v0.8.0-dev+96-gd9dcfd021 LuaJIT 2.1.0-beta3
 
 function Hifi()
-  -- TODO: telescope icons
-  -- non-nerdfont compatible signs
-  -- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
-  -- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
-  local style = os.getenv("NVIM_STYLE")
-  return style ~= "plain"
+	-- TODO: telescope icons
+	-- non-nerdfont compatible signs
+	-- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
+	-- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
+	local style = os.getenv("NVIM_STYLE")
+	return style ~= "plain"
 end
 
 -- plugins {{{
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
 end
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+local packer_bootstrap = ensure_packer()
 
-local use = require('packer').use
-require('packer').startup(function()
-  use 'wbthomason/packer.nvim' -- Package manager
+require('packer').startup(function(use)
+	use 'wbthomason/packer.nvim'
 
-  -- telescope {{{
-    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  -- }}}
+	vim.cmd([[
+	  augroup packer_user_config
+	    autocmd!
+	    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+	  augroup end
+	]])
 
-  -- addons, layout {{{
-    use 'neovim/nvim-lspconfig' -- configurations for built-in LSP client
-    use 'tpope/vim-fugitive' -- Git commands in nvim
-    use 'tpope/vim-dispatch' -- async build/test dispatcher
-    use 'folke/which-key.nvim' -- key bindings
-    use 'folke/todo-comments.nvim'
+	-- telescope {{{
+	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	-- }}}
 
-    use 'onsails/lspkind-nvim' -- icons in lsp popups etc
-    use 'hoob3rt/lualine.nvim'
-    use 'kdheepak/tabline.nvim'
+	-- addons, layout {{{
+	use 'neovim/nvim-lspconfig' -- configurations for built-in LSP client
+	use 'tpope/vim-fugitive' -- Git commands in nvim
+	use 'tpope/vim-dispatch' -- async build/test dispatcher
+	use 'folke/which-key.nvim' -- key bindings
+	use 'folke/todo-comments.nvim'
 
-    if Hifi() then use 'kyazdani42/nvim-web-devicons' end
-    use 'kyazdani42/nvim-tree.lua'
-    use 'folke/trouble.nvim'
+	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
+	use 'hoob3rt/lualine.nvim'
+	use 'kdheepak/tabline.nvim'
 
-    use 'lukas-reineke/indent-blankline.nvim'
-    use "akinsho/toggleterm.nvim"
-    use 'rmagatti/goto-preview'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'beauwilliams/focus.nvim' -- Auto-Focusing and Auto-Resizing Splits/Windows
-    use 'karb94/neoscroll.nvim'
-  -- }}}
+	if Hifi() then use 'kyazdani42/nvim-web-devicons' end
+	use 'kyazdani42/nvim-tree.lua'
+	use 'folke/trouble.nvim'
 
-  -- languages {{{
-    use 'sheerun/vim-polyglot' -- the full kitchen sink
-    use 'fatih/vim-go'
-    use 'simrat39/rust-tools.nvim'
-    use 'mfussenegger/nvim-dap' -- Debugging
-  -- }}}
+	use 'lukas-reineke/indent-blankline.nvim'
+	use "akinsho/toggleterm.nvim"
+	use 'rmagatti/goto-preview'
+	use 'norcalli/nvim-colorizer.lua'
+	use 'beauwilliams/focus.nvim' -- Auto-Focusing and Auto-Resizing Splits/Windows
+	use 'karb94/neoscroll.nvim'
+	-- }}}
 
-  -- editing tools {{{
-    use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use 'TimUntersberger/neogit'
-    use 'mbbill/undotree'
-    use 'tpope/vim-repeat' -- make '.' usable for plugins
-    use 'numToStr/Comment.nvim' -- smart commenting plugin
-    use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
-    use 'ggandor/leap.nvim' -- fast jumping with s|S
-    use 'sickill/vim-pasta' -- pasting with indentation adjusted
-    use 'stefandtw/quickfix-reflector.vim' -- Change code right in the quickfix window
-    use 'windwp/nvim-autopairs'
-    use 'junegunn/vim-easy-align'
-    use 'abecodes/tabout.nvim'
-    use 'vim-test/vim-test'
-    use 'chentoast/marks.nvim'
+	-- languages {{{
+	use 'sheerun/vim-polyglot' -- the full kitchen sink
+	use 'fatih/vim-go'
+	use 'simrat39/rust-tools.nvim'
+	use 'mfussenegger/nvim-dap' -- Debugging
+	-- }}}
 
-    use { "kylechui/nvim-surround", tag = "*" } -- Use for stability; omit to use `main` branch for the latest features
-  -- }}}
+	-- editing tools {{{
+	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+	use 'TimUntersberger/neogit'
+	use 'mbbill/undotree'
+	use 'tpope/vim-repeat' -- make '.' usable for plugins
+	use 'numToStr/Comment.nvim' -- smart commenting plugin
+	use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
+	use 'ggandor/leap.nvim' -- fast jumping with s|S
+	use 'sickill/vim-pasta' -- pasting with indentation adjusted
+	use 'stefandtw/quickfix-reflector.vim' -- Change code right in the quickfix window
+	use 'windwp/nvim-autopairs'
+	use 'junegunn/vim-easy-align'
+	use 'abecodes/tabout.nvim'
+	use 'vim-test/vim-test'
+	use 'chentoast/marks.nvim'
 
-  -- treesitter {{{
-    -- Plug 'lewis6991/spellsitter.nvim'
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
-    use 'romgrk/nvim-treesitter-context'
-    use 'windwp/nvim-ts-autotag'
-    use 'p00f/nvim-ts-rainbow'
-  -- }}}
+	use { "kylechui/nvim-surround", tag = "*" } -- Use for stability; omit to use `main` branch for the latest features
+	-- }}}
 
-  -- completion, snippets {{{
-    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
-  -- }}}
+	-- treesitter {{{
+	-- Plug 'lewis6991/spellsitter.nvim'
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
+	use 'nvim-treesitter/nvim-treesitter-textobjects'
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
+	use 'romgrk/nvim-treesitter-context'
+	use 'windwp/nvim-ts-autotag'
+	use 'p00f/nvim-ts-rainbow'
+	-- }}}
 
-  -- colorschemes {{{
-    use 'cocopon/iceberg.vim'
-    use 'joshdick/onedark.vim'
-    use 'arcticicestudio/nord-vim'
+	-- completion, snippets {{{
+	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-nvim-lua'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7th/vim-vsnip'
+	-- }}}
 
-    use 'PHSix/nvim-hybrid'
-    use 'rmehri01/onenord.nvim'
-    use 'shaunsingh/moonlight.nvim'
-    use 'shaunsingh/doom-vibrant.nvim'
-    use 'folke/tokyonight.nvim'
+	-- colorschemes {{{
+	use 'cocopon/iceberg.vim'
+	use 'joshdick/onedark.vim'
+	use 'arcticicestudio/nord-vim'
 
-  -- eval
+	use 'PHSix/nvim-hybrid'
+	use 'rmehri01/onenord.nvim'
+	use 'shaunsingh/moonlight.nvim'
+	use 'shaunsingh/doom-vibrant.nvim'
+	use 'folke/tokyonight.nvim'
 
-  -- }}}
+	-- eval
 
+	-- }}}
+
+-- Automatically set up your configuration after cloning packer.nvim
+-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 end)
 -- }}}
 
@@ -150,17 +161,17 @@ vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
 if Hifi() then
-  --Set colorscheme (order is important here)
-  vim.o.termguicolors = true
-  vim.cmd [[colorscheme tokyonight]]
-  vim.g.tokyonight_style = "night" -- storm | night | day
+	--Set colorscheme (order is important here)
+	vim.o.termguicolors = true
+	vim.cmd [[colorscheme tokyonight]]
+	vim.g.tokyonight_style = "night" -- storm | night | day
 else
-  vim.o.termguicolors = false
-  vim.cmd [[colorscheme nord]]
-  -- vim.cmd [[colorscheme iceberg]]
-  -- vim.g.onedark_terminal_italics = 2
-  -- vim.g.onedark_termcolors = 256
-  -- vim.cmd [[colorscheme onedark]]
+	vim.o.termguicolors = false
+	vim.cmd [[colorscheme nord]]
+	-- vim.cmd [[colorscheme iceberg]]
+	-- vim.g.onedark_terminal_italics = 2
+	-- vim.g.onedark_termcolors = 256
+	-- vim.cmd [[colorscheme onedark]]
 end
 -- }}}
 
@@ -191,7 +202,7 @@ require('tabout').setup()
 require('sohooo/rust-tools')
 
 if Hifi() then
-  require('colorizer').setup()
+	require('colorizer').setup()
 end
 
 require('Comment').setup()
