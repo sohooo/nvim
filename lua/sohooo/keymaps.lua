@@ -48,6 +48,7 @@ wk.register({
     I = { vim.lsp.buf.implementation, "Implementation" },
     r = { require('goto-preview').goto_preview_references, "References" },
     R = { vim.lsp.buf.references, "References" },
+    h = { vim.lsp.buf.hover, "Hover Docs" },
     ["p"] = {
       name = "+preview",
       p = { require('goto-preview').close_all_win, "Close Previews" },
