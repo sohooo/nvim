@@ -115,6 +115,7 @@ require('packer').startup(function(use)
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
+	use 'rafamadriz/friendly-snippets'
 	-- }}}
 
 	-- colorschemes {{{
@@ -181,6 +182,8 @@ vim.g.maplocalleader = ','
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'
+
+vim.cmd [[set iskeyword+=-]]
 
 -- includes
 require('sohooo/misc')

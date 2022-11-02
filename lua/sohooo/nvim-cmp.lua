@@ -1,5 +1,8 @@
 -- Setup nvim-cmp.
-local cmp = require('cmp')
+local cmp_status, cmp = pcall(require, 'cmp')
+if not cmp_status then
+  return
+end
 
 local lspkind = require('lspkind')
 local lspkind_mode = 'symbol_text'
@@ -74,9 +77,9 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-  }, {
-      { name = 'buffer' },
-    })
+    { name = 'buffer' },
+    { name = 'path' }
+  })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
