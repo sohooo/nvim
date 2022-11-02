@@ -44,11 +44,20 @@ require('packer').startup(function(use)
 	-- }}}
 
 	-- addons, layout {{{
-	use 'neovim/nvim-lspconfig' -- configurations for built-in LSP client
 	use 'tpope/vim-fugitive' -- Git commands in nvim
 	use 'tpope/vim-dispatch' -- async build/test dispatcher
 	use 'folke/which-key.nvim' -- key bindings
-	use 'folke/todo-comments.nvim'
+	use {
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			}
+		end
+	}
 
 	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
 	use 'hoob3rt/lualine.nvim'
@@ -68,7 +77,6 @@ require('packer').startup(function(use)
 
 	-- languages {{{
 	use 'sheerun/vim-polyglot' -- the full kitchen sink
-	use 'fatih/vim-go'
 	use 'simrat39/rust-tools.nvim'
 	use 'mfussenegger/nvim-dap' -- Debugging
 	-- }}}
@@ -106,16 +114,37 @@ require('packer').startup(function(use)
 	use 'p00f/nvim-ts-rainbow'
 	-- }}}
 
-	-- completion, snippets {{{
-	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-nvim-lua'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/cmp-vsnip'
-	use 'hrsh7th/vim-vsnip'
-	use 'rafamadriz/friendly-snippets'
+	-- lsp, completion, snippets {{{
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
+
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'saadparwaiz1/cmp_luasnip'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'hrsh7th/cmp-nvim-lua'},
+
+			-- Snippets
+			{'L3MON4D3/LuaSnip'},
+			{'rafamadriz/friendly-snippets'},
+		}
+	}
+	-- use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+	-- use 'hrsh7th/cmp-nvim-lsp'
+	-- use 'hrsh7th/cmp-nvim-lua'
+	-- use 'hrsh7th/cmp-buffer'
+	-- use 'hrsh7th/cmp-path'
+	-- use 'hrsh7th/cmp-cmdline'
+	-- use 'hrsh7th/cmp-vsnip'
+	-- use 'hrsh7th/vim-vsnip'
+	-- use 'rafamadriz/friendly-snippets'
 	-- }}}
 
 	-- colorschemes {{{
@@ -188,15 +217,16 @@ vim.cmd [[set iskeyword+=-]]
 -- includes
 require('sohooo/misc')
 require('sohooo/treesitter')
-require('sohooo/todo-comments')
+-- require('sohooo/todo-comments')
 require('sohooo/telescope')
-require('sohooo/lsp')
+require('sohooo/my-lsp-zero')
+-- require('sohooo/lsp')
+-- require('sohooo/nvim-cmp')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/indent_blankline')
 require('sohooo/neogit')
-require('sohooo/nvim-cmp')
 require('sohooo/nvim-tree')
 require('sohooo/focus')
 
