@@ -11,3 +11,8 @@ undo/
 nvim/
 
 rplugin.vim
+
+.luarc.json
+lsp-zero.info.json
+mason/
+tree-sitter-help/

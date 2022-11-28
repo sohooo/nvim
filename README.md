@@ -1,8 +1,8 @@
-> my __highly opinionated__ neovim 0.7+ lua config
+> my __highly opinionated__ neovim 0.8+ lua config
 
 ## Features
 
-- modern nvim 0.7+ lua-based config with telescope and lsp
+- modern nvim 0.8+ lua-based config with telescope and lsp
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
 - nicely structured and fine-tuned `init.loa` config
