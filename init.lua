@@ -44,13 +44,11 @@ require('packer').startup(function(use)
 	-- }}}
 
 	-- addons, layout {{{
-	use 'neovim/nvim-lspconfig' -- configurations for built-in LSP client
 	use 'tpope/vim-fugitive' -- Git commands in nvim
 	use 'tpope/vim-dispatch' -- async build/test dispatcher
 	use 'folke/which-key.nvim' -- key bindings
 	use 'folke/todo-comments.nvim'
 
-	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
 	use 'hoob3rt/lualine.nvim'
 	use 'kdheepak/tabline.nvim'
 
@@ -106,16 +104,39 @@ require('packer').startup(function(use)
 	use 'p00f/nvim-ts-rainbow'
 	-- }}}
 
-	-- completion, snippets {{{
-	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-nvim-lua'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/cmp-vsnip'
-	use 'hrsh7th/vim-vsnip'
-	use 'rafamadriz/friendly-snippets'
+	-- lsp, completion, snippets {{{
+	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
+	use {
+  'VonHeikemen/lsp-zero.nvim',
+		requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
+
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'saadparwaiz1/cmp_luasnip'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'hrsh7th/cmp-nvim-lua'},
+
+			-- Snippets
+			{'L3MON4D3/LuaSnip'},
+			{'rafamadriz/friendly-snippets'},
+		}
+	}
+	-- --
+	-- use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+	-- use 'hrsh7th/cmp-nvim-lsp'
+	-- use 'hrsh7th/cmp-nvim-lua'
+	-- use 'hrsh7th/cmp-buffer'
+	-- use 'hrsh7th/cmp-path'
+	-- use 'hrsh7th/cmp-cmdline'
+	-- use 'hrsh7th/cmp-vsnip'
+	-- use 'hrsh7th/vim-vsnip'
+	-- use 'rafamadriz/friendly-snippets'
 	-- }}}
 
 	-- colorschemes {{{
@@ -158,7 +179,7 @@ vim.o.smartcase = true            -- ...unless /C or capital in search
 vim.o.expandtab = true            -- insert spaces on <tab>
 vim.o.updatetime = 250            -- decrease update time (4000)
 vim.o.timeoutlen = 500            -- wait for seq. to complete (1000)
-vim.wo.signcolumn = 'yes'         -- always draw sign col
+vim.wo.signcolumn = 'yes:1'         -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
@@ -190,20 +211,21 @@ require('sohooo/misc')
 require('sohooo/treesitter')
 require('sohooo/todo-comments')
 require('sohooo/telescope')
-require('sohooo/lsp')
+-- require('sohooo/lsp')  -- replaced by lsp-zero
+require('sohooo/lsp-zero')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/indent_blankline')
 require('sohooo/neogit')
-require('sohooo/nvim-cmp')
+-- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
 require('sohooo/focus')
 
 -- require('sohooo/trouble')
 
 require('tabout').setup()
-require('sohooo/rust-tools')
+-- require('sohooo/rust-tools')  -- included now in lsp-zero
 
 if Hifi() then
 	require('colorizer').setup()
