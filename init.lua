@@ -53,7 +53,7 @@ require('packer').startup(function(use)
 	use 'kdheepak/tabline.nvim'
 
 	if Hifi() then use 'kyazdani42/nvim-web-devicons' end
-	use 'kyazdani42/nvim-tree.lua'
+	use 'nvim-tree/nvim-tree.lua'
 	use 'folke/trouble.nvim'
 
 	use 'lukas-reineke/indent-blankline.nvim'
