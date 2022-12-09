@@ -11,7 +11,7 @@ end
 
 -- lsp.preset('recommended')
 lsp.set_preferences({
-  suggest_lsp_servers = true,
+  suggest_lsp_servers = false, -- dont interrupt pls
   setup_servers_on_start = true,
   set_lsp_keymaps = false, -- use my keymaps, for goto-preview plugin
   configure_diagnostics = true,
