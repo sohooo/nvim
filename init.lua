@@ -106,6 +106,7 @@ require('packer').startup(function(use)
 
 	-- lsp, completion, snippets {{{
 	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
+	use 'j-hui/fidget.nvim' -- Standalone UI for nvim-lsp progress
 	use {
   'VonHeikemen/lsp-zero.nvim',
 		requires = {
@@ -225,6 +226,7 @@ require('sohooo/focus')
 -- require('sohooo/trouble')
 
 require('tabout').setup()
+require('fidget').setup{}
 -- require('sohooo/rust-tools')  -- included now in lsp-zero
 
 if Hifi() then
