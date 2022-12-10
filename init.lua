@@ -101,6 +101,7 @@ require('packer').startup(function(use)
 	}
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
+	use 'RRethy/nvim-treesitter-endwise'
 	use 'romgrk/nvim-treesitter-context'
 	use 'windwp/nvim-ts-autotag'
 	use 'p00f/nvim-ts-rainbow'

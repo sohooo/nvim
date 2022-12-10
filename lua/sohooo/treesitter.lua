@@ -23,6 +23,9 @@ require('nvim-treesitter.configs').setup {
   autotag = {
     enable = true,
   },
+  endwise = { -- 'RRethy/nvim-treesitter-endwise'
+    enable = true,
+  },
   rainbow = {
     enable = true,
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
