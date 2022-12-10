@@ -72,16 +72,14 @@ lsp.setup()
 require('rust-tools').setup({ server = rust_lsp })
 
 -- display inline warning/error messages
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-  --virtual_text = false,
+vim.diagnostic.config({
   virtual_text = {
-    prefix = '⋇', -- Could be '●', '▎', 'x', ■
+    -- prefix = '●', -- Could be '●', '▎', 'x', ■
     spacing = 4,
     severity_limit = 'Warning',
   },
-  underline = false,
-  signs = true, -- signs customized below
-  update_in_insert = true,
-}
-)
+    underline = false,
+    signs = true, -- signs customized below
+    update_in_insert = true,
+})
+
