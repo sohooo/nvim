@@ -158,7 +158,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 ### Snippets
 
 * `C-p|n`  cycle through elements
-* `C-j`    complete snippet
+* `C-d|b`  jump to next/previous placeholder
 
 
 ## Workflows
