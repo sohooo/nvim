@@ -58,6 +58,7 @@ require('packer').startup(function(use)
 
 	use 'lukas-reineke/indent-blankline.nvim'
 	use "akinsho/toggleterm.nvim"
+	use "samjwill/nvim-unception" --open via Neovim's terminal without nesting sessions
 	use 'rmagatti/goto-preview'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'beauwilliams/focus.nvim' -- Auto-Focusing and Auto-Resizing Splits/Windows
