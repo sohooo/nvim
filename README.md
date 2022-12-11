@@ -22,73 +22,30 @@ __Note:__ if you need something established and well maintained, backed by a lar
 
 First, you need to [install Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim). Then, follow one of the following methods:
 - __default location__: follow `XDG` env conventions and put this config in `~/.config` to have `./config/nvim`
-- __portable/custom location__: custom location for this config by setting `XDG` env vars
-
-### default location
-
-Neovim and Packer (plugin manager) follow common `XDG` env vars, so if we put the config in `~/.config`, everything will work out of the box:
+- __portable/custom location__: custom location for this config by setting `XDG` env vars; see [PORTABLE.md](PORTABLE.md)
 
 ```bash
 cd
 mkdir .config; cd $_
+test -d nvim && mv -v nvim nvim.bck # save existing config
 git clone https://github.com/sohooo/nvim.git
 nvim
 # plugin installation; see below
 ```
 
-### self-contained/portable usage
-
-```lua
--- $XDG_CONFIG_HOME
-:echo stdpath('config')
-/Users/sohooo/.config/nvim
-
--- $XDG_DATA_HOME
-:echo stdpath('data')
-/Users/sohooo/.local/share/nvim
-```
-
-Cloning this repo to `~/.config/nvim` is the recommended location and will mostly work, but the plugins will be put in `XDG_DATA_HOME`. However, the following alias ensures that everything lands in `./config/nvim`:
-
-```bash
-alias v='XDG_CONFIG_HOME=~/.config XDG_DATA_HOME=~/.config nvim'
-
-# set NVIM_STYLE=plain to use lo-fi version, without nerdfonts
-NVIM_STYLE=plain v test.rb
-```
-
-To install in another path, you would simply do the following:
-
-```bash
-cd /tmp
-mkdir config && cd $_
-
-# in /tmp/config
-git clone https://github.com/sohooo/nvim.git
-
-# start nvim using this config
-XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
-```
-
-## Plugins
+### Plugins
 
 This config uses Packer to manage Neovim plugins. To install them, you do one of the following:
 
 ```bash
 # start neovim, then run packer install
-XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
+nvim
 :PackerInstall
 
-# or try everything with one command
-XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-# start again to install missing LSP servers, Treesitter grammars, ...
-XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
-
-# check if everything's there ;)
-:PackerStatus
-:TSInstallInfo
-:Mason
+# restart nvim, then check if everything's there ;)
+:PackerStatus    # show plugin status
+:TSInstallInfo   # check if all Treesitter grammars present
+:Mason           # install additional LSP server
 ```
 
 ## Bindings
@@ -97,7 +54,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 
 ### Finding stuff with Telescope
 
-* `,f` git_files || find_files
+* `,f` find_files ([ripgrep](https://github.com/BurntSushi/ripgrep) highly recommended)
 * `,s` live_grep ("search")
 * `,b` buffers
 
