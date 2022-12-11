@@ -7,7 +7,7 @@
 - fully portable; place this repo anywhere you want (see below)
 - nicely structured and fine-tuned `init.loa` config
 - enhanced markdown editing with folding, fenced code hightighting and TOC
-- regex commands (like search/replace) with live preview
+- regex commands (like search/replace) with live preview; change directly in quickfix list
 - smart text objects: select text, then use `.` to enlage selection
 - manage git repo with [neogit](https://github.com/TimUntersberger/neogit)
 - collab editing with [instant](https://github.com/jbyuki/instant.nvim)
@@ -137,7 +137,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 ### Movement and others
 
 * `tab, S-tab` switch buffers (close with `,q`)
-* `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines
+* `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines; `gs` to jump to other splits
 * `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * to align markdown tables, try `,a | ** <cr>` :sparkles:
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings); `I` to toggle gitignore'd files
