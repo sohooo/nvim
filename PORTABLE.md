@@ -28,7 +28,7 @@ We can modify the `XDG_` env vars to put everything in one directory. The follow
 
 ```bash
 export MY_NVIM_PATH=/tmp/config
-alias v='XDG_CONFIG_HOME=$MY_NVIM_PATH XDG_DATA_HOME=$MY_NVIM_PATH nvim'
+alias v="XDG_CONFIG_HOME=$MY_NVIM_PATH XDG_DATA_HOME=$MY_NVIM_PATH nvim"
 ```
 
 ## custom location
@@ -38,6 +38,7 @@ In order to install everything self-contained in another path, you would simply 
 ```bash
 export MY_NVIM_PATH=/tmp/config
 mkdir $MY_NVIM_PATH && cd $_
+alias v="XDG_CONFIG_HOME=$MY_NVIM_PATH XDG_DATA_HOME=$MY_NVIM_PATH nvim"
 
 # in /tmp/config
 git clone https://github.com/sohooo/nvim.git
