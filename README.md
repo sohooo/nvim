@@ -21,7 +21,7 @@ __Note:__ if you need something established and well maintained, backed by a lar
 ## Installation
 
 First, you need to [install Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim). Then, follow one of the following methods:
-- __default location__: follow `XDG` env conventions and put this config in `~/.config`
+- __default location__: follow `XDG` env conventions and put this config in `~/.config` to have `./config/nvim`
 - __portable/custom location__: custom location for this config by setting `XDG` env vars
 
 ### default location
@@ -76,15 +76,19 @@ This config uses Packer to manage Neovim plugins. To install them, you do one of
 
 ```bash
 # start neovim, then run packer install
-XDG_CONFIG_HOME=/tmp/.config XDG_DATA_HOME=/tmp/.config nvim
+XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
 :PackerInstall
 
-# or, do everything with one command
-XDG_CONFIG_HOME=/tmp/.config XDG_DATA_HOME=/tmp/.config nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# or try everything with one command
+XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-# just to be sure, start nvim and see if everything's there ;)
+# start again to install missing LSP servers, Treesitter grammars, ...
+XDG_CONFIG_HOME=/tmp/config XDG_DATA_HOME=/tmp/config nvim
+
+# check if everything's there ;)
 :PackerStatus
 :TSInstallInfo
+:Mason
 ```
 
 ## Bindings
