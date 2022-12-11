@@ -10,7 +10,6 @@
 - regex commands (like search/replace) with live preview; change directly in quickfix list
 - smart text objects: select text, then use `.` to enlage selection
 - manage git repo with [neogit](https://github.com/TimUntersberger/neogit)
-- collab editing with [instant](https://github.com/jbyuki/instant.nvim)
 - [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
 
 __Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
