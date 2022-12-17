@@ -76,7 +76,8 @@ wk.register({
       a = { telescope.tags, "Tags" },
       d = { telescope.lsp_workspace_diagnostics, "LSP Diag" },
       t = { "<cmd>TermExec cmd='!!'<cr>", "rerun Term Command" },
-      e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
+      e = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
+      -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
       o = { "<cmd>TodoTelescope<cr>", "Show Todos" },
