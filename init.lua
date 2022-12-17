@@ -88,7 +88,6 @@ require('packer').startup(function(use)
 	use 'vim-test/vim-test'
 	use 'chentoast/marks.nvim'
 	use 'RRethy/vim-illuminate'
-	use 'diegoulloao/nvim-file-location'
 
 	use { "kylechui/nvim-surround", tag = "*" } -- Use for stability; omit to use `main` branch for the latest features
 	-- }}}
