@@ -3,6 +3,11 @@ local wk = require("which-key")
 local telescope = require('telescope.builtin')
 wk.setup {}
 
+-- separate binding to avoid duplicate index
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "Q", "<nop>")
+
 wk.register({
   -- insert mode
   ["kj"]    = { "<Esc>", "normal mode", mode = "i" },
@@ -13,8 +18,8 @@ wk.register({
   ["<"] = { "<gv", "indent less", mode = "v" },
 
   -- switch buffers
-  ["<tab>"]   = { ":bnext<cr>", "next buffer" },
-  ["<S-tab>"] = { ":bprevious<cr>", "prev buffer" },
+  ["<tab>"]   = { vim.cmd.bnext, "next buffer" },
+  ["<S-tab>"] = { vim.cmd.bprevious, "prev buffer" },
 
   -- window movement
   ["<C-h>"] = { "<cmd>wincmd h<cr>", "left window" },
@@ -23,7 +28,7 @@ wk.register({
   ["<C-l>"] = { "<cmd>wincmd l<cr>", "right window" },
 
   -- misc stuff
-  ["<space>l"] = { "<cmd>nohlsearch<cr>", "remove search hl" },
+  ["<space>l"] = { vim.cmd.nohlsearch, "remove search hl" },
   ["j"] = { "gj", "ignore wrap j" },
   ["k"] = { "gk", "ignore wrap k" },
   ["J"] = { "mzJ`z", "join w/ fixed cursor" },
@@ -60,15 +65,14 @@ wk.register({
   ["<leader>"] = {
     name = "+main",
     a = { "<Plug>(LiveEasyAlign)", "Live Align", mode = "x" },
-    d = { "<cmd>NvimTreeToggle<cr>", "Directory Tree" },
+    d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "Find File" },
     -- f = { require('sohooo/telescope').project_files, "Find File" },
     b = { telescope.buffers, "Open Buffers" },
     s = { telescope.live_grep, "Live Grep" },
-    u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
-    q = { "<cmd>bdelete<cr>", "close buffer" },
-    -- .copy_file_location(mode, add_line, add_column)
-    -- mode = absolute | workdir
+    u = { vim.cmd.UndoTreeToggle, "Undo Tree" },
+    q = { vim.cmd.bdelete, "close buffer" },
+    -- q = { "<cmd>bdelete<cr>", "close buffer" },
     t = {
       name = "+telescope",
       h = { telescope.help_tags, "Help Tags" },
@@ -79,8 +83,8 @@ wk.register({
       -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
-      o = { "<cmd>TodoTelescope<cr>", "Show Todos" },
-      r = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
+      o = { vim.cmd.TodoTelescope, "Show Todos" },
+      r = { vim.cmd.TroubleToggle, "Toggle Trouble" },
       s = {
         function()
           require("telescope.builtin").lsp_document_symbols({

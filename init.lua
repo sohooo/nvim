@@ -188,6 +188,7 @@ end)
 -- options {{{
 vim.o.inccommand = 'split'        -- show regex previews
 vim.o.hlsearch = true             -- set highlight on search
+vim.o.incsearch = true            -- show matches while typing
 vim.o.showmatch = true            -- show matching brackets
 vim.o.matchtime = 2               -- how many tenths of a second to blink
 vim.wo.number = true              -- make line numbers default
