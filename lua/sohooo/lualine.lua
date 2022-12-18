@@ -1,7 +1,8 @@
 require'lualine'.setup {
   options = {
     icons_enabled = Hifi(),
-    theme = 'tokyonight',  -- iceberg, moonlight | material-nvim | nord | aquarium | tokyonight
+    theme = MyColors()['lualine'],  -- iceberg, moonlight | material-nvim | nord | aquarium | tokyonight
+    -- theme = 'tokyonight',  -- iceberg, moonlight | material-nvim | nord | aquarium | tokyonight
     component_separators = {'', ''},
     section_separators = {'', ''},
     disabled_filetypes = {}

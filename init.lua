@@ -14,6 +14,23 @@ function Hifi()
 	return style ~= "plain"
 end
 
+-- custom settings based on GIT_USERNAME env variable
+function MyColors()
+	local style = {
+		default = {
+			colorscheme = "tokyonight",
+			lualine = "tokyonight",
+		},
+		pUSER = {
+			colorscheme = "nord",
+			lualine = "nord",
+		}
+	}
+
+	local wanted = os.getenv("GIT_USERNAME")
+  return style[wanted] or style["default"]
+end
+
 -- plugins {{{
 local ensure_packer = function()
 	local fn = vim.fn
@@ -192,8 +209,9 @@ vim.o.laststatus = 2              -- set to 3 for global statusline
 if Hifi() then
 	--Set colorscheme (order is important here)
 	vim.o.termguicolors = true
-	vim.cmd [[colorscheme tokyonight]]
-	vim.g.tokyonight_style = "night" -- storm | night | day
+	-- vim.cmd [[colorscheme tokyonight]]
+  vim.cmd('colorscheme ' .. MyColors()['colorscheme'])
+	vim.g.tokyonight_style = 'night' -- storm | night | day
 else
 	vim.o.termguicolors = false
 	vim.cmd [[colorscheme nord]]
