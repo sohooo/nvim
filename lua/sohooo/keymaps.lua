@@ -1,4 +1,11 @@
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
+-- Modes:
+--   Normal       = "n"
+--   Insert       = "i"
+--   Visual       = "v"
+--   Visual_Block = "x"
+--   Terminal     = "t"
+--   Command      = "c"
 local wk = require("which-key")
 local telescope = require('telescope.builtin')
 wk.setup {}
@@ -84,7 +91,8 @@ wk.register({
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
       o = { vim.cmd.TodoTelescope, "Show Todos" },
-      r = { vim.cmd.TroubleToggle, "Toggle Trouble" },
+      r = { telescope.lsp_references, "LSP References" },
+      R = { vim.cmd.TroubleToggle, "Toggle Trouble" },
       s = {
         function()
           require("telescope.builtin").lsp_document_symbols({
