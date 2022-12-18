@@ -1,5 +1,8 @@
 -- Gitsigns
-require('gitsigns').setup {
+local present, gitsigns = pcall(require, "gitsigns")
+if not present then return end
+
+gitsigns.setup {
   signs = {
     add          = { hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
     change       = { hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
@@ -40,7 +43,7 @@ require('gitsigns').setup {
     col = 1
   },
   yadm = {
-    enable = false
+    enable = vim.fn.executable("yadm") == 1,
   },
 }
 
