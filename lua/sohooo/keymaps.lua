@@ -69,7 +69,6 @@ wk.register({
     q = { "<cmd>bdelete<cr>", "close buffer" },
     -- .copy_file_location(mode, add_line, add_column)
     -- mode = absolute | workdir
-    L = { require("nvim-file-location").copy_file_location('workdir', false, false), "Copy Path" },
     t = {
       name = "+telescope",
       h = { telescope.help_tags, "Help Tags" },
