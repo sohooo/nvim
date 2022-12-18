@@ -6,7 +6,6 @@
 -- NVIM v0.8.0-dev+96-gd9dcfd021 LuaJIT 2.1.0-beta3
 
 function Hifi()
-	-- TODO: telescope icons
 	-- non-nerdfont compatible signs
 	-- ⚠ ☒ ★ ☆ ☼♡ ♢ ► ⊗ ⊖ ⊙ ⊛ ⊠ ⊹ ⋇ ⋗ ⋯ ◌ ●
 	-- Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
@@ -32,28 +31,27 @@ function MyColors()
 end
 
 -- plugins {{{
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-		vim.cmd [[packadd packer.nvim]]
-		return true
-	end
-	return false
+-- Automatically install packer on initial startup
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+	Packer_Bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	print "---------------------------------------------------------"
+	print "Press Enter to install packer and plugins."
+	print "After install -- close and reopen Neovim to load configs!"
+	print "---------------------------------------------------------"
+	vim.cmd [[packadd packer.nvim]]
 end
 
-local packer_bootstrap = ensure_packer()
+-- Use a protected call
+local present, packer = pcall(require, "packer")
 
-require('packer').startup(function(use)
+if not present then
+	return
+end
+
+packer.startup(function(use)
 	use 'wbthomason/packer.nvim'
-
-	vim.cmd([[
-	  augroup packer_user_config
-	    autocmd!
-	    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-	  augroup end
-	]])
 
 	-- telescope {{{
 	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -110,7 +108,7 @@ require('packer').startup(function(use)
 	-- }}}
 
 	-- treesitter {{{
-  -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#packernvim
+	-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#packernvim
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
@@ -130,7 +128,7 @@ require('packer').startup(function(use)
 	use 'onsails/lspkind-nvim' -- icons in lsp popups etc
 	use 'j-hui/fidget.nvim' -- Standalone UI for nvim-lsp progress
 	use {
-  'VonHeikemen/lsp-zero.nvim',
+		'VonHeikemen/lsp-zero.nvim',
 		requires = {
 			-- LSP Support
 			{'neovim/nvim-lspconfig'},
@@ -177,9 +175,11 @@ require('packer').startup(function(use)
 
 	-- }}}
 
--- Automatically set up your configuration after cloning packer.nvim
--- Put this at the end after all plugins
-	if packer_bootstrap then
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if Packer_Bootstrap then
 		require('packer').sync()
 	end
 end)
