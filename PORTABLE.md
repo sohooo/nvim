@@ -22,6 +22,9 @@ Cloning this repo to `~/.config/nvim` is the recommended location and will mostl
 -- $XDG_DATA_HOME
 :echo stdpath('data')
 /Users/sohooo/.local/share/nvim
+
+-- overview
+:h rtp
 ```
 
 We can modify the `XDG_` env vars to put everything in one directory. The following alias ensures that everything lands in `./config/nvim`:
