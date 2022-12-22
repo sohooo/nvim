@@ -77,7 +77,6 @@ require("lazy").setup({
   'rmagatti/goto-preview',
   'norcalli/nvim-colorizer.lua',
   { 'beauwilliams/focus.nvim', lazy = true }, -- Auto-Focusing and Auto-Resizing Splits/Windows
-  'karb94/neoscroll.nvim',
   -- }}}
   --
   -- languages {{{
@@ -101,7 +100,7 @@ require("lazy").setup({
   'abecodes/tabout.nvim',
   'vim-test/vim-test',
   'chentoast/marks.nvim',
-  'RRethy/vim-illuminate',
+  'RRethy/vim-illuminate', -- highlight current word
 
   {
     "Wansmer/treesj", config = function()
@@ -112,6 +111,17 @@ require("lazy").setup({
   { "kylechui/nvim-surround", tag = "*" }, -- Use for stability; omit to use `main` branch for the latest features
   { "ThePrimeagen/refactoring.nvim", config = function()
       require("refactoring").setup({})
+    end,
+  },
+
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    init = function()
+      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+    end,
+    config = function()
+      require("symbols-outline").setup()
     end,
   },
   -- }}}
@@ -242,7 +252,6 @@ end
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
--- require('neoscroll').setup()
 require('marks').setup{}
 require("nvim-surround").setup({})
 require('leap').set_default_keymaps()
