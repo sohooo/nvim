@@ -108,6 +108,7 @@ wk.register({
       a = { vim.lsp.buf.code_action, "Code Action" },
       -- a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
       r = { vim.lsp.buf.rename, "Rename" },
+      j = { vim.cmd.TSJToggle, "toggle split/join"},
       s = { vim.lsp.buf.format, "Reformat File" },
       v = { require("refactoring").select_refactor, "Refactor Selection", mode = "v" },
     },

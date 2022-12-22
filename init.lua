@@ -93,7 +93,6 @@ require("lazy").setup({
   'mbbill/undotree',
   'tpope/vim-repeat', -- make '.' usable for plugins
   'numToStr/Comment.nvim', -- smart commenting plugin
-  'andrewradev/splitjoin.vim', -- gS (split), gJ (join) code blocks
   'ggandor/leap.nvim', -- fast jumping with s|S
   'sickill/vim-pasta', -- pasting with indentation adjusted
   'stefandtw/quickfix-reflector.vim', -- Change code right in the quickfix window
@@ -103,6 +102,12 @@ require("lazy").setup({
   'vim-test/vim-test',
   'chentoast/marks.nvim',
   'RRethy/vim-illuminate',
+
+  {
+    "Wansmer/treesj", config = function()
+      require("treesj").setup({ use_default_keymaps = false })
+    end,
+  },
 
   { "kylechui/nvim-surround", tag = "*" }, -- Use for stability; omit to use `main` branch for the latest features
   { "ThePrimeagen/refactoring.nvim", config = function()
