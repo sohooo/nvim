@@ -33,153 +33,131 @@ end
 -- }}}
 
 -- plugins {{{
--- Automatically install packer on initial startup
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-  vim.cmd [[packadd packer.nvim]]
+-- bootstrap lazy.nvim
+-- https://github.com/folke/lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
 end
+vim.opt.runtimepath:prepend(lazypath)
 
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+-- make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.maplocalleader = ','
+vim.g.mapleader = ','
 
+require("lazy").setup({
   -- telescope {{{
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   -- }}}
-
+--
   -- addons, layout {{{
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-dispatch' -- async build/test dispatcher
-  use 'folke/which-key.nvim' -- key bindings
-  use 'folke/todo-comments.nvim'
+  'tpope/vim-fugitive', -- Git commands in nvim
+  'tpope/vim-dispatch', -- async build/test dispatcher
+  'folke/which-key.nvim', -- key bindings
+  'folke/todo-comments.nvim',
 
-  use 'hoob3rt/lualine.nvim'
-  use 'kdheepak/tabline.nvim'
+  'hoob3rt/lualine.nvim',
+  'kdheepak/tabline.nvim',
 
-  if Hifi() then use 'kyazdani42/nvim-web-devicons' end
-  use 'nvim-tree/nvim-tree.lua'
-  use 'folke/trouble.nvim'
+  -- if Hifi() then 'kyazdani42/nvim-web-devicons' end
+  'nvim-tree/nvim-tree.lua',
+  'folke/trouble.nvim',
 
-  use 'lukas-reineke/indent-blankline.nvim'
-  use "akinsho/toggleterm.nvim"
-  use "samjwill/nvim-unception" --open via Neovim's terminal without nesting sessions
-  use 'rmagatti/goto-preview'
-  use 'norcalli/nvim-colorizer.lua'
-  use 'beauwilliams/focus.nvim' -- Auto-Focusing and Auto-Resizing Splits/Windows
-  use 'karb94/neoscroll.nvim'
+  'lukas-reineke/indent-blankline.nvim',
+  "akinsho/toggleterm.nvim",
+  "samjwill/nvim-unception", --open via Neovim's terminal without nesting sessions
+  'rmagatti/goto-preview',
+  'norcalli/nvim-colorizer.lua',
+  { 'beauwilliams/focus.nvim', lazy = true }, -- Auto-Focusing and Auto-Resizing Splits/Windows
+  'karb94/neoscroll.nvim',
   -- }}}
-
+  --
   -- languages {{{
-  use 'sheerun/vim-polyglot' -- the full kitchen sink
-  use 'fatih/vim-go'
-  use 'simrat39/rust-tools.nvim'
-  use 'mfussenegger/nvim-dap' -- Debugging
+  'sheerun/vim-polyglot', -- the full kitchen sink
+  'fatih/vim-go',
+  'simrat39/rust-tools.nvim',
+  'mfussenegger/nvim-dap', -- Debugging
   -- }}}
 
   -- editing tools {{{
-  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-  use 'TimUntersberger/neogit'
-  use 'mbbill/undotree'
-  use 'tpope/vim-repeat' -- make '.' usable for plugins
-  use 'numToStr/Comment.nvim' -- smart commenting plugin
-  use 'andrewradev/splitjoin.vim' -- gS (split), gJ (join) code blocks
-  use 'ggandor/leap.nvim' -- fast jumping with s|S
-  use 'sickill/vim-pasta' -- pasting with indentation adjusted
-  use 'stefandtw/quickfix-reflector.vim' -- Change code right in the quickfix window
-  use 'windwp/nvim-autopairs'
-  use 'junegunn/vim-easy-align'
-  use 'abecodes/tabout.nvim'
-  use 'vim-test/vim-test'
-  use 'chentoast/marks.nvim'
-  use 'RRethy/vim-illuminate'
+  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
+  'TimUntersberger/neogit',
+  'mbbill/undotree',
+  'tpope/vim-repeat', -- make '.' usable for plugins
+  'numToStr/Comment.nvim', -- smart commenting plugin
+  'andrewradev/splitjoin.vim', -- gS (split), gJ (join) code blocks
+  'ggandor/leap.nvim', -- fast jumping with s|S
+  'sickill/vim-pasta', -- pasting with indentation adjusted
+  'stefandtw/quickfix-reflector.vim', -- Change code right in the quickfix window
+  'windwp/nvim-autopairs',
+  'junegunn/vim-easy-align',
+  'abecodes/tabout.nvim',
+  'vim-test/vim-test',
+  'chentoast/marks.nvim',
+  'RRethy/vim-illuminate',
 
-  use { "kylechui/nvim-surround", tag = "*" } -- Use for stability; omit to use `main` branch for the latest features
+  { "kylechui/nvim-surround", tag = "*" }, -- Use for stability; omit to use `main` branch for the latest features
   -- }}}
 
   -- treesitter {{{
   -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#packernvim
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
+  { 'nvim-treesitter/nvim-treesitter',
+    init = function()
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
     end,
-  }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
-  use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
-  use { 'RRethy/nvim-treesitter-endwise', after = 'nvim-treesitter' }
-  use { 'romgrk/nvim-treesitter-context', after = 'nvim-treesitter' }
-  use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' }
-  use { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' }
+  },
+  { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = { 'nvim-treesitter' }},
+  { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter' }},
+  { 'RRethy/nvim-treesitter-endwise', dependencies = { 'nvim-treesitter' }},
+  { 'romgrk/nvim-treesitter-context', dependencies = { 'nvim-treesitter' }},
+  { 'windwp/nvim-ts-autotag', dependencies = { 'nvim-treesitter' }},
+  { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter' }},
   -- }}}
 
   -- lsp, completion, snippets {{{
-  use 'onsails/lspkind-nvim' -- icons in lsp popups etc
-  use 'j-hui/fidget.nvim' -- Standalone UI for nvim-lsp progress
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    requires = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+  'onsails/lspkind-nvim', -- icons in lsp popups etc
+  'j-hui/fidget.nvim', -- Standalone UI for nvim-lsp progress
+  { 'VonHeikemen/lsp-zero.nvim', lazy = true, dependencies = {
+    -- LSP Support
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
 
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+    -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
 
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
-    }
-  }
+    -- Snippets
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+  }},
 
   -- colorschemes {{{
-  use 'cocopon/iceberg.vim'
-  use 'joshdick/onedark.vim'
-  use 'arcticicestudio/nord-vim'
+  'cocopon/iceberg.vim',
+  'joshdick/onedark.vim',
+  'arcticicestudio/nord-vim',
 
-  use 'PHSix/nvim-hybrid'
-  use 'rmehri01/onenord.nvim'
-  use 'shaunsingh/moonlight.nvim'
-  use 'shaunsingh/doom-vibrant.nvim'
-  use 'folke/tokyonight.nvim'
+  'PHSix/nvim-hybrid',
+  'rmehri01/onenord.nvim',
+  'shaunsingh/moonlight.nvim',
+  'shaunsingh/doom-vibrant.nvim',
+  'folke/tokyonight.nvim',
   -- }}}
-
-  if is_bootstrap then
-    require('packer').sync()
-  end
-end)
--- }}}
-
--- bootstrap {{{
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
-
--- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
 })
+
 -- }}}
 -- }}}
 
@@ -219,9 +197,6 @@ else
 	-- vim.g.onedark_termcolors = 256
 	-- vim.cmd [[colorscheme onedark]]
 end
-
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'

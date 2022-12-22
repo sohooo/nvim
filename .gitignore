@@ -16,3 +16,6 @@ rplugin.vim
 lsp-zero.info.json
 mason/
 tree-sitter-help/
+
+# lazy.nvim package manager
+lazy/
