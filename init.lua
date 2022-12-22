@@ -124,6 +124,15 @@ require("lazy").setup({
       require("symbols-outline").setup()
     end,
   },
+
+  {
+    "cshuaimin/ssr.nvim",
+    init = function()
+      vim.keymap.set({ "n", "x" }, "<leader>cR", function()
+        require("ssr").open()
+      end, { desc = "Structural Replace" })
+    end,
+  },
   -- }}}
 
   -- treesitter {{{

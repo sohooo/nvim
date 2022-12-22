@@ -47,6 +47,7 @@
   "quickfix-reflector.vim": { "branch": "master", "commit": "6a6a9e28e1713b9e9db99eec1e6672e5666c01b9" },
   "refactoring.nvim": { "branch": "master", "commit": "d4764868c942701e7f34dadf52c29fd156a0496e" },
   "rust-tools.nvim": { "branch": "master", "commit": "99fd1238c6068d0637df30b6cee9a264334015e9" },
+  "ssr.nvim": { "branch": "main", "commit": "ce2ba65370c3e6ca2e84e652c9adfccb8611458e" },
   "symbols-outline.nvim": { "branch": "master", "commit": "6a3ed24c5631da7a5d418bced57c16b32af7747c" },
   "tabline.nvim": { "branch": "main", "commit": "5d76dc8616b4b7b892229cc05cd0f4cd0200077a" },
   "tabout.nvim": { "branch": "master", "commit": "c37ce26f316a2df693140450b8def41e89c0f57e" },
