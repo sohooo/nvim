@@ -46,6 +46,7 @@
   "onenord.nvim": { "branch": "main", "commit": "9a8ca2030c8b4c1a577da3b3e2e396458272953b" },
   "plenary.nvim": { "branch": "master", "commit": "4b7e52044bbb84242158d977a50c4cbcd85070c7" },
   "quickfix-reflector.vim": { "branch": "master", "commit": "6a6a9e28e1713b9e9db99eec1e6672e5666c01b9" },
+  "refactoring.nvim": { "branch": "master", "commit": "d4764868c942701e7f34dadf52c29fd156a0496e" },
   "rust-tools.nvim": { "branch": "master", "commit": "99fd1238c6068d0637df30b6cee9a264334015e9" },
   "splitjoin.vim": { "branch": "main", "commit": "956d67c88512b91c2938da3a9e0aeeea2b82cd0b" },
   "tabline.nvim": { "branch": "main", "commit": "5d76dc8616b4b7b892229cc05cd0f4cd0200077a" },

@@ -105,6 +105,10 @@ require("lazy").setup({
   'RRethy/vim-illuminate',
 
   { "kylechui/nvim-surround", tag = "*" }, -- Use for stability; omit to use `main` branch for the latest features
+  { "ThePrimeagen/refactoring.nvim", config = function()
+      require("refactoring").setup({})
+    end,
+  },
   -- }}}
 
   -- treesitter {{{
