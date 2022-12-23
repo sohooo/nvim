@@ -2,7 +2,7 @@
 
 ## Features
 
-- modern nvim 0.8+ lua-based config with telescope and lsp
+- modern nvim 0.8+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and lsp-zero
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
 - nicely structured and fine-tuned `init.loa` config
@@ -35,17 +35,21 @@ nvim
 
 ### Plugins
 
-This config uses Packer to manage Neovim plugins. To install them, you do one of the following:
+This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to manage Neovim plugins. To install them, you do one of the following:
 
 ```bash
-# start neovim, then run packer install
+# start nvim using this config
+# this will install all plugins
 nvim
-:PackerInstall
+
+# install some LSP servers
+# more can be installed via :Mason
+:MasonInstallAll
 
 # restart nvim, then check if everything's there ;)
-:PackerStatus    # show plugin status
-:TSInstallInfo   # check if all Treesitter grammars present
-:Mason           # install additional LSP server
+:Lazy            # plugins
+:Mason           # LSP server, linter, formatter, ...
+:TSInstallInfo   # Treesitter grammars
 ```
 
 ## Bindings

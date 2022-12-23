@@ -52,7 +52,7 @@ lsp.setup_nvim_cmp({
 
 -- available lsp servers:
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-lsp.ensure_installed({
+local ensure_installed = {
   -- 'crystalline', -- Darwin_arm64 not supported
   -- 'erb-lint',
   -- 'puppet-editor-services',
@@ -61,7 +61,13 @@ lsp.ensure_installed({
   'solargraph',
   'sumneko_lua',
   -- 'yamllint',
-})
+}
+
+lsp.ensure_installed(ensure_installed)
+
+vim.api.nvim_create_user_command("MasonInstallAll", function ()
+  vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+end, {})
 
 local rust_lsp = lsp.build_options('rust_analyzer', {})
 
