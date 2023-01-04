@@ -43,6 +43,7 @@
   "nvim-unception": { "branch": "main", "commit": "c29dc151b84a05523681534c08ff5ebad7238ab9" },
   "onedark.vim": { "branch": "main", "commit": "b6b5ffe31a195a3077338d7a506b905e4a51590f" },
   "onenord.nvim": { "branch": "main", "commit": "9a8ca2030c8b4c1a577da3b3e2e396458272953b" },
+  "playground": { "branch": "master", "commit": "8a887bcf66017bd775a0fb19c9d8b7a4d6759c48" },
   "plenary.nvim": { "branch": "master", "commit": "4b7e52044bbb84242158d977a50c4cbcd85070c7" },
   "quickfix-reflector.vim": { "branch": "master", "commit": "6a6a9e28e1713b9e9db99eec1e6672e5666c01b9" },
   "refactoring.nvim": { "branch": "master", "commit": "d4764868c942701e7f34dadf52c29fd156a0496e" },

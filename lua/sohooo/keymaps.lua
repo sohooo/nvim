@@ -93,6 +93,7 @@ wk.register({
       o = { vim.cmd.TodoTelescope, "Show Todos" },
       r = { telescope.lsp_references, "LSP References" },
       R = { vim.cmd.TroubleToggle, "Toggle Trouble" },
+      -- Treesitter Stuff
       s = {
         function()
           require("telescope.builtin").lsp_document_symbols({
@@ -112,6 +113,11 @@ wk.register({
       j = { vim.cmd.TSJToggle, "toggle split/join"},
       f = { vim.lsp.buf.format, "Reformat File" },
       v = { require("refactoring").select_refactor, "Refactor Selection", mode = "v" },
+      t = {
+        name = "+treesitter",
+        p = { vim.cmd.TSPlaygroundToggle, "toggle Playground" },
+        h = { vim.cmd.TSHighlightCapturesUnderCursor, "highlight element" },
+      },
     },
     g = {
       name = "+git",
@@ -132,13 +138,6 @@ wk.register({
       o = { telescope.vim_options, "Options" },
       s = { telescope.highlights, "Search Highlight Groups" },
       t = { telescope.builtin, "Telescope" },
-      p = {
-        name = "+packer",
-        c = { "<cmd>PackerCompile<cr>", "Compile" },
-        i = { "<cmd>PackerInstall<cr>", "Install" },
-        p = { "<cmd>PackerSync<cr>", "Sync" },
-        s = { "<cmd>PackerStatus<cr>", "Status" },
-      },
     },
     r = { -- TODO: happy with that?
       name = "+run/test",
