@@ -200,6 +200,7 @@ vim.wo.number = true              -- make line numbers default
 vim.wo.relativenumber = true      -- relative to current pos
 vim.o.scrolloff=8                 -- show 8 lines of context around cursor
 vim.o.hidden = true               -- do not save when switching buffers
+vim.o.mouse = ''                  -- disable mouse
 -- vim.o.mouse = 'a'                 -- Enable mouse mode
 vim.o.breakindent = true          -- wrapped line with same indentation
 vim.opt.undofile = true           -- save undo history
