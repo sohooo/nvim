@@ -6,11 +6,12 @@
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
 - nicely structured and fine-tuned `init.loa` config
+- [legendary](https://github.com/mrjones2014/legendary.nvim) command bar
+- [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
 - enhanced markdown editing with folding, fenced code hightighting and TOC
 - regex commands (like search/replace) with live preview; change directly in quickfix list
 - smart text objects: select text, then use `.` to enlage selection
 - manage git repo with [neogit](https://github.com/TimUntersberger/neogit)
-- [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
 
 __Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
 - [AstroVim](https://astronvim.github.io)
@@ -54,7 +55,7 @@ nvim
 
 ## Bindings
 
-Here's a list of some useful keymaps. Just start typing and wait for the context-sensitive `which-key` popup. Try it with `,` (the Leader key) and wait to see further options. Alternatively, call `:WhichKey` to see all of them. You can also search trough them with the `:Telescope keymaps`.
+Here's a list of some useful keymaps. Just start typing and wait for the context-sensitive `which-key` popup. Try it with `,` (the Leader key) and wait to see further options. Alternatively, search through them with Legendary by hitting `, <space>`.
 
 ### Finding stuff with Telescope
 

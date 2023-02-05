@@ -59,10 +59,13 @@ require("lazy").setup({
   -- }}}
 --
   -- addons, layout {{{
+  'stevearc/dressing.nvim', -- improve default vim.ui interfaces
   'tpope/vim-fugitive', -- Git commands in nvim
   'tpope/vim-dispatch', -- async build/test dispatcher
   'folke/which-key.nvim', -- key bindings
   'folke/todo-comments.nvim',
+
+  'mrjones2014/legendary.nvim', -- fuzzy find mappings / command bar
 
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',
@@ -268,6 +271,7 @@ require("nvim-surround").setup({})
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
-require('sohooo/keymaps')
+require('sohooo/legendary')
+require('sohooo/which-key')
 -- }}}
 
