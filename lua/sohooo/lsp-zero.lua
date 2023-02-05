@@ -55,6 +55,7 @@ lsp.setup_nvim_cmp({
 local ensure_installed = {
   -- 'crystalline', -- Darwin_arm64 not supported
   -- 'erb-lint',
+  'gopls',
   -- 'puppet-editor-services',
   'rust_analyzer',
   -- 'shellcheck',
