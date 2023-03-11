@@ -148,6 +148,13 @@ wk.register({
       r = { "<cmd>TestLast<cr>", "test last" },
       s = { "<cmd>TestSuite<cr>", "test suite" },
     },
+    v = {
+      name = "+diffview",
+      v = { vim.cmd.DiffviewOpen, "open diffview" },
+      o = { vim.cmd.DiffviewOpen, "open diffview" },
+      c = { vim.cmd.DiffviewClose, "close diffview" },
+      h = { vim.cmd.DiffviewFileHistory, "file history" },
+    },
     w = {
       name = "+workspace",
       a = { vim.lsp.buf.add_workspace_folder, "Add Folder" },

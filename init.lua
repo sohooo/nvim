@@ -70,7 +70,7 @@ require("lazy").setup({
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',
 
-  -- if Hifi() then 'kyazdani42/nvim-web-devicons' end
+  'kyazdani42/nvim-web-devicons',
   'nvim-tree/nvim-tree.lua',
   'folke/trouble.nvim',
 
@@ -87,11 +87,13 @@ require("lazy").setup({
   'fatih/vim-go',
   'simrat39/rust-tools.nvim',
   'mfussenegger/nvim-dap', -- Debugging
+  'PedramNavid/dbtpal', -- dbt features
   -- }}}
 
   -- editing tools {{{
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   'TimUntersberger/neogit',
+  'sindrets/diffview.nvim',
   'mbbill/undotree',
   'tpope/vim-repeat', -- make '.' usable for plugins
   'numToStr/Comment.nvim', -- smart commenting plugin
