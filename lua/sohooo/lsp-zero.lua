@@ -25,6 +25,11 @@ local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 lsp.setup_nvim_cmp({
+  -- dont preselect first suggestion
+  preselect = 'none',
+  completion = {
+    completeopt = 'menu,menuone,noinsert,noselect'
+  },
   formatting = {
     format = lspkind.cmp_format({
       mode = lspkind_mode, -- show only symbol annotations
@@ -59,8 +64,9 @@ local ensure_installed = {
   -- 'puppet-editor-services',
   'rust_analyzer',
   -- 'shellcheck',
+  'pylsp',
   'solargraph',
-  'sumneko_lua',
+  -- 'sumneko_lua',
   -- 'yamllint',
 }
 
