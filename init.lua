@@ -20,6 +20,11 @@ function MyColors()
     default = {
       colorscheme = "tokyonight",
       lualine = "tokyonight",
+      -- colorscheme = "nordic",
+      -- colorscheme = "onedark",
+      -- colorscheme = "onenord",
+      -- colorscheme = "oxocarbon",
+      -- lualine = "onedark",
     },
     pUSER = {
       colorscheme = "nord",
@@ -180,12 +185,13 @@ require("lazy").setup({
   }},
 
   -- colorschemes {{{
-  'cocopon/iceberg.vim',
-  'joshdick/onedark.vim',
   'arcticicestudio/nord-vim',
 
+  'nyoom-engineering/oxocarbon.nvim',
+  'navarasu/onedark.nvim',
   'PHSix/nvim-hybrid',
   'rmehri01/onenord.nvim',
+  'AlexvZyl/nordic.nvim',
   'shaunsingh/moonlight.nvim',
   'shaunsingh/doom-vibrant.nvim',
   'folke/tokyonight.nvim',
