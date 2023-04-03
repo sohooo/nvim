@@ -171,6 +171,9 @@ require("lazy").setup({
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
 
+    -- linter, formatter, ...
+    'jose-elias-alvarez/null-ls.nvim',
+
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
@@ -252,6 +255,7 @@ require('sohooo/todo-comments')
 require('sohooo/telescope')
 -- require('sohooo/lsp')  -- replaced by lsp-zero
 require('sohooo/lsp-zero')
+require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
