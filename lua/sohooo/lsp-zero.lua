@@ -60,17 +60,17 @@ lsp.setup_nvim_cmp({
 local ensure_installed = {
   -- 'crystalline', -- Darwin_arm64 not supported
   -- 'erb-lint',
-  'gopls',
+  -- 'gopls',
   -- 'puppet-editor-services',
-  'rust_analyzer',
+  -- 'rust_analyzer',
   -- 'shellcheck',
-  'pylsp',
-  'solargraph',
+  -- 'pylsp',
+  -- 'solargraph',
   -- 'sumneko_lua',
   -- 'yamllint',
 }
 
-lsp.ensure_installed(ensure_installed)
+-- lsp.ensure_installed(ensure_installed)
 
 vim.api.nvim_create_user_command("MasonInstallAll", function ()
   vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
@@ -80,6 +80,39 @@ local rust_lsp = lsp.build_options('rust_analyzer', {})
 
 lsp.nvim_workspace()
 lsp.setup()
+
+-- lsp servers
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- puppet setup: https://github.com/puppetlabs/puppet-editor-services
+require'lspconfig'.gopls.setup{} -- gopls
+require'lspconfig'.puppet.setup{} -- puppet-languageserver
+require'lspconfig'.pylsp.setup{} -- pylsp
+require'lspconfig'.rust_analyzer.setup{} -- rust-analyzer
+require'lspconfig'.solargraph.setup{} --solargraph
+
+-- require'lspconfig'.lua_ls.setup{} -- lua-language-server
+require'lspconfig'.lua_ls.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
 
 -- Initialize rust_analyzer with rust-tools
 require('rust-tools').setup({ server = rust_lsp })
