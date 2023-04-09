@@ -20,10 +20,14 @@ function MyColors()
     default = {
       colorscheme = "tokyonight",
       lualine = "tokyonight",
+      -- colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+      -- lualine = "catppuccin"
+      --
       -- colorscheme = "nordic",
-      -- colorscheme = "onedark",
       -- colorscheme = "onenord",
       -- colorscheme = "oxocarbon",
+      --
+      -- colorscheme = "onedark",
       -- lualine = "onedark",
     },
     pUSER = {
@@ -118,7 +122,16 @@ require("lazy").setup({
     end,
   },
 
-  { "kylechui/nvim-surround", tag = "*" }, -- Use for stability; omit to use `main` branch for the latest features
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
   { "ThePrimeagen/refactoring.nvim", config = function()
       require("refactoring").setup({})
     end,
@@ -190,6 +203,7 @@ require("lazy").setup({
   -- colorschemes {{{
   'arcticicestudio/nord-vim',
 
+  { "catppuccin/nvim", name = "catppuccin" },
   'nyoom-engineering/oxocarbon.nvim',
   'navarasu/onedark.nvim',
   'PHSix/nvim-hybrid',
@@ -279,7 +293,6 @@ require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 require('marks').setup{}
-require("nvim-surround").setup({})
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
