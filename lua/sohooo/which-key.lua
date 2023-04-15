@@ -79,7 +79,10 @@ wk.register({
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
     u = { vim.cmd.UndoTreeToggle, "toggle undo tree" },
-    q = { require('bufdelete').bufdelete(0, true), "close current buffer" },
+    q = {
+      function()
+        require('bufdelete').bufdelete(0, true)
+      end, "close current buffer" },
     -- q = { vim.cmd.bdelete, "close buffer" },
     -- q = { "<cmd>bdelete<cr>", "close buffer" },
     t = {
@@ -102,8 +105,7 @@ wk.register({
             symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
             sorting_strategy = "ascending",
           })
-        end,
-        "telescope goto symbol",
+        end, "telescope goto symbol",
       },
     },
     c = {
