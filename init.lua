@@ -90,6 +90,15 @@ require("lazy").setup({
   'rmagatti/goto-preview',
   'norcalli/nvim-colorizer.lua',
   { 'beauwilliams/focus.nvim', lazy = true }, -- Auto-Focusing and Auto-Resizing Splits/Windows
+
+  { 'folke/noice.nvim', dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    -- "rcarriga/nvim-notify",
+  }},
   -- }}}
   --
   -- languages {{{
@@ -276,6 +285,7 @@ require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/indent_blankline')
 require('sohooo/neogit')
+require('sohooo/noice')
 -- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
 require('sohooo/focus')
