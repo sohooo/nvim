@@ -78,6 +78,7 @@ require("lazy").setup({
 
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',
+  'famiu/bufdelete.nvim',
 
   'kyazdani42/nvim-web-devicons',
   'nvim-tree/nvim-tree.lua',

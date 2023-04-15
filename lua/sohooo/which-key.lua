@@ -78,8 +78,9 @@ wk.register({
     -- f = { require('sohooo/telescope').project_files, "Find File" },
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
-    u = { vim.cmd.UndoTreeToggle, "undo tree" },
-    q = { vim.cmd.bdelete, "close buffer" },
+    u = { vim.cmd.UndoTreeToggle, "toggle undo tree" },
+    q = { require('bufdelete').bufdelete(0, true), "close current buffer" },
+    -- q = { vim.cmd.bdelete, "close buffer" },
     -- q = { "<cmd>bdelete<cr>", "close buffer" },
     t = {
       name = "+telescope",
