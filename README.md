@@ -43,7 +43,8 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to
 # this will install all plugins
 nvim
 
-# install some LSP servers
+# install some LSP servers;
+# NOTE: currently disabled, bring your own!
 # more can be installed via :Mason
 :MasonInstallAll
 
@@ -123,7 +124,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 ### Snippets
 
 * `C-p|n`  cycle through elements
-* `C-d|b`  jump to next/previous placeholder
+* `C-f|b`  jump to next/previous placeholder
 
 
 ## Workflows

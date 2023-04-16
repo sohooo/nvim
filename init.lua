@@ -188,27 +188,24 @@ require("lazy").setup({
   -- lsp, completion, snippets {{{
   'onsails/lspkind-nvim', -- icons in lsp popups etc
   'j-hui/fidget.nvim', -- Standalone UI for nvim-lsp progress
-  { 'VonHeikemen/lsp-zero.nvim', lazy = true, dependencies = {
-    -- LSP Support
-    'neovim/nvim-lspconfig',
+  'neovim/nvim-lspconfig',
+  {
     'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-
-    -- linter, formatter, ...
-    'jose-elias-alvarez/null-ls.nvim',
-
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-
-    -- Snippets
-    'L3MON4D3/LuaSnip',
-    'rafamadriz/friendly-snippets',
-  }},
+    build = function() pcall(vim.cmd, 'MasonUpdate') end,
+  },
+  'williamboman/mason-lspconfig.nvim',
+  -- Autocomplete
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'saadparwaiz1/cmp_luasnip',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-nvim-lua',
+  -- Snippets
+  'L3MON4D3/LuaSnip',
+  'rafamadriz/friendly-snippets',
+  -- linter, formatter, ...
+  'jose-elias-alvarez/null-ls.nvim',
 
   -- colorschemes {{{
   'arcticicestudio/nord-vim',
@@ -277,8 +274,8 @@ require('sohooo/misc')
 require('sohooo/treesitter')
 require('sohooo/todo-comments')
 require('sohooo/telescope')
--- require('sohooo/lsp')  -- replaced by lsp-zero
-require('sohooo/lsp-zero')
+require('sohooo/lsp')
+-- require('sohooo/lsp-zero') -- replaced by lsp =)
 require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
