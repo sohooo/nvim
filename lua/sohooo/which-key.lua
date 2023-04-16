@@ -88,15 +88,15 @@ wk.register({
     t = {
       name = "+telescope",
       h = { telescope.help_tags, "telescope help tags" },
-      a = { telescope.tags, "telescope tags" },
-      d = { telescope.lsp_workspace_diagnostics, "telescope lsp diag" },
+      -- a = { telescope.tags, "telescope tags" }, -- usually no tag files
+      -- d = { telescope.lsp_workspace_diagnostics, "telescope lsp diag" }, -- FIXME: not working
       t = { "<cmd>TermExec cmd='!!'<cr>", "rerun terminal command" },
       e = { "<cmd>ToggleTerm direction=horizontal<cr>", "toggle terminal", mode = {'n', 't'} },
       -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
       o = { vim.cmd.TodoTelescope, "telescope show todos" },
-      r = { telescope.lsp_references, "telescope lsp references" },
+      -- r = { telescope.lsp_references, "telescope lsp references" }, -- FIXME: useless; gr is better
       R = { vim.cmd.TroubleToggle, "toggle trouble" },
       -- Treesitter Stuff
       s = {
