@@ -89,19 +89,17 @@ wk.register({
       name = "+telescope",
       h = { telescope.help_tags, "telescope help tags" },
       -- a = { telescope.tags, "telescope tags" }, -- usually no tag files
-      -- d = { telescope.lsp_workspace_diagnostics, "telescope lsp diag" }, -- FIXME: not working
+      d = { vim.cmd.TodoTelescope, "telescope show todos" },
       t = { "<cmd>TermExec cmd='!!'<cr>", "rerun terminal command" },
       e = { "<cmd>ToggleTerm direction=horizontal<cr>", "toggle terminal", mode = {'n', 't'} },
       -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
-      o = { vim.cmd.TodoTelescope, "telescope show todos" },
-      -- r = { telescope.lsp_references, "telescope lsp references" }, -- FIXME: useless; gr is better
-      R = { vim.cmd.TroubleToggle, "toggle trouble" },
+      r = { vim.cmd.TroubleToggle, "toggle trouble" },
       -- Treesitter Stuff
       s = {
         function()
-          require("telescope.builtin").lsp_document_symbols({
+          telescope.lsp_document_symbols({
             symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
             sorting_strategy = "ascending",
           })
