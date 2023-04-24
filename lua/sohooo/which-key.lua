@@ -89,6 +89,12 @@ wk.register({
       name = "+telescope",
       h = { telescope.help_tags, "telescope help tags" },
       -- a = { telescope.tags, "telescope tags" }, -- usually no tag files
+      c = { function()
+        telescope.colorscheme({
+          enable_preview = true
+        })
+      end, "telescope colorscheme"
+      },
       d = { vim.cmd.TodoTelescope, "telescope show todos" },
       t = { "<cmd>TermExec cmd='!!'<cr>", "rerun terminal command" },
       e = { "<cmd>ToggleTerm direction=horizontal<cr>", "toggle terminal", mode = {'n', 't'} },
