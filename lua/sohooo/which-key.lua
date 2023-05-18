@@ -69,6 +69,9 @@ wk.register({
       r = { require('goto-preview').goto_preview_references, "preview references" },
     }
   },
+  ["<space>"] = {
+    l = { require("ts-node-action").node_action, "Trigger Node Action" },
+  },
   ["<leader>"] = {
     name = "+main",
     ["<space>"] = { vim.cmd.Legendary, "legendary command bar" },
