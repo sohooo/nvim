@@ -111,7 +111,6 @@ require("lazy").setup({
 
   -- editing tools {{{
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
-  'TimUntersberger/neogit',
   'sindrets/diffview.nvim',
   'mbbill/undotree',
   'tpope/vim-repeat', -- make '.' usable for plugins
@@ -280,7 +279,6 @@ require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/indent_blankline')
-require('sohooo/neogit')
 require('sohooo/noice')
 -- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
