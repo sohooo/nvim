@@ -123,7 +123,6 @@ require("lazy").setup({
   'junegunn/vim-easy-align',
   'abecodes/tabout.nvim',
   'vim-test/vim-test',
-  'chentoast/marks.nvim',
   'RRethy/vim-illuminate', -- highlight current word
 
   {
@@ -300,7 +299,6 @@ end
 require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
-require('marks').setup{}
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
