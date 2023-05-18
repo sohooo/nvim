@@ -1,8 +1,8 @@
-> my __highly opinionated__ neovim 0.8+ lua config
+> my __highly opinionated__ neovim 0.9+ lua config
 
 ## Features
 
-- modern nvim 0.8+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and lsp-zero
+- modern nvim 0.9+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and lsp-zero
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
 - nicely structured and fine-tuned `init.loa` config
