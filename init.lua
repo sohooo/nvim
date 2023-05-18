@@ -109,6 +109,11 @@ require("lazy").setup({
   'PedramNavid/dbtpal', -- dbt features
   -- }}}
 
+  -- helpers {{{
+  'xorid/asciitree.nvim', -- :AsciiTree [2 #] [default]
+
+  -- }}}
+
   -- editing tools {{{
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   'sindrets/diffview.nvim',
