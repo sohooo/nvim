@@ -20,8 +20,15 @@ function MyColors()
     default = {
       colorscheme = "tokyonight",
       lualine = "tokyonight",
+      -- colorscheme = "oxocarbon",
+      -- lualine = "oxocarbon",
       -- colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
       -- lualine = "catppuccin"
+      --
+      -- https://github.com/rebelot/kanagawa.nvim
+      -- kanagawa-wave
+      -- kanagawa-dragon
+      -- kanagawa-lotus
       --
       -- colorscheme = "nordic",
       -- colorscheme = "onenord",
@@ -136,6 +143,16 @@ require("lazy").setup({
   },
 
   {
+    "smjonas/live-command.nvim", config = function()
+      require("live-command").setup {
+        commands = {
+          Norm = { cmd = "norm" }, -- previewable :Norm
+        },
+      }
+    end,
+  },
+
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -222,6 +239,7 @@ require("lazy").setup({
   'shaunsingh/moonlight.nvim',
   'shaunsingh/doom-vibrant.nvim',
   'folke/tokyonight.nvim',
+  'rebelot/kanagawa.nvim',
   -- }}}
 })
 
