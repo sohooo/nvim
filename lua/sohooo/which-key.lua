@@ -70,11 +70,10 @@ wk.register({
     }
   },
   ["<space>"] = {
-    l = { require("ts-node-action").node_action, "Trigger Node Action" },
+    k = { require("ts-node-action").node_action, "Trigger Node Action" },
   },
   ["<leader>"] = {
     name = "+main",
-    ["<space>"] = { vim.cmd.Legendary, "legendary command bar" },
     a = { "<Plug>(LiveEasyAlign)", "Live Align", mode = "x" },
     d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "telescope find file" },

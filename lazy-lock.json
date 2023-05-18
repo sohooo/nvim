@@ -22,7 +22,6 @@
   "kanagawa.nvim": { "branch": "master", "commit": "42c33239b0460cbbcdb67bc9c7f0c420a95208e6" },
   "lazy.nvim": { "branch": "main", "commit": "53e1c49baed4009eccf103dbc77fcb06255019d8" },
   "leap.nvim": { "branch": "main", "commit": "3144cefc5ec8872c838dc6710707d23b6de5ec02" },
-  "legendary.nvim": { "branch": "master", "commit": "ba2bb47ca6b183c59047565967f649be52b3ddf6" },
   "live-command.nvim": { "branch": "main", "commit": "bc7e094e7ff52caf682c1430ff3a43ff55f6a58b" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },

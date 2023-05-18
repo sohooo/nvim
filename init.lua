@@ -81,8 +81,6 @@ require("lazy").setup({
   'folke/which-key.nvim', -- key bindings
   'folke/todo-comments.nvim',
 
-  'mrjones2014/legendary.nvim', -- fuzzy find mappings / command bar
-
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',
   'famiu/bufdelete.nvim',
@@ -318,7 +316,6 @@ require('nvim-autopairs').setup{}
 require('leap').set_default_keymaps()
 
 require('sohooo/autocmds')
-require('sohooo/legendary')
 require('sohooo/which-key')
 -- }}}
 
