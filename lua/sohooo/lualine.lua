@@ -7,10 +7,21 @@ require'lualine'.setup {
     section_separators = {'', ''},
     disabled_filetypes = {}
   },
+  -- https://github.com/nvim-lualine/lualine.nvim#general-component-options
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1, -- 0: Just the filename
+                  -- 1: Relative path
+                  -- 2: Absolute path
+                  -- 3: Absolute path, with tilde as the home directory
+                  -- 4: Filename and parent dir, with tilde as the home directory
+      }
+    },
     lualine_x = {'encoding', 'filetype'},
     --lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'hostname'},
@@ -33,7 +44,10 @@ require'lualine'.setup {
     --lualine_y = {},
     --lualine_z = {},
   },
-  extensions = {}
+  extensions = {
+    'nvim-tree',
+    'toggleterm',
+  }
 }
 
 require'tabline'.setup {
