@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.8.1 Release LuaJIT 2.1.0-beta3
+-- NVIM v0.9.0 Build type: Release LuaJIT 2.1.0-beta3
 
 -- util functions {{{
 function Hifi()
@@ -105,9 +105,9 @@ require("lazy").setup({
     -- "rcarriga/nvim-notify",
   }},
   -- }}}
-  --
+
   -- languages {{{
-  'sheerun/vim-polyglot', -- the full kitchen sink
+  'rodjek/vim-puppet',
   'fatih/vim-go',
   'simrat39/rust-tools.nvim',
   'mfussenegger/nvim-dap', -- Debugging

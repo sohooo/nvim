@@ -54,7 +54,6 @@
   "onedark.nvim": { "branch": "master", "commit": "f6e82074761473d30a722f5d90c60282de1ac41d" },
   "onenord.nvim": { "branch": "main", "commit": "7b2b23e6af16430be3d0364c7ced34522ce88124" },
   "oxocarbon.nvim": { "branch": "main", "commit": "ee9182cb01c833369fd492ecdfb12366ba75582d" },
-  "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
   "plenary.nvim": { "branch": "master", "commit": "9ac3e9541bbabd9d73663d757e4fe48a675bb054" },
   "quickfix-reflector.vim": { "branch": "master", "commit": "6a6a9e28e1713b9e9db99eec1e6672e5666c01b9" },
   "refactoring.nvim": { "branch": "master", "commit": "47a1716a9020c0093a1c8af36c3f9434dae62bbd" },
@@ -77,7 +76,7 @@
   "vim-go": { "branch": "master", "commit": "a494378f6c106a97e39c62b493c14476f9f7de4f" },
   "vim-illuminate": { "branch": "master", "commit": "a2907275a6899c570d16e95b9db5fd921c167502" },
   "vim-pasta": { "branch": "master", "commit": "cb4501a123d74fc7d66ac9f10b80c9d393746c66" },
-  "vim-polyglot": { "branch": "master", "commit": "bc8a81d3592dab86334f27d1d43c080ebf680d42" },
+  "vim-puppet": { "branch": "master", "commit": "81943d532dee24f8518f855dfb17160809abfdfb" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-test": { "branch": "master", "commit": "c19be85a9b3d8b86f37533bfeb82cbe189cd895e" },
   "which-key.nvim": { "branch": "main", "commit": "5a6c954a5a46023c19acc03a8b6d7c3e57964fc5" }
