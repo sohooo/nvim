@@ -126,6 +126,12 @@ require("lazy").setup({
   'tpope/vim-repeat', -- make '.' usable for plugins
   'numToStr/Comment.nvim', -- smart commenting plugin
   'ggandor/leap.nvim', -- fast jumping with s|S
+  {
+    'ggandor/flit.nvim', config = function()
+      -- Enhanced f/t motions for Leap
+      require('flit').setup {}
+    end
+  },
   'sickill/vim-pasta', -- pasting with indentation adjusted
   'stefandtw/quickfix-reflector.vim', -- Change code right in the quickfix window
   'windwp/nvim-autopairs',
