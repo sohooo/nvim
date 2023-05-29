@@ -199,7 +199,6 @@ require("lazy").setup({
   { 'RRethy/nvim-treesitter-endwise', dependencies = { 'nvim-treesitter' }},
   { 'romgrk/nvim-treesitter-context', dependencies = { 'nvim-treesitter' }},
   { 'ckolkey/ts-node-action', dependencies = { 'nvim-treesitter' }},
-  { 'nvim-treesitter/playground', dependencies = { 'nvim-treesitter' }},
   { 'windwp/nvim-ts-autotag', dependencies = { 'nvim-treesitter' }},
   { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter' }},
   -- }}}
