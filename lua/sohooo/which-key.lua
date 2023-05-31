@@ -15,6 +15,41 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "Q", "<nop>")
 
+-- lazygit terminal
+local Terminal  = require('toggleterm.terminal').Terminal
+-- local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    -- border = "double",
+    height = function(term)
+      return math.floor(vim.o.lines * 0.9)
+    end,
+    width = function(term)
+      return math.floor(vim.o.columns * 0.9)
+    end,
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+-- vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
+
 wk.register({
   -- insert mode
   ["kj"]    = { "<Esc>", "normal mode", mode = "i" },
@@ -77,6 +112,7 @@ wk.register({
     a = { "<Plug>(LiveEasyAlign)", "Live Align", mode = "x" },
     d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "telescope find file" },
+    g = { _lazygit_toggle, "lazygit term" },
     -- f = { require('sohooo/telescope').project_files, "Find File" },
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
@@ -128,14 +164,6 @@ wk.register({
         p = { vim.cmd.TSPlaygroundToggle, "treesitter playground" },
         h = { vim.cmd.TSHighlightCapturesUnderCursor, "treesitter highlight element" },
       },
-    },
-    g = {
-      name = "+git",
-      g = { "<cmd>Neogit<CR>", "neogit" },
-      c = { telescope.git_commits, "neogit commits" },
-      b = { telescope.git_branches, "neogit branches" },
-      s = { telescope.git_status, "neogit status" },
-      h = { name = "+hunk" },
     },
     h = {
       name = "+help",

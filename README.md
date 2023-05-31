@@ -105,6 +105,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * to align markdown tables, try `,a | ** <cr>` :sparkles:
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings); `I` to toggle gitignore'd files
+* `,g`      Lazygit floating terminal
 * `,u`      toggle UndoTree
 * `gcc`     toggle comment on/off
 * `kj`      remap of ESC
