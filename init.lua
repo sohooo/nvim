@@ -194,8 +194,8 @@ require("lazy").setup({
       ts_update()
     end,
   },
-  { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = { 'nvim-treesitter' }},
   { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter' }},
+  { 'RRethy/nvim-treesitter-textsubjects', dependencies = { 'nvim-treesitter' }},
   { 'RRethy/nvim-treesitter-endwise', dependencies = { 'nvim-treesitter' }},
   { 'romgrk/nvim-treesitter-context', dependencies = { 'nvim-treesitter' }},
   { 'ckolkey/ts-node-action', dependencies = { 'nvim-treesitter' }},
