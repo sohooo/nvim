@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.9.0 Build type: Release LuaJIT 2.1.0-beta3
+-- NVIM v0.9.1 Build type: Release LuaJIT 2.1.0-beta3
 
 -- util functions {{{
 function Hifi()
