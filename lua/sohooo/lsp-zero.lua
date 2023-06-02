@@ -1,13 +1,6 @@
 local lsp = require('lsp-zero')
 local lspkind = require('lspkind')
 local lspkind_mode = 'symbol_text'
-local signs = { error = " ", warn = " ", hint = " ", info = " " }
-
--- lo-fi mode without nerdfont
-if not Hifi() then
-  lspkind_mode = 'text'
-  signs = { error = "⊗", warn = "⋇", hint = "⋯", info = "⊹" }
-end
 
 -- lsp.preset('recommended')
 lsp.set_preferences({
@@ -18,7 +11,6 @@ lsp.set_preferences({
   cmp_capabilities = true,
   manage_nvim_cmp = true,
   call_servers = 'local',
-  sign_icons = signs,
 })
 
 local cmp = require('cmp')
