@@ -177,6 +177,10 @@ wk.register({
       s = { telescope.highlights, "telescpe highlights" },
       t = { telescope.builtin, "Telescope" },
     },
+    m = {
+      name = "+misc",
+      f = { vim.cmd.NvimTreeFindFile, "reveal file in tree" },
+    },
     r = { -- TODO: happy with that?
       name = "+run/test",
       n = { "<cmd>TestNearest<cr>", "test nearest" },
