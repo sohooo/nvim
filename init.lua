@@ -118,7 +118,7 @@ require("lazy").setup({
   'simrat39/rust-tools.nvim',
   'mfussenegger/nvim-dap', -- Debugging
   'PedramNavid/dbtpal', -- dbt features
-  'folke/neodev.nvim', -- additional lua config for neovim root_dir
+  { 'folke/neodev.nvim', enabled = false },-- additional lua config for neovim root_dir
   -- }}}
 
   -- helpers {{{
@@ -266,8 +266,9 @@ vim.o.ignorecase = true           -- case insensitive searching
 vim.o.smartcase = true            -- ...unless /C or capital in search
 vim.o.expandtab = true            -- insert spaces on <tab>
 vim.o.updatetime = 250            -- decrease update time (4000)
-vim.o.timeoutlen = 500            -- wait for seq. to complete (1000)
-vim.wo.signcolumn = 'yes:1'         -- always draw sign col
+vim.o.timeout = true              -- wait timeoutlen ms
+vim.o.timeoutlen = 400            -- wait for seq. to complete (1000)
+vim.wo.signcolumn = 'yes:1'       -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
 
 
