@@ -47,7 +47,15 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
--- vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+function _mouse_toggle()
+  if vim.o.mouse == '' then
+    vim.o.mouse = 'a'
+    print("mouse enabled")
+  else
+    vim.o.mouse = ''
+    print("mouse disabled")
+  end
+end
 
 
 wk.register({
@@ -113,7 +121,6 @@ wk.register({
     d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "telescope find file" },
     g = { _lazygit_toggle, "lazygit term" },
-    -- f = { require('sohooo/telescope').project_files, "Find File" },
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
     u = { vim.cmd.UndoTreeToggle, "toggle undo tree" },
@@ -121,12 +128,9 @@ wk.register({
       function()
         require('bufdelete').bufdelete(0, true)
       end, "close current buffer" },
-    -- q = { vim.cmd.bdelete, "close buffer" },
-    -- q = { "<cmd>bdelete<cr>", "close buffer" },
     t = {
       name = "+telescope",
       h = { telescope.help_tags, "telescope help tags" },
-      -- a = { telescope.tags, "telescope tags" }, -- usually no tag files
       c = { function()
         telescope.colorscheme({
           enable_preview = true
@@ -180,6 +184,7 @@ wk.register({
     m = {
       name = "+misc",
       f = { vim.cmd.NvimTreeFindFile, "reveal file in tree" },
+      m = { _mouse_toggle, "toggle mouse" },
     },
     r = {
       name = "+run/test",
