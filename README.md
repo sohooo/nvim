@@ -44,12 +44,12 @@ nvim
 # install some LSP servers;
 # NOTE: currently disabled, bring your own!
 # more can be installed via :Mason
-:MasonInstallAll
+# :MasonInstallAll
 
 # restart nvim, then check if everything's there ;)
 :Lazy            # plugins
-:Mason           # LSP server, linter, formatter, ...
 :TSInstallInfo   # Treesitter grammars
+# :Mason           # LSP server, linter, formatter, ...
 ```
 
 ## Bindings
@@ -101,6 +101,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 ### Movement and others
 
 * `tab, S-tab` switch buffers (close with `,q`)
+* `<cr> / <bs>` exand / shrink selection (in normal mode)
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines; `gs` to jump to other splits
 * `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * to align markdown tables, try `,a | ** <cr>` :sparkles:
@@ -110,6 +111,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `gcc`     toggle comment on/off
 * `kj`      remap of ESC
 * `<space> l` clear search highlight
+* `<space> k` toggle node action (toogle bools, split/join hashes, ...)
 * `,te`     toggle terminal; `:ToggleTermSendCurrentLine` and other goodies, see [README](https://github.com/akinsho/toggleterm.nvim)
 
 
