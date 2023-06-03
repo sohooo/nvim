@@ -71,7 +71,13 @@ vim.g.mapleader = ','
 require("lazy").setup({
   -- telescope {{{
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end,
+  },
   -- }}}
 --
   -- addons, layout {{{
@@ -112,6 +118,7 @@ require("lazy").setup({
   'simrat39/rust-tools.nvim',
   'mfussenegger/nvim-dap', -- Debugging
   'PedramNavid/dbtpal', -- dbt features
+  'folke/neodev.nvim', -- additional lua config for neovim root_dir
   -- }}}
 
   -- helpers {{{
@@ -187,12 +194,10 @@ require("lazy").setup({
   -- }}}
 
   -- treesitter {{{
-  -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#packernvim
-  { 'nvim-treesitter/nvim-treesitter',
-    init = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
+  { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', },
+    build = ":TSUpdate",
   },
   { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter' }},
   { 'RRethy/nvim-treesitter-textsubjects', dependencies = { 'nvim-treesitter' }},
