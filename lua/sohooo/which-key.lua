@@ -181,13 +181,13 @@ wk.register({
       name = "+misc",
       f = { vim.cmd.NvimTreeFindFile, "reveal file in tree" },
     },
-    r = { -- TODO: happy with that?
+    r = {
       name = "+run/test",
-      n = { "<cmd>TestNearest<cr>", "test nearest" },
-      f = { "<cmd>TestFile<cr>", "test file" },
-      l = { "<cmd>TestLast<cr>", "test last" },
-      r = { "<cmd>TestLast<cr>", "test last" },
-      s = { "<cmd>TestSuite<cr>", "test suite" },
+      n = { vim.cmd.TestNearest, "test nearest" },
+      f = { vim.cmd.TestFile, "test file" },
+      l = { vim.cmd.TestLast, "test last" },
+      r = { vim.cmd.TestLast, "test last" },
+      s = { vim.cmd.TestSuite, "test suite" },
     },
     v = {
       name = "+diffview",
