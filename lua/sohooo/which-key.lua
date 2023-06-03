@@ -120,6 +120,10 @@ wk.register({
     a = { "<Plug>(LiveEasyAlign)", "Live Align", mode = "x" },
     d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "telescope find file" },
+    l = { telescope.resume, "telescope last search" },
+    -- l = { function()
+    --   telescope.resume(require('telescope.themes').get_ivy({}))
+    -- end, "telescope last search" },
     g = { _lazygit_toggle, "lazygit term" },
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
