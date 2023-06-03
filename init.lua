@@ -270,6 +270,8 @@ vim.o.timeout = true              -- wait timeoutlen ms
 vim.o.timeoutlen = 400            -- wait for seq. to complete (1000)
 vim.wo.signcolumn = 'yes:1'       -- always draw sign col
 vim.o.laststatus = 2              -- set to 3 for global statusline
+vim.o.splitbelow = true           -- default: above
+vim.o.splitright = true           -- default: on the left
 
 
 if Hifi() then
