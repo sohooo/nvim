@@ -195,7 +195,15 @@ if vim.g.lsp_setup_ready == nil then
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   -- puppet setup: https://github.com/puppetlabs/puppet-editor-services
   require('lspconfig').gopls.setup {} -- gopls
-  require('lspconfig').puppet.setup {} -- puppet-languageserver
+  require('lspconfig').puppet.setup {
+    cmd = {
+      'puppet-languageserver',
+      '--stdio',
+      '--timeout=10',
+      '--puppet-settings=--modulepath,/modules', -- "--puppet-version=6.8.1",
+      string.format('--local-workspace=%s/puppetenvs/kpm', os.getenv 'HOME'),
+    },
+  } -- puppet-languageserver
   require('lspconfig').pylsp.setup {} -- pylsp
   require('lspconfig').rust_analyzer.setup {} -- rust-analyzer
   -- require('lspconfig').solargraph.setup {} --solargraph
