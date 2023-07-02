@@ -87,6 +87,7 @@ require("lazy").setup({
   'folke/which-key.nvim', -- key bindings
   'folke/todo-comments.nvim',
   'levouh/tint.nvim',
+  'nacro90/numb.nvim',
 
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',
@@ -327,7 +328,8 @@ require('Comment').setup()
 require('goto-preview').setup{}
 require('nvim-autopairs').setup{}
 require('leap').set_default_keymaps()
-require("tint").setup()
+require('tint').setup()
+require('numb').setup()
 
 require('sohooo/autocmds')
 require('sohooo/which-key')
