@@ -97,6 +97,13 @@ require("lazy").setup({
   'nvim-tree/nvim-tree.lua',
   'folke/trouble.nvim',
 
+  {
+    "HampusHauffman/block.nvim",
+    config = function()
+      require("block").setup({})
+    end
+  },
+
   'lukas-reineke/indent-blankline.nvim',
   "akinsho/toggleterm.nvim",
   "samjwill/nvim-unception", --open via Neovim's terminal without nesting sessions

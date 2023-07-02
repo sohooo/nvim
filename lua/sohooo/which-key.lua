@@ -161,6 +161,7 @@ wk.register({
     c = {
       name = "+actions",
       a = { vim.lsp.buf.code_action, "lsp code action" },
+      b = { vim.cmd.Block, "toggle code block visuals" },
       -- a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
       -- s = symbols outline: init.lua
       r = { vim.lsp.buf.rename, "lsp rename" },
