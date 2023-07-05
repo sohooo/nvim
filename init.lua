@@ -138,7 +138,6 @@ require("lazy").setup({
   -- editing tools {{{
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   'sindrets/diffview.nvim',
-  'mbbill/undotree',
   'tpope/vim-repeat', -- make '.' usable for plugins
   'numToStr/Comment.nvim', -- smart commenting plugin
   'ggandor/leap.nvim', -- fast jumping with s|S
@@ -155,6 +154,7 @@ require("lazy").setup({
   'abecodes/tabout.nvim',
   'vim-test/vim-test',
   'RRethy/vim-illuminate', -- highlight current word
+  { 'jiaoshijie/undotree', dependencies = { 'nvim-lua/plenary.nvim' }},
 
   {
     "smjonas/live-command.nvim", config = function()
@@ -323,6 +323,7 @@ require('sohooo/focus')
 
 -- require('sohooo/trouble')
 
+require('undotree').setup()
 require('tabout').setup()
 require('fidget').setup{}
 -- require('sohooo/rust-tools')  -- included now in lsp-zero

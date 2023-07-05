@@ -127,7 +127,7 @@ wk.register({
     g = { _lazygit_toggle, "lazygit term" },
     b = { telescope.buffers, "telescope open buffers" },
     s = { telescope.live_grep, "telescope live grep" },
-    u = { vim.cmd.UndoTreeToggle, "toggle undo tree" },
+    u = { require('undotree').toggle, "toggle undo tree" },
     q = {
       function()
         require('bufdelete').bufdelete(0, true)
