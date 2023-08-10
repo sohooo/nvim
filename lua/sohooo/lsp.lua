@@ -204,7 +204,9 @@ if vim.g.lsp_setup_ready == nil then
       string.format('--local-workspace=%s/puppetenvs/kpm', os.getenv 'HOME'),
     },
   } -- puppet-languageserver
-  require('lspconfig').pylsp.setup {} -- pylsp
+  require'lspconfig'.ruff_lsp.setup{} -- pip install ruff-lsp
+  require'lspconfig'.pylyzer.setup{} -- pylyzer
+  -- require('lspconfig').pylsp.setup {} -- pylsp
   require('lspconfig').rust_analyzer.setup {} -- rust-analyzer
   -- require('lspconfig').solargraph.setup {} --solargraph
   require('lspconfig').standardrb.setup {} -- standardrb  (gem install standard)
@@ -233,6 +235,4 @@ if vim.g.lsp_setup_ready == nil then
     },
   }
 
-  -- Initialize rust_analyzer with rust-tools
-  require('rust-tools').setup { server = rust_lsp }
 end

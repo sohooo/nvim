@@ -326,7 +326,7 @@ require('sohooo/focus')
 require('undotree').setup()
 require('tabout').setup()
 require('fidget').setup{}
--- require('sohooo/rust-tools')  -- included now in lsp-zero
+require('sohooo/rust-tools')  -- included now in lsp-zero
 
 if Hifi() then
 	require('colorizer').setup()
