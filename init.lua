@@ -152,7 +152,6 @@ require("lazy").setup({
   'windwp/nvim-autopairs',
   'junegunn/vim-easy-align',
   'abecodes/tabout.nvim',
-  'vim-test/vim-test',
   'RRethy/vim-illuminate', -- highlight current word
   { 'jiaoshijie/undotree', dependencies = { 'nvim-lua/plenary.nvim' }},
 
@@ -164,6 +163,17 @@ require("lazy").setup({
         },
       }
     end,
+  },
+
+  {
+    "nvim-neotest/neotest",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "olimorris/neotest-rspec",
+    },
   },
 
   {
@@ -320,6 +330,7 @@ require('sohooo/noice')
 -- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
 require('sohooo/focus')
+require('sohooo/neotest')
 
 -- require('sohooo/trouble')
 

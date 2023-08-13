@@ -192,12 +192,16 @@ wk.register({
       m = { _mouse_toggle, "toggle mouse" },
     },
     r = {
-      name = "+run/test",
-      n = { vim.cmd.TestNearest, "test nearest" },
-      f = { vim.cmd.TestFile, "test file" },
-      l = { vim.cmd.TestLast, "test last" },
-      r = { vim.cmd.TestLast, "test last" },
-      s = { vim.cmd.TestSuite, "test suite" },
+      name = "+run/neotest",
+      -- WIP functions, bindings, ...
+      n = { function() require("neotest").run.run() end, "test nearest" },
+      r = { function() require("neotest").run.run() end, "test nearest" },
+      f = { function() require("neotest").run.run(vim.fn.expand("%")) end, "test file" },
+      a = { function() require("neotest").run.run(vim.fn.getcwd()) end, "test all" },
+      o = { function() require("neotest").output.open({ enter = true }) end, "output window" },
+      p = { function() require("neotest").output_panel.toggle() end, "toggle output panel" },
+      s = { function() require("neotest").summary.toggle() end, "toggle summary panel" },
+      w = { function() require("neotest").watch.toggle(vim.fn.expand("%")) end, "watch file" }, -- LSP req.
     },
     v = {
       name = "+diffview",
