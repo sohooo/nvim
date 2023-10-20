@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.9.1 Build type: Release LuaJIT 2.1.0-beta3
+-- NVIM v0.9.2 Build type: Release LuaJIT 2.1.0-beta3
 
 -- util functions {{{
 function Hifi()
@@ -104,7 +104,7 @@ require("lazy").setup({
     end
   },
 
-  'lukas-reineke/indent-blankline.nvim',
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}, },
   "akinsho/toggleterm.nvim",
   "samjwill/nvim-unception", --open via Neovim's terminal without nesting sessions
   'rmagatti/goto-preview',
@@ -325,7 +325,6 @@ require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
-require('sohooo/indent_blankline')
 require('sohooo/noice')
 -- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
@@ -334,6 +333,7 @@ require('sohooo/neotest')
 
 -- require('sohooo/trouble')
 
+require("ibl").setup()
 require('undotree').setup()
 require('tabout').setup()
 require('fidget').setup{}
@@ -349,6 +349,7 @@ require('nvim-autopairs').setup{}
 require('leap').set_default_keymaps()
 require('tint').setup()
 require('numb').setup()
+-- require("ibl").setup() -- v3
 
 require('sohooo/autocmds')
 require('sohooo/which-key')
