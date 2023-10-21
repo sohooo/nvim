@@ -146,7 +146,6 @@ wk.register({
       -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
       -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
       -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
-      r = { vim.cmd.TroubleToggle, "toggle trouble" },
       -- Treesitter Stuff
       s = {
         function()

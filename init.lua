@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.9.2 Build type: Release LuaJIT 2.1.0-beta3
+-- NVIM v0.9.4 Build type: Release LuaJIT 2.1.0-beta3
 
 -- util functions {{{
 function Hifi()
@@ -95,7 +95,6 @@ require("lazy").setup({
 
   'kyazdani42/nvim-web-devicons',
   'nvim-tree/nvim-tree.lua',
-  'folke/trouble.nvim',
 
   {
     "HampusHauffman/block.nvim",
@@ -330,8 +329,6 @@ require('sohooo/noice')
 require('sohooo/nvim-tree')
 require('sohooo/focus')
 require('sohooo/neotest')
-
--- require('sohooo/trouble')
 
 require('mini.align').setup()
 require("ibl").setup()
