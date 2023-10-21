@@ -86,8 +86,8 @@ require("lazy").setup({
   'tpope/vim-dispatch', -- async build/test dispatcher
   'folke/which-key.nvim', -- key bindings
   'folke/todo-comments.nvim',
-  'levouh/tint.nvim',
-  'nacro90/numb.nvim',
+  'levouh/tint.nvim', -- dim inactive windows
+  'nacro90/numb.nvim', -- peeks lines of the buffer
 
   'hoob3rt/lualine.nvim',
   'kdheepak/tabline.nvim',

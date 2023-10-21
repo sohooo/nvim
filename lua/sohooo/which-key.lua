@@ -206,7 +206,8 @@ wk.register({
       v = { vim.cmd.DiffviewOpen, "open diffview" },
       o = { vim.cmd.DiffviewOpen, "open diffview" },
       c = { vim.cmd.DiffviewClose, "close diffview" },
-      h = { vim.cmd.DiffviewFileHistory, "file history" },
+      h = { vim.cmd.DiffviewFileHistory, "history" },
+      f = { "<cmd>DiffviewFileHistory %<cr>", "file history" },
     },
     w = {
       name = "+workspace",
