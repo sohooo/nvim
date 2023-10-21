@@ -117,7 +117,6 @@ wk.register({
   },
   ["<leader>"] = {
     name = "+main",
-    a = { "<Plug>(LiveEasyAlign)", "Live Align", mode = "x" },
     d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
     f = { telescope.find_files, "telescope find file" },
     l = { telescope.resume, "telescope last search" },

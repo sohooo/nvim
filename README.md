@@ -78,6 +78,8 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `gi | gI` preview/goto implemention
 * `gr | gR` preview/goto references
 * `K`    show docs
+* `ga | gA`   align | with preview
+  * e.g.: to align markdown tables: `gA | <cr>` :sparkles:
 * `gs`   show signatur help
 * `gp`   go to preview actions
 * `,c` code actions:
@@ -103,8 +105,6 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `tab, S-tab` switch buffers (close with `,q`)
 * `<cr> / <bs>` exand / shrink selection (in normal mode)
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines; `gs` to jump to other splits
-* `,a =`    align line/selection by `=`; [vim-easy-align](https://github.com/junegunn/vim-easy-align)
-  * to align markdown tables, try `,a | ** <cr>` :sparkles:
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings); `I` to toggle gitignore'd files
 * `,g`      Lazygit floating terminal
 * `,u`      toggle UndoTree

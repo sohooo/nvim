@@ -150,10 +150,10 @@ require("lazy").setup({
   'sickill/vim-pasta', -- pasting with indentation adjusted
   'stefandtw/quickfix-reflector.vim', -- Change code right in the quickfix window
   'windwp/nvim-autopairs',
-  'junegunn/vim-easy-align',
   'abecodes/tabout.nvim',
   'RRethy/vim-illuminate', -- highlight current word
   { 'jiaoshijie/undotree', dependencies = { 'nvim-lua/plenary.nvim' }},
+  { 'echasnovski/mini.align', version = '*' },
 
   {
     "smjonas/live-command.nvim", config = function()
@@ -333,6 +333,7 @@ require('sohooo/neotest')
 
 -- require('sohooo/trouble')
 
+require('mini.align').setup()
 require("ibl").setup()
 require('undotree').setup()
 require('tabout').setup()
