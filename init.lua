@@ -334,7 +334,14 @@ require('mini.align').setup()
 require("ibl").setup()
 require('undotree').setup()
 require('tabout').setup()
-require('fidget').setup{}
+-- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md
+require('fidget').setup({
+  progress = {
+    display = {
+      done_ttl = 6, -- def: 3
+    }
+  }
+})
 require('sohooo/rust-tools')  -- included now in lsp-zero
 
 if Hifi() then
