@@ -110,24 +110,6 @@ cmp.setup {
 }
 
 ---
--- Mason.nvim
----
--- See :help mason-settings
--- require('mason').setup({
---   ui = {border = 'rounded'}
--- })
-
--- See :help mason-lspconfig-settings
--- require('mason-lspconfig').setup({
---   ensure_installed = {
---     -- 'tsserver',
---     -- 'eslint',
---     -- 'html',
---     -- 'cssls'
---   }
--- })
-
----
 -- LSP config
 ---
 -- See :help lspconfig-global-defaults

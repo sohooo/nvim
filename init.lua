@@ -3,7 +3,7 @@
 -- Where: https://github.com/sohooo/nvim
 -- ===============================================
 -- vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
--- NVIM v0.9.4 Build type: Release LuaJIT 2.1.0-beta3
+-- NVIM v0.10.0 Build type: Release LuaJIT 2.1.1713773202
 
 -- util functions {{{
 function Hifi()
@@ -231,11 +231,6 @@ require("lazy").setup({
   'onsails/lspkind-nvim', -- icons in lsp popups etc
   'j-hui/fidget.nvim', -- Standalone UI for nvim-lsp progress
   'neovim/nvim-lspconfig',
-  {
-    'williamboman/mason.nvim',
-    build = function() pcall(vim.cmd, 'MasonUpdate') end,
-  },
-  'williamboman/mason-lspconfig.nvim',
   -- Autocomplete
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
@@ -320,13 +315,11 @@ require('sohooo/treesitter')
 require('sohooo/todo-comments')
 require('sohooo/telescope')
 require('sohooo/lsp')
--- require('sohooo/lsp-zero') -- replaced by lsp =)
 require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
 require('sohooo/noice')
--- require('sohooo/nvim-cmp')  -- included now in lsp-zero
 require('sohooo/nvim-tree')
 require('sohooo/focus')
 require('sohooo/neotest')

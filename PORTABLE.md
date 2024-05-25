@@ -36,12 +36,10 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to
 # this will install all plugins
 v
 
-# install some LSP servers
-# more can be installed via :Mason
-:MasonInstallAll
-
 # restart nvim, then check if everything's there ;)
 :Lazy            # plugins
-:Mason           # LSP server, linter, formatter, ...
 :TSInstallInfo   # Treesitter grammars
 ```
+
+For LSP servers, I previously used [Mason](https://github.com/williamboman/mason.nvim). Now, I just use a package manager and put them in the `$PATH`.
+
