@@ -193,7 +193,7 @@ if vim.g.lsp_setup_ready == nil then
   -- require('lspconfig').pylsp.setup {} -- pylsp
 
   require('lspconfig').rust_analyzer.setup {} -- rust-analyzer
-  -- require('lspconfig').solargraph.setup {} --solargraph
+  require('lspconfig').solargraph.setup {} --solargraph
   require('lspconfig').standardrb.setup {} -- standardrb  (gem install standard)
 
   -- require'lspconfig'.lua_ls.setup{} -- lua-language-server

@@ -18,8 +18,10 @@ end
 function MyColors()
   local style = {
     default = {
-      colorscheme = "tokyonight",
-      lualine = "tokyonight",
+      colorscheme = "neofusion",
+      lualine = require("neofusion.lualine"),
+      -- colorscheme = "tokyonight",
+      -- lualine = "tokyonight",
       -- colorscheme = "oxocarbon",
       -- lualine = "oxocarbon",
       -- colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -257,6 +259,7 @@ require("lazy").setup({
   'shaunsingh/doom-vibrant.nvim',
   'folke/tokyonight.nvim',
   'rebelot/kanagawa.nvim',
+  'diegoulloao/neofusion.nvim',
   -- }}}
 })
 
