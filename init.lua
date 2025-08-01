@@ -246,7 +246,10 @@ require("lazy").setup({
   'L3MON4D3/LuaSnip',
   'rafamadriz/friendly-snippets',
   -- linter, formatter, ...
-  'nvimtools/none-ls.nvim',
+  "nvimtools/none-ls.nvim",
+  dependencies = {
+    "nvimtools/none-ls-extras.nvim",
+  },
 
   -- colorschemes {{{
   'arcticicestudio/nord-vim',
