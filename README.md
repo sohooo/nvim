@@ -147,6 +147,11 @@ Search and replace is like nothing you've ever experienced, thanks to `Telescope
 *  fenced code blocks
 
 
+## Testing
+
+Run `./tests/run.sh` to check the configuration in a headless Neovim instance. The
+script exits with an error if any warnings or errors occur.
+
 ## Misc
 
 ### Terminal
