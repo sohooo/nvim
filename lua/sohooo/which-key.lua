@@ -94,7 +94,7 @@ wk.add({
   { "gpd", require('goto-preview').goto_preview_definition, desc = "preview definition" },
   { "gpi", require('goto-preview').goto_preview_implementation, desc = "preview implementation" },
   { "gpr", require('goto-preview').goto_preview_references, desc = "preview references" },
-  { "<space>k", require("ts-node-action").node_action, desc = "Trigger Node Action" },
+  -- { "<space>k", require("ts-node-action").node_action, desc = "Trigger Node Action" },
   { "<leader>", group = "+main" },
   { "<leader>d", vim.cmd.NvimTreeToggle, desc = "Directory Tree" },
   { "<leader>f", telescope.find_files, desc = "telescope find file" },

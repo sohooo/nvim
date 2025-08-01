@@ -1,4 +1,6 @@
 -- Treesitter configuration
+-- WARN: this is based on Treesitter 'master', which is deprecated
+--
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages

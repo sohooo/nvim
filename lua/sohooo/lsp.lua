@@ -188,7 +188,7 @@ if vim.g.lsp_setup_ready == nil then
   } -- puppet-languageserver
 
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
-  require('lspconfig').ruff_lsp.setup {} -- pip install ruff-lsp
+  require('lspconfig').ruff.setup {} -- pip install ruff
   -- require'lspconfig'.pylyzer.setup{} -- pylyzer;  pip install pylyzer
   -- require('lspconfig').pylsp.setup {} -- pylsp
 

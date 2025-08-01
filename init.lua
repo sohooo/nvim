@@ -216,17 +216,19 @@ require("lazy").setup({
 
   -- treesitter {{{
   { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', },
-    build = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+      branch = 'main',
+      lazy = false,
+      build = ":TSUpdate",
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', }
   },
-  { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter' }},
-  { 'RRethy/nvim-treesitter-textsubjects', dependencies = { 'nvim-treesitter' }},
-  { 'RRethy/nvim-treesitter-endwise', dependencies = { 'nvim-treesitter' }},
-  { 'romgrk/nvim-treesitter-context', dependencies = { 'nvim-treesitter' }},
-  { 'ckolkey/ts-node-action', dependencies = { 'nvim-treesitter' }},
-  { 'windwp/nvim-ts-autotag', dependencies = { 'nvim-treesitter' }},
-  { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter' }},
+  -- { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter' }},
+  -- { 'RRethy/nvim-treesitter-textsubjects', dependencies = { 'nvim-treesitter' }},
+  -- { 'RRethy/nvim-treesitter-endwise', dependencies = { 'nvim-treesitter' }},
+  -- { 'romgrk/nvim-treesitter-context', dependencies = { 'nvim-treesitter' }},
+  -- { 'ckolkey/ts-node-action', dependencies = { 'nvim-treesitter' }},
+  -- { 'windwp/nvim-ts-autotag', dependencies = { 'nvim-treesitter' }},
+  -- { 'p00f/nvim-ts-rainbow', dependencies = { 'nvim-treesitter' }},
   -- }}}
 
   -- lsp, completion, snippets {{{
@@ -244,7 +246,7 @@ require("lazy").setup({
   'L3MON4D3/LuaSnip',
   'rafamadriz/friendly-snippets',
   -- linter, formatter, ...
-  'jose-elias-alvarez/null-ls.nvim',
+  'nvimtools/none-ls.nvim',
 
   -- colorschemes {{{
   'arcticicestudio/nord-vim',
@@ -314,7 +316,7 @@ vim.cmd [[set iskeyword+=-]]
 
 -- requires {{{
 require('sohooo/misc')
-require('sohooo/treesitter')
+-- require('sohooo/treesitter') -- based on master (deprecated)
 require('sohooo/todo-comments')
 require('sohooo/telescope')
 require('sohooo/lsp')
