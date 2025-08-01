@@ -18,10 +18,10 @@ end
 function MyColors()
   local style = {
     default = {
-      colorscheme = "neofusion",
-      lualine = require("neofusion.lualine"),
-      -- colorscheme = "tokyonight",
-      -- lualine = "tokyonight",
+      -- colorscheme = "neofusion",
+      -- lualine = require("neofusion.lualine"),
+      colorscheme = "tokyonight",
+      lualine = "tokyonight",
       -- colorscheme = "oxocarbon",
       -- lualine = "oxocarbon",
       -- colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -112,14 +112,14 @@ require("lazy").setup({
   'norcalli/nvim-colorizer.lua',
   { 'beauwilliams/focus.nvim', lazy = true }, -- Auto-Focusing and Auto-Resizing Splits/Windows
 
-  { 'folke/noice.nvim', dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    -- "rcarriga/nvim-notify",
-  }},
+  -- { 'folke/noice.nvim', dependencies = {
+  --   -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --   "MunifTanjim/nui.nvim",
+  --   -- OPTIONAL:
+  --   --   `nvim-notify` is only needed, if you want to use the notification view.
+  --   --   If not available, we use `mini` as the fallback
+  --   -- "rcarriga/nvim-notify",
+  -- }},
   -- }}}
 
   -- languages {{{
@@ -322,7 +322,7 @@ require('sohooo/null-ls')
 require('sohooo/toggleterm')
 require('sohooo/gitsigns')
 require('sohooo/lualine')
-require('sohooo/noice')
+-- require('sohooo/noice')
 require('sohooo/nvim-tree')
 require('sohooo/focus')
 require('sohooo/neotest')
