@@ -58,165 +58,110 @@ function _mouse_toggle()
 end
 
 
-wk.register({
-  -- insert mode
-  ["kj"]    = { "<Esc>", "normal mode", mode = "i" },
-  -- ["<C-l>"] = { "<C-x><C-l>", "line compl", mode = "i" },
-
-  -- visual mode
-  [">"] = { ">gv", "indent more", mode = "v" },
-  ["<"] = { "<gv", "indent less", mode = "v" },
-
-  -- switch buffers
-  ["<tab>"]   = { vim.cmd.bnext, "next buffer" },
-  ["<S-tab>"] = { vim.cmd.bprevious, "prev buffer" },
-
-  -- window movement
-  ["<C-h>"] = { "<cmd>wincmd h<cr>", "left window" },
-  ["<C-j>"] = { "<cmd>wincmd j<cr>", "bottom window" },
-  ["<C-k>"] = { "<cmd>wincmd k<cr>", "upper window" },
-  ["<C-l>"] = { "<cmd>wincmd l<cr>", "right window" },
-
-  -- misc stuff
-  ["<space>l"] = { vim.cmd.nohlsearch, "remove search hl" },
-  ["j"] = { "gj", "ignore wrap j" },
-  ["k"] = { "gk", "ignore wrap k" },
-  ["J"] = { "mzJ`z", "join w/ fixed cursor" },
-  ["n"] = { "nzzzv", "keep matches centered" },
-  ["N"] = { "Nzzzv", "keep matches centered" },
-  ["g;"] = { "g;zz", "keep jumps centered" },
-  ["g,"] = { "g,zz", "keep jumps centered" },
-  ["cn"] = { "*``cgn", "change word; next: ." },
-  ["cN"] = { "*``cgN", "change word; next: ." },
-
-  -- lsp stuff
-  ["K"]     = { vim.lsp.buf.hover, "lsp hover impl" },
-  ["<c-p>"] = { vim.diagnostic.goto_prev, "lsp prev" },
-  ["<c-n>"] = { vim.diagnostic.goto_next, "lsp next" },
-  -- ["<c-k>"] = { vim.lsp.buf.signature_help, "signature" },
-  ["g"] = {
-    name = "+lsp",
-    -- D = { vim.lsp.buf.declaration, "Declaration" },
-    d = { require('goto-preview').goto_preview_definition, "preview definition" },
-    D = { vim.lsp.buf.definition, "goto definition" },
-    i = { require('goto-preview').goto_preview_implementation, "preview implementation" },
-    I = { vim.lsp.buf.implementation, "goto implementation" },
-    r = { require('goto-preview').goto_preview_references, "preview references" },
-    R = { vim.lsp.buf.references, "goto references" },
-    h = { vim.lsp.buf.hover, "goto hover docs" },
-    ["p"] = {
-      name = "+preview",
-      p = { require('goto-preview').close_all_win, "close previews" },
-      d = { require('goto-preview').goto_preview_definition, "preview definition" },
-      i = { require('goto-preview').goto_preview_implementation, "preview implementation" },
-      r = { require('goto-preview').goto_preview_references, "preview references" },
-    }
+wk.add({
+  { "kj", "<Esc>", desc = "normal mode", mode = "i" },
+  { ">", ">gv", desc = "indent more", mode = "v" },
+  { "<", "<gv", desc = "indent less", mode = "v" },
+  { "<tab>", function() vim.cmd.bnext() end, desc = "next buffer" },
+  { "<S-tab>", function() vim.cmd.bprevious() end, desc = "prev buffer" },
+  { "<C-h>", "<cmd>wincmd h<cr>", desc = "left window" },
+  { "<C-j>", "<cmd>wincmd j<cr>", desc = "bottom window" },
+  { "<C-k>", "<cmd>wincmd k<cr>", desc = "upper window" },
+  { "<C-l>", "<cmd>wincmd l<cr>", desc = "right window" },
+  { "<space>l", vim.cmd.nohlsearch, desc = "remove search hl" },
+  { "j", "gj", desc = "ignore wrap j" },
+  { "k", "gk", desc = "ignore wrap k" },
+  { "J", "mzJ`z", desc = "join w/ fixed cursor" },
+  { "n", "nzzzv", desc = "keep matches centered" },
+  { "N", "Nzzzv", desc = "keep matches centered" },
+  { "g;", "g;zz", desc = "keep jumps centered" },
+  { "g,", "g,zz", desc = "keep jumps centered" },
+  { "cn", "*``cgn", desc = "change word; next: ." },
+  { "cN", "*``cgN", desc = "change word; next: ." },
+  { "K", vim.lsp.buf.hover, desc = "lsp hover impl" },
+  { "<c-p>", vim.diagnostic.goto_prev, desc = "lsp prev" },
+  { "<c-n>", vim.diagnostic.goto_next, desc = "lsp next" },
+  { "g", group = "+lsp" },
+  { "gd", require('goto-preview').goto_preview_definition, desc = "preview definition" },
+  { "gD", vim.lsp.buf.definition, desc = "goto definition" },
+  { "gi", require('goto-preview').goto_preview_implementation, desc = "preview implementation" },
+  { "gI", vim.lsp.buf.implementation, desc = "goto implementation" },
+  { "gr", require('goto-preview').goto_preview_references, desc = "preview references" },
+  { "gR", vim.lsp.buf.references, desc = "goto references" },
+  { "gh", vim.lsp.buf.hover, desc = "goto hover docs" },
+  { "gp", group = "+preview" },
+  { "gpp", require('goto-preview').close_all_win, desc = "close previews" },
+  { "gpd", require('goto-preview').goto_preview_definition, desc = "preview definition" },
+  { "gpi", require('goto-preview').goto_preview_implementation, desc = "preview implementation" },
+  { "gpr", require('goto-preview').goto_preview_references, desc = "preview references" },
+  { "<space>k", require("ts-node-action").node_action, desc = "Trigger Node Action" },
+  { "<leader>", group = "+main" },
+  { "<leader>d", vim.cmd.NvimTreeToggle, desc = "Directory Tree" },
+  { "<leader>f", telescope.find_files, desc = "telescope find file" },
+  { "<leader>l", telescope.resume, desc = "telescope last search" },
+  { "<leader>g", _lazygit_toggle, desc = "lazygit term" },
+  { "<leader>b", telescope.buffers, desc = "telescope open buffers" },
+  { "<leader>s", telescope.live_grep, desc = "telescope live grep" },
+  { "<leader>u", require('undotree').toggle, desc = "toggle undo tree" },
+  { "<leader>q", function() require('bufdelete').bufdelete(0, true) end, desc = "close current buffer" },
+  { "<leader>t", group = "+telescope" },
+  { "<leader>th", telescope.help_tags, desc = "telescope help tags" },
+  { "<leader>tc", function() telescope.colorscheme({ enable_preview = true }) end, desc = "telescope colorscheme" },
+  { "<leader>td", vim.cmd.TodoTelescope, desc = "telescope show todos" },
+  { "<leader>tt", "<cmd>TermExec cmd='!!'<cr>", desc = "rerun terminal command" },
+  { "<leader>te", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "toggle terminal", mode = { 'n', 't' } },
+  {
+    "<leader>ts",
+    function()
+      telescope.lsp_document_symbols({
+        symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
+        sorting_strategy = "ascending",
+      })
+    end,
+    desc = "telescope goto symbol",
   },
-  ["<space>"] = {
-    k = { require("ts-node-action").node_action, "Trigger Node Action" },
-  },
-  ["<leader>"] = {
-    name = "+main",
-    d = { vim.cmd.NvimTreeToggle, "Directory Tree" },
-    f = { telescope.find_files, "telescope find file" },
-    l = { telescope.resume, "telescope last search" },
-    -- l = { function()
-    --   telescope.resume(require('telescope.themes').get_ivy({}))
-    -- end, "telescope last search" },
-    g = { _lazygit_toggle, "lazygit term" },
-    b = { telescope.buffers, "telescope open buffers" },
-    s = { telescope.live_grep, "telescope live grep" },
-    u = { require('undotree').toggle, "toggle undo tree" },
-    q = {
-      function()
-        require('bufdelete').bufdelete(0, true)
-      end, "close current buffer" },
-    t = {
-      name = "+telescope",
-      h = { telescope.help_tags, "telescope help tags" },
-      c = { function()
-        telescope.colorscheme({
-          enable_preview = true
-        })
-      end, "telescope colorscheme"
-      },
-      d = { vim.cmd.TodoTelescope, "telescope show todos" },
-      t = { "<cmd>TermExec cmd='!!'<cr>", "rerun terminal command" },
-      e = { "<cmd>ToggleTerm direction=horizontal<cr>", "toggle terminal", mode = {'n', 't'} },
-      -- e = { "<cmd>ToggleTerm size=40 direction=horizontal<cr>", "Toggle Terminal", mode = {'n', 't'} },
-      -- e = { ':lua NTGlobal["terminal"]:toggle()<cr>', "Terminal" },  -- nvim-terminal
-      -- e = { '<cmd>Ttoggle<cr>', "Toggle Terminal" },  -- nvim-terminal
-      -- Treesitter Stuff
-      s = {
-        function()
-          telescope.lsp_document_symbols({
-            symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
-            sorting_strategy = "ascending",
-          })
-        end, "telescope goto symbol",
-      },
-    },
-    c = {
-      name = "+actions",
-      a = { vim.lsp.buf.code_action, "lsp code action" },
-      b = { vim.cmd.Block, "toggle code block visuals" },
-      -- a = { vim.lsp.buf.range_code_action, "Range Code Action", mode = "v" },
-      -- s = symbols outline: init.lua
-      r = { vim.lsp.buf.rename, "lsp rename" },
-      j = { vim.cmd.TSJToggle, "toggle split/join"},
-      f = { vim.lsp.buf.format, "lsp reformat file" },
-      v = { require("refactoring").select_refactor, "refactor selection", mode = "v" },
-      t = {
-        name = "+treesitter",
-        p = { vim.cmd.TSPlaygroundToggle, "treesitter playground" },
-        h = { vim.cmd.TSHighlightCapturesUnderCursor, "treesitter highlight element" },
-      },
-    },
-    h = {
-      name = "+help",
-      a = { telescope.autocommands, "telescope autocommands" },
-      c = { telescope.commands, "telescope commands" },
-      f = { telescope.filetypes, "telescope filetypes" },
-      h = { telescope.help_tags, "telescope help tags" },
-      k = { telescope.keymaps, "telescope keymaps" },
-      m = { telescope.man_pages, "telescope man pages" },
-      o = { telescope.vim_options, "telescope options" },
-      s = { telescope.highlights, "telescpe highlights" },
-      t = { telescope.builtin, "Telescope" },
-    },
-    m = {
-      name = "+misc",
-      f = { vim.cmd.NvimTreeFindFile, "reveal file in tree" },
-      m = { _mouse_toggle, "toggle mouse" },
-    },
-    r = {
-      name = "+run/neotest",
-      -- WIP functions, bindings, ...
-      n = { function() require("neotest").run.run() end, "test nearest" },
-      r = { function() require("neotest").run.run() end, "test nearest" },
-      f = { function() require("neotest").run.run(vim.fn.expand("%")) end, "test file" },
-      a = { function() require("neotest").run.run(vim.fn.getcwd()) end, "test all" },
-      o = { function() require("neotest").output.open({ enter = true }) end, "output window" },
-      p = { function() require("neotest").output_panel.toggle() end, "toggle output panel" },
-      s = { function() require("neotest").summary.toggle() end, "toggle summary panel" },
-      w = { function() require("neotest").watch.toggle(vim.fn.expand("%")) end, "watch file" }, -- LSP req.
-    },
-    v = {
-      name = "+diffview",
-      v = { vim.cmd.DiffviewOpen, "open diffview" },
-      o = { vim.cmd.DiffviewOpen, "open diffview" },
-      c = { vim.cmd.DiffviewClose, "close diffview" },
-      h = { vim.cmd.DiffviewFileHistory, "history" },
-      f = { "<cmd>DiffviewFileHistory %<cr>", "file history" },
-    },
-    w = {
-      name = "+workspace",
-      a = { vim.lsp.buf.add_workspace_folder, "Add Folder" },
-      l = { vim.lsp.buf.list_workspace_folders, "List Folders" },
-      r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder" },
-    },
-      -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-  },
+  { "<leader>c", group = "+actions" },
+  { "<leader>ca", vim.lsp.buf.code_action, desc = "lsp code action" },
+  { "<leader>cb", vim.cmd.Block, desc = "toggle code block visuals" },
+  { "<leader>cr", vim.lsp.buf.rename, desc = "lsp rename" },
+  { "<leader>cj", vim.cmd.TSJToggle, desc = "toggle split/join" },
+  { "<leader>cf", vim.lsp.buf.format, desc = "lsp reformat file" },
+  { "<leader>cv", require("refactoring").select_refactor, desc = "refactor selection", mode = "v" },
+  { "<leader>ct", group = "+treesitter" },
+  { "<leader>ctp", vim.cmd.TSPlaygroundToggle, desc = "treesitter playground" },
+  { "<leader>cth", vim.cmd.TSHighlightCapturesUnderCursor, desc = "treesitter highlight element" },
+  { "<leader>h", group = "+help" },
+  { "<leader>ha", telescope.autocommands, desc = "telescope autocommands" },
+  { "<leader>hc", telescope.commands, desc = "telescope commands" },
+  { "<leader>hf", telescope.filetypes, desc = "telescope filetypes" },
+  { "<leader>hh", telescope.help_tags, desc = "telescope help tags" },
+  { "<leader>hk", telescope.keymaps, desc = "telescope keymaps" },
+  { "<leader>hm", telescope.man_pages, desc = "telescope man pages" },
+  { "<leader>ho", telescope.vim_options, desc = "telescope options" },
+  { "<leader>hs", telescope.highlights, desc = "telescpe highlights" },
+  { "<leader>ht", telescope.builtin, desc = "Telescope" },
+  { "<leader>m", group = "+misc" },
+  { "<leader>mf", vim.cmd.NvimTreeFindFile, desc = "reveal file in tree" },
+  { "<leader>mm", _mouse_toggle, desc = "toggle mouse" },
+  { "<leader>r", group = "+run/neotest" },
+  { "<leader>rn", function() require("neotest").run.run() end, desc = "test nearest" },
+  { "<leader>rr", function() require("neotest").run.run() end, desc = "test nearest" },
+  { "<leader>rf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "test file" },
+  { "<leader>ra", function() require("neotest").run.run(vim.fn.getcwd()) end, desc = "test all" },
+  { "<leader>ro", function() require("neotest").output.open({ enter = true }) end, desc = "output window" },
+  { "<leader>rp", function() require("neotest").output_panel.toggle() end, desc = "toggle output panel" },
+  { "<leader>rs", function() require("neotest").summary.toggle() end, desc = "toggle summary panel" },
+  { "<leader>rw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "watch file" },
+  { "<leader>v", group = "+diffview" },
+  { "<leader>vv", vim.cmd.DiffviewOpen, desc = "open diffview" },
+  { "<leader>vo", vim.cmd.DiffviewOpen, desc = "open diffview" },
+  { "<leader>vc", vim.cmd.DiffviewClose, desc = "close diffview" },
+  { "<leader>vh", vim.cmd.DiffviewFileHistory, desc = "history" },
+  { "<leader>vf", "<cmd>DiffviewFileHistory %<cr>", desc = "file history" },
+  { "<leader>w", group = "+workspace" },
+  { "<leader>wa", vim.lsp.buf.add_workspace_folder, desc = "Add Folder" },
+  { "<leader>wl", vim.lsp.buf.list_workspace_folders, desc = "List Folders" },
+  { "<leader>wr", vim.lsp.buf.remove_workspace_folder, desc = "Remove Folder" },
 })
 
 -- filetype specific keybinds
