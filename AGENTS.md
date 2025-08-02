@@ -1,11 +1,18 @@
 # Instructions for Agents
 
-## Running Tests
+## Code Style
+- Use two spaces for indentation in Lua files.
+- Keep plugin configurations modular under the `lua/` directory.
+- Avoid trailing whitespace and ensure each file ends with a newline.
 
-After making changes to the configuration or scripts, you can verify that Neovim starts successfully by running the test script `tests/run.sh`:
+## Commit Guidelines
+- Write clear, concise commit messages in the imperative mood.
 
-   ```bash
-   tests/run.sh
-   ```
+## Testing
+Run the headless startup test to verify that the configuration loads without errors or warnings:
 
-This script will run Neovim in headless mode to ensure that the startup process completes without errors.
+```bash
+tests/run.sh
+```
+
+This script launches Neovim in headless mode and fails if any errors or warnings occur during startup.
