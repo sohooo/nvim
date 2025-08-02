@@ -8,6 +8,11 @@
 ## Commit Guidelines
 - Write clear, concise commit messages in the imperative mood.
 
+## Conventional Commits
+- Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification for pull request titles and commit messages.
+- Format messages as `<type>(optional scope): <description>` in the imperative mood.
+- Use lowercase types such as `feat`, `fix`, `docs`, `refactor`, `test`, and `chore`.
+
 ## Testing
 Run the headless startup test to verify that the configuration loads without errors or warnings:
 
