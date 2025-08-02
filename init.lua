@@ -48,7 +48,36 @@ function MyColors()
   local wanted = os.getenv("GIT_USERNAME")
   return style[wanted] or style["default"]
 end
+-- shim for newer `vim.version.ge` on older Neovim
+if vim.version and not vim.version.ge then
+  local function parse(v)
+    if type(v) == 'table' then
+      local major = v.major or v[1] or 0
+      local minor = v.minor or v[2] or 0
+      local patch = v.patch or v[3] or 0
+      return major, minor, patch
+    elseif type(v) == 'string' then
+      local major, minor, patch = v:match('(%d+)%.(%d+)%.?(%d*)')
+      return tonumber(major), tonumber(minor), tonumber(patch ~= '' and patch or 0)
+    end
+  end
+
+  vim.version.ge = function(_, other)
+    local m1, n1, p1 = parse(vim.version())
+    local m2, n2, p2 = parse(other)
+    if m1 ~= m2 then
+      return m1 > m2
+    elseif n1 ~= n2 then
+      return n1 > n2
+    else
+      return p1 >= p2
+    end
+  end
+end
 -- }}}
+local repo = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h")
+package.path = package.path .. ';' .. repo .. '/lua/?.lua;' .. repo .. '/lua/?/init.lua'
+vim.opt.runtimepath:append(repo)
 
 -- plugins {{{
 -- bootstrap lazy.nvim
@@ -318,19 +347,19 @@ vim.cmd [[set iskeyword+=-]]
 -- }}}
 
 -- requires {{{
-require('sohooo/misc')
--- require('sohooo/treesitter') -- based on master (deprecated)
-require('sohooo/todo-comments')
-require('sohooo/telescope')
-require('sohooo/lsp')
-require('sohooo/null-ls')
-require('sohooo/toggleterm')
-require('sohooo/gitsigns')
-require('sohooo/lualine')
--- require('sohooo/noice')
-require('sohooo/nvim-tree')
-require('sohooo/focus')
-require('sohooo/neotest')
+require('sohooo.misc')
+-- require('sohooo.treesitter') -- based on master (deprecated)
+require('sohooo.todo-comments')
+require('sohooo.telescope')
+require('sohooo.lsp')
+require('sohooo.null-ls')
+require('sohooo.toggleterm')
+require('sohooo.gitsigns')
+require('sohooo.lualine')
+-- require('sohooo.noice')
+require('sohooo.nvim-tree')
+require('sohooo.focus')
+require('sohooo.neotest')
 
 require('mini.align').setup()
 require("ibl").setup()
@@ -344,7 +373,7 @@ require('fidget').setup({
     }
   }
 })
-require('sohooo/rust-tools')  -- included now in lsp-zero
+require('sohooo.rust-tools')  -- included now in lsp-zero
 
 if Hifi() then
 	require('colorizer').setup()
@@ -358,7 +387,7 @@ require('tint').setup()
 require('numb').setup()
 -- require("ibl").setup() -- v3
 
-require('sohooo/autocmds')
-require('sohooo/which-key')
+require('sohooo.autocmds')
+require('sohooo.which-key')
 -- }}}
 
