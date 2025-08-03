@@ -5,11 +5,11 @@
 - modern nvim 0.9+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and lsp-zero
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
-- nicely structured and fine-tuned `init.loa` config
+- nicely structured and fine-tuned `init.lua` config
 - [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
-- enhanced markdown editing with folding, fenced code hightighting and TOC
+- enhanced markdown editing with folding, fenced code highlighting and TOC
 - regex commands (like search/replace) with live preview; change directly in quickfix list
-- smart text objects: select text, then use `.` to enlage selection
+- smart text objects: select text, then use `.` to enlarge selection
 
 __Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
 - [AstroVim](https://astronvim.github.io)
@@ -41,16 +41,16 @@ This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to
 # this will install all plugins
 nvim
 
-# install some LSP servers;
-# NOTE: currently disabled, bring your own!
-# more can be installed via :Mason
-# :MasonInstallAll
+# install any required LSP servers with your package manager
+# ensure they are available in your $PATH
 
 # restart nvim, then check if everything's there ;)
 :Lazy            # plugins
 :TSInstallInfo   # Treesitter grammars
-# :Mason           # LSP server, linter, formatter, ...
+# :LspInfo        # active language servers
 ```
+
+For language servers, install them manually via your system package manager and make sure the executables are in your `PATH`. See [PORTABLE.md](PORTABLE.md) for details on custom setups.
 
 ## Bindings
 
@@ -68,19 +68,19 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `<C-t>`   open in tab
 * `<C-v>`   open in vertical split
 * `<C-x>`   open in horizontal split
-* toggle seletion with `(s)-tab`
+* toggle selection with `(s)-tab`
 * close selected buffers with `<c-d>`
 
 
 ### other lsp/telescope keymaps
 
 * `gd | gD` preview/goto definition
-* `gi | gI` preview/goto implemention
+* `gi | gI` preview/goto implementation
 * `gr | gR` preview/goto references
 * `K`    show docs
 * `ga | gA`   align | with preview
   * e.g.: to align markdown tables: `gA | <cr>` :sparkles:
-* `gs`   show signatur help
+* `gs`   show signature help
 * `gp`   go to preview actions
 * `,c` code actions:
   * `a`  action
@@ -103,7 +103,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 ### Movement and others
 
 * `tab, S-tab` switch buffers (close with `,q`)
-* `<cr> / <bs>` exand / shrink selection (in normal mode)
+* `<cr> / <bs>` expand / shrink selection (in normal mode)
 * `s`       [leap.nvim](https://github.com/ggandor/leap.nvim);  like 'f', but multiple lines; `gs` to jump to other splits
 * `,d`      toggle nvim-tree; [bindings](https://github.com/kyazdani42/nvim-tree.lua#keybindings); `I` to toggle gitignore'd files
 * `,g`      Lazygit floating terminal
@@ -111,7 +111,7 @@ Here's a list of some useful keymaps. Just start typing and wait for the context
 * `gcc`     toggle comment on/off
 * `kj`      remap of ESC
 * `<space> l` clear search highlight
-* `<space> k` toggle node action (toogle bools, split/join hashes, ...)
+* `<space> k` toggle node action (toggle bools, split/join hashes, ...)
 * `,te`     toggle terminal; `:ToggleTermSendCurrentLine` and other goodies, see [README](https://github.com/akinsho/toggleterm.nvim)
 
 
