@@ -1,15 +1,17 @@
-> my __highly opinionated__ neovim 0.9+ lua config
+> my __highly opinionated__ Neovim 0.10+ Lua config
 
 ## Features
 
-- modern nvim 0.9+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and lsp-zero
+- modern nvim 0.10+ lua-based config with [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) package manager, [telescope](https://github.com/nvim-telescope/telescope.nvim) and LSP configured via [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - complete package with useful plugins, autocommands, bindings and colorschemes
 - fully portable; place this repo anywhere you want (see below)
-- nicely structured and fine-tuned `init.loa` config
+- nicely structured and fine-tuned `init.lua` config
 - [which-key](https://github.com/folke/which-key.nvim): displays a popup with possible keybindings of the command you started typing
-- enhanced markdown editing with folding, fenced code hightighting and TOC
+- enhanced markdown editing with folding, fenced code highlighting and TOC
 - regex commands (like search/replace) with live preview; change directly in quickfix list
-- smart text objects: select text, then use `.` to enlage selection
+- smart text objects: select text, then use `.` to enlarge selection
+
+- optional lo-fi mode without Nerd Font icons via `NVIM_STYLE=plain`
 
 __Note:__ if you need something established and well maintained, backed by a large community to answer your questions, I highly recommend checking out:
 - [AstroVim](https://astronvim.github.io)
@@ -34,22 +36,27 @@ nvim
 
 ### Plugins
 
-This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to manage Neovim plugins. To install them, you do one of the following:
+This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to manage Neovim plugins:
 
 ```bash
 # start nvim using this config
 # this will install all plugins
 nvim
 
-# install some LSP servers;
-# NOTE: currently disabled, bring your own!
-# more can be installed via :Mason
-# :MasonInstallAll
-
-# restart nvim, then check if everything's there ;)
+# restart nvim, then check if everything's there :)
 :Lazy            # plugins
 :TSInstallInfo   # Treesitter grammars
-# :Mason           # LSP server, linter, formatter, ...
+```
+
+LSP servers, linters and formatters are not installed automatically. Install them with your system package manager so they are available on `$PATH`.
+
+### Updating plugins
+
+Helper scripts are provided to update and verify plugins:
+
+```bash
+./scripts/update-plugins.sh   # upgrade plugins via lazy.nvim
+./scripts/verify-plugins.sh   # run headless test after updates
 ```
 
 ## Bindings
