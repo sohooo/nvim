@@ -12,8 +12,8 @@ null_ls.setup {
     null_ls.builtins.diagnostics.ansiblelint, -- ansible-lint
     null_ls.builtins.diagnostics.erb_lint, -- erblint; `gem install erb_lint`
     null_ls.builtins.diagnostics.puppet_lint, -- puppet-lint
-    null_ls.builtins.diagnostics.ruff, -- ruff
-    null_ls.builtins.diagnostics.shellcheck, -- shellcheck
+    -- null_ls.builtins.diagnostics.ruff, -- ruff
+    -- null_ls.builtins.diagnostics.shellcheck, -- shellcheck
     null_ls.builtins.diagnostics.sqlfluff.with { -- sqlfluff
       extra_args = { '--dialect', 'postgres' },
     },
