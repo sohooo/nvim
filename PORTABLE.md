@@ -12,19 +12,26 @@ nvim
 
 ## self-contained/custom location
 
-We can modify the `XDG_` env vars to put everything in one directory. The following alias ensures that everything lands in `/tmp/config/nvim`:
+Use the launcher in this repository to run the installed `nvim` binary with this
+project's config and local runtime directories:
 
 ```bash
-export CUSTOM_NVIM_PATH=/tmp/config
-mkdir $CUSTOM_NVIM_PATH && cd $_
-alias v="XDG_CONFIG_HOME=$CUSTOM_NVIM_PATH XDG_DATA_HOME=$CUSTOM_NVIM_PATH nvim"
+./scripts/nvim.sh
+```
 
-# in /tmp/config
-git clone https://github.com/sohooo/nvim.git
+The launcher sets `XDG_CONFIG_HOME` to the parent directory of this checkout so
+Neovim discovers this repository as `$XDG_CONFIG_HOME/nvim`. It keeps runtime
+state self-contained under `.xdg/` in the repository:
 
-# start nvim using this config
-# this will install all plugins; wait until Treesitter grammars, LSP servers etc are installed
-v
+- `.xdg/data/nvim`: plugins, lazy.nvim, parser data, and other data files
+- `.xdg/state/nvim`: ShaDa and state files
+- `.xdg/cache/nvim`: cache files
+- `.xdg/run`: runtime socket directory
+
+To use a specific Neovim binary, set `NVIM_BIN`:
+
+```bash
+NVIM_BIN=/path/to/nvim ./scripts/nvim.sh
 ```
 
 ## plugins
@@ -32,9 +39,9 @@ v
 This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to manage Neovim plugins. To install them, you do one of the following:
 
 ```bash
-# start neovim
+# start neovim with the repo-local launcher
 # this will install all plugins
-v
+./scripts/nvim.sh
 
 # restart nvim, then check if everything's there ;)
 :Lazy            # plugins
@@ -42,4 +49,3 @@ v
 ```
 
 For LSP servers, I previously used [Mason](https://github.com/williamboman/mason.nvim). Now, I just use a package manager and put them in the `$PATH`.
-

@@ -75,7 +75,7 @@ if vim.version and not vim.version.ge then
   end
 end
 -- }}}
-local repo = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h")
+local repo = vim.fn.stdpath("config")
 package.path = package.path .. ';' .. repo .. '/lua/?.lua;' .. repo .. '/lua/?/init.lua'
 vim.opt.runtimepath:append(repo)
 
@@ -390,4 +390,3 @@ require('numb').setup()
 require('sohooo.autocmds')
 require('sohooo.which-key')
 -- }}}
-

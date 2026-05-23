@@ -1,16 +1,12 @@
 #!/bin/bash
 set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$SCRIPT_DIR/.."
-
-# Set XDG variables to ensure proper runtime paths
-export XDG_CONFIG_HOME="$(pwd)"
-export XDG_DATA_HOME="$(pwd)"
-export XDG_CACHE_HOME="$(pwd)/cache"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$ROOT"
 
 # Run Neovim with the repository's init.lua and capture output
 set +e
-output=$(nvim --headless -u init.lua -c 'qa' 2>&1)
+output=$("$ROOT/scripts/nvim.sh" --headless -c 'qa' 2>&1)
 status=$?
 set -e
 

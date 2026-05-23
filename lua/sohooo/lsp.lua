@@ -152,21 +152,15 @@ vim.diagnostic.config {
   },
 }
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+vim.lsp.handlers['textDocument/hover'] = function(err, result, ctx, config)
+  config = vim.tbl_deep_extend('force', config or {}, { border = 'rounded' })
+  return vim.lsp.handlers.hover(err, result, ctx, config)
+end
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --virtual_text = false,
-  virtual_text = {
-    prefix = '⋇', -- Could be '●', '▎', 'x', ■
-    spacing = 4,
-    severity_limit = 'Warning',
-  },
-  -- underline = false,
-  -- signs = true,
-  -- update_in_insert = true,
-})
+vim.lsp.handlers['textDocument/signatureHelp'] = function(err, result, ctx, config)
+  config = vim.tbl_deep_extend('force', config or {}, { border = 'rounded' })
+  return vim.lsp.handlers.signature_help(err, result, ctx, config)
+end
 
 -- Prevent multiple instance of lsp servers
 -- if file is sourced again

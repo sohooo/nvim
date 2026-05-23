@@ -20,3 +20,7 @@ tree-sitter-cmake/
 
 # lazy.nvim package manager
 lazy/
+
+# self-contained local Neovim runtime
+.xdg/
+nvim.log

@@ -7,7 +7,6 @@ null_ls.setup {
   -- update_in_insert = true,
   sources = {
     null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.shellcheck, -- shellcheck
     null_ls.builtins.completion.spell,
     null_ls.builtins.diagnostics.ansiblelint, -- ansible-lint
     null_ls.builtins.diagnostics.erb_lint, -- erblint; `gem install erb_lint`
