@@ -29,7 +29,8 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | `updatetime = 250` | LazyVim default preferred | `200` from LazyVim. | LazyVim is slightly more responsive. |
 | `timeout = true` | Migrated | `lua/config/options.lua`. | Preserve mapped sequence behavior. |
 | `timeoutlen = 400` | Migrated | `lua/config/options.lua`. | Keep old which-key timing preference. |
-| `signcolumn = "yes:1"` | Migrated | `lua/config/options.lua`. | Preserve a stable single sign column. |
+| `signcolumn = "yes:1"` | Migrated and widened | `yes:2` in `lua/config/options.lua`. | Keep the editor column stable when diagnostics, TODO markers, or git signs appear. |
+| line-number/status column behavior | Added locally | `numberwidth = 4`, `statuscolumn = "%s%=%l "` in `lua/config/options.lua`. | Avoid horizontal jumps when switching focus between explorer and editor windows. |
 | `laststatus = 2` | LazyVim default preferred | `3` from LazyVim. | Global statusline fits the LazyVim baseline. |
 | `splitbelow = true` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `splitright = true` | LazyVim default | LazyVim options. | Default already matches old config. |

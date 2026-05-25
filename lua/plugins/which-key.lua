@@ -9,6 +9,7 @@ return {
           { "<leader>c", group = "code" },
           { "<leader>g", group = "git" },
           { "<leader>t", group = "tools" },
+          { "<leader>d", desc = "Directory Tree" },
           { "<leader>u", desc = "Undo Tree" },
           { "<leader>q", desc = "Close Buffer" },
           { "<leader>cw", desc = "Trim Trailing Whitespace" },
@@ -27,7 +28,7 @@ return {
         {
           mode = "n",
           { "m", group = "more" },
-          { "mf", desc = "Reveal File In Tree" },
+          { "mf", desc = "Reveal File In Explorer" },
         },
       },
     },

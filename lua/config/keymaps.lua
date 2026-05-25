@@ -11,3 +11,6 @@ vim.keymap.set("n", "<leader>u", function()
 
   require("undotree").open()
 end, { desc = "Toggle Undo Tree" })
+
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })

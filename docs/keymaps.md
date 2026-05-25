@@ -26,7 +26,8 @@ discoverability metadata and group labels in `lua/plugins/which-key.lua`.
 
 | Mode | Key | Action | Source |
 | --- | --- | --- | --- |
-| Normal | `mf` | Reveal the current file in nvim-tree. | `lua/plugins/nvim-tree.lua` |
+| Normal | `<leader>d` | Open the project directory tree. | `lua/plugins/snacks-explorer.lua` |
+| Normal | `mf` | Reveal the current file in the explorer. | `lua/plugins/snacks-explorer.lua` |
 | Normal/Terminal | `<leader>te` | Toggle horizontal terminal. | `lua/plugins/toggleterm.lua` |
 | Normal | `<leader>tt` | Re-run the last terminal command. | `lua/plugins/toggleterm.lua` |
 | Normal | `<leader>tg` | Toggle a floating lazygit terminal. | `lua/plugins/toggleterm.lua` |
@@ -51,6 +52,8 @@ discoverability metadata and group labels in `lua/plugins/which-key.lua`.
 | Normal | `gsn` | Update Mini Surround search line count. | LazyVim Mini Surround extra |
 | Normal/Visual | `gc`/`gcc` family | Toggle comments. | LazyVim Mini Comment extra |
 | Normal | `f`, `F`, `t`, `T` | Enhanced character jumps through Mini Jump. | `lua/plugins/mini.lua` |
+| Normal | `<Tab>` | Focus the next buffer in the tabline. | `lua/config/keymaps.lua` |
+| Normal | `<S-Tab>` | Focus the previous buffer in the tabline. | `lua/config/keymaps.lua` |
 | Insert | `<Tab>`/`<S-Tab>` | Tab out/back through delimiters. | `lua/plugins/tabout.lua` |
 
 ## LSP

@@ -50,7 +50,8 @@ When the todo list is empty, promote the next deferred or omitted item by follow
 - migration workflow documentation
 - empty migration queue handoff
 - native LSP setup
-- nvim-tree.lua
+- Snacks explorer
+- nvim-treesitter-context
 
 ## todo
 
@@ -87,6 +88,7 @@ No active migration items.
 | `nvim-cmp` and `cmp-*` sources | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/lsp.lua` | Replaced by LazyVim completion baseline, currently `blink.cmp`. | Revisit only if `nvim-cmp` behavior is specifically preferred. | Completion engine decision. |
 | `LuaSnip`, `cmp_luasnip` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/lsp.lua` | Replaced by `mini.snippets`. | Revisit only if LuaSnip-specific snippets/features are needed. | Snippet engine decision. |
 | `friendly-snippets` | `prev_cfg/init.lua` | Covered by LazyVim baseline. | Keep as dependency unless snippet engine changes. | None. |
+| `nvim-tree/nvim-tree.lua` | `prev_cfg/init.lua` | Replaced by Snacks explorer. | No action unless Snacks explorer lacks a required workflow. | Concrete explorer gap. |
 | `none-ls.nvim`, `none-ls-extras.nvim` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/null-ls.lua` | Deferred; external formatter/linter policy is no Mason auto-install. | Select external tools first, then migrate sources intentionally. | Tools available on `PATH`. |
 | `neotest`, `neotest-rspec` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/neotest.lua` | Omitted. | Define test runner workflow before adding back. | Ruby/RSpec tooling on `PATH`. |
 | `ThePrimeagen/refactoring.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit with concrete refactoring mappings. | Treesitter parser coverage. |

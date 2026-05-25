@@ -9,7 +9,9 @@ assert(vim.o.inccommand == "split", "inccommand should use split previews")
 assert(vim.o.scrolloff == 8, "scrolloff should be 8")
 assert(vim.o.mouse == "", "mouse should be disabled")
 assert(vim.o.timeoutlen == 400, "timeoutlen should be 400")
-assert(vim.o.signcolumn == "yes:1", "signcolumn should be yes:1")
+assert(vim.o.signcolumn == "yes:2", "signcolumn should be yes:2")
+assert(vim.o.numberwidth == 4, "numberwidth should be 4")
+assert(vim.o.statuscolumn == "%s%=%l ", "statuscolumn should be fixed")
 assert(vim.o.iskeyword:find("-", 1, true) ~= nil, "iskeyword should include dash")
 
 assert_require("config.lsp")
@@ -89,10 +91,10 @@ for _, name in ipairs({
   "mini.surround",
   "mini.tabline",
   "mini.trailspace",
-  "nvim-tree",
-  "nvim-tree.api",
+  "snacks",
   "telescope",
   "telescope.builtin",
+  "treesitter-context",
   "toggleterm",
   "which-key",
 }) do
@@ -102,6 +104,7 @@ end
 for _, mapping in ipairs({
   "<leader>f",
   "<leader>F",
+  "<leader>d",
   "<leader>l",
   "<leader>b",
   "<leader>s",
@@ -112,6 +115,8 @@ for _, mapping in ipairs({
   "<leader>q",
   "<leader>u",
   "<leader>cw",
+  "<Tab>",
+  "<S-Tab>",
   "mf",
   "ga",
   "gA",
@@ -128,8 +133,6 @@ assert(vim.fn.exists(":Undotree") == 2, "missing native :Undotree")
 assert(type(require("undotree").open) == "function", "missing undotree.open")
 assert(vim.fn.exists(":ToggleTerm") == 2, "missing :ToggleTerm")
 assert(vim.fn.exists(":TermExec") == 2, "missing :TermExec")
-assert(vim.fn.exists(":NvimTreeFindFile") == 2, "missing :NvimTreeFindFile")
-assert(vim.fn.exists(":NvimTreeToggle") == 2, "missing :NvimTreeToggle")
 assert(vim.fn.exists(":Git") == 2, "missing :Git")
 vim.cmd("silent Git --version")
 assert(vim.fn.exists(":Dispatch") == 2, "missing :Dispatch")

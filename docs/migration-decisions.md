@@ -18,7 +18,6 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `stefandtw/quickfix-reflector.vim` | `lua/plugins/quickfix-reflector.lua` | Kept for quickfix editing workflows. |
 | `abecodes/tabout.nvim` | `lua/plugins/tabout.lua` | Kept for tabbing out of pairs in insert mode. |
 | `samjwill/nvim-unception` | `lua/plugins/nvim-unception.lua` | Kept for terminal Neovim nesting behavior. |
-| `nvim-tree/nvim-tree.lua` | `lua/plugins/nvim-tree.lua` | Kept as the dedicated file explorer for large projects and directory listings. |
 | `tpope/vim-fugitive` | `lua/plugins/fugitive.lua` | Kept for Git command integration inside Neovim. |
 | `tpope/vim-dispatch` | `lua/plugins/dispatch.lua` | Kept for async build and command dispatch workflows. |
 | `arcticicestudio/nord-vim` | `lua/plugins/colorschemes.lua` | Kept as an available colorscheme. |
@@ -40,6 +39,7 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `lukas-reineke/indent-blankline.nvim` | `mini.indentscope` | Use Mini indentation scope highlighting. |
 | `lewis6991/gitsigns.nvim` | `mini.diff` | Use Mini diff signs and overlays for the baseline. |
 | `jiaoshijie/undotree` | Neovim 0.12 `nvim.undotree` | Use the native optional package loaded on demand. |
+| `nvim-tree/nvim-tree.lua` | Snacks explorer | Use LazyVim's built-in Snacks explorer baseline, with `<leader>d` and `mf` preserving the old directory/reveal workflows. |
 | `LuaSnip` and completion snippet glue | `mini.snippets` | Use LazyVim's Mini snippet extra for this baseline. |
 | `neovim/nvim-lspconfig` | Native `vim.lsp` | Define and enable local LSP servers in `lua/config/lsp.lua`. |
 | `solargraph`, `standardrb` LSP setup | Shopify `ruby-lsp` | Use Ruby LSP with Standard formatter/linter init options. |
@@ -53,6 +53,7 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `nvim-lua/plenary.nvim` | Dependencies | Pulled by plugins that need it. |
 | `nvim-tree/nvim-web-devicons` | LazyVim/Mini icons | Avoid adding a separate icon layer unless needed later. |
 | `nvim-treesitter/nvim-treesitter` | LazyVim core | Keep parser management in the LazyVim baseline. |
+| `nvim-treesitter/nvim-treesitter-context` | LazyVim UI extra | Enabled for sticky code context headers. |
 | `hrsh7th/nvim-cmp` and cmp sources | LazyVim core | Replaced by LazyVim's completion baseline, currently `blink.cmp`. |
 
 ## Omitted For Now

@@ -23,8 +23,8 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `nvim-telescope/telescope.nvim` | `lua/plugins/telescope.lua` | Fuzzy finder for project files, buffers, grep, help, colorschemes, and document symbols. | Keeps the previous config's main Telescope bindings. |
 | `nvim-telescope/telescope-fzf-native.nvim` | `lua/plugins/telescope.lua` | Native FZF sorter for Telescope. | Built with `make` when available. |
 | `nvim-lua/plenary.nvim` | `lua/plugins/telescope.lua` | Lua utility dependency. | Telescope dependency. |
+| `folke/snacks.nvim` explorer | `lua/plugins/snacks-explorer.lua` | File explorer from LazyVim's Snacks baseline. | Mapped to `<leader>d`; `mf` reveals the current file; `o` confirms instead of opening Finder. |
 | `nvim-mini/mini.jump` | `lua/plugins/mini.lua` | Enhanced `f`, `F`, `t`, and `T` motions. | Migrated as the Mini replacement for sneak-style movement. |
-| `nvim-tree/nvim-tree.lua` | `lua/plugins/nvim-tree.lua` | File explorer. | Restores the old nvim-tree setup; `mf` reveals the current file. |
 
 ## UI And Layout
 
@@ -32,6 +32,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | --- | --- | --- | --- |
 | `folke/which-key.nvim` | `lua/plugins/which-key.lua` | Shows available key sequences while typing. | Adds the local `<leader>t` tools group. |
 | `beauwilliams/focus.nvim` | `lua/plugins/focus.lua` | Auto-resizes focused windows. | Disabled for prompt, nofile, popup, and tree-like buffers. |
+| `nvim-treesitter/nvim-treesitter-context` | `lua/plugins/treesitter-context.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
 | `nvim-mini/mini.statusline` | `lua/plugins/mini.lua` | Statusline. | Replaces `lualine.nvim`; icons follow `NVIM_STYLE`. |
 | `nvim-mini/mini.tabline` | `lua/plugins/mini.lua` | Buffer/tab line. | Replaces `bufferline.nvim`/old tabline usage; icons follow `NVIM_STYLE`. |
 | `nvim-mini/mini.indentscope` | `lua/plugins/mini.lua` | Active indentation scope indicator. | Imported from LazyVim's Mini extra and replaces indent-blankline scope behavior. |
