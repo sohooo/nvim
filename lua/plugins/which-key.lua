@@ -24,6 +24,11 @@ return {
           { "gsF", desc = "Find Surrounding Left" },
           { "gsn", desc = "Update Surrounding Search Lines" },
         },
+        {
+          mode = "n",
+          { "m", group = "more" },
+          { "mf", desc = "Reveal File In Tree" },
+        },
       },
     },
   },

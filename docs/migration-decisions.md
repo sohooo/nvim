@@ -18,6 +18,7 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `stefandtw/quickfix-reflector.vim` | `lua/plugins/quickfix-reflector.lua` | Kept for quickfix editing workflows. |
 | `abecodes/tabout.nvim` | `lua/plugins/tabout.lua` | Kept for tabbing out of pairs in insert mode. |
 | `samjwill/nvim-unception` | `lua/plugins/nvim-unception.lua` | Kept for terminal Neovim nesting behavior. |
+| `nvim-tree/nvim-tree.lua` | `lua/plugins/nvim-tree.lua` | Kept as the dedicated file explorer for large projects and directory listings. |
 | `tpope/vim-fugitive` | `lua/plugins/fugitive.lua` | Kept for Git command integration inside Neovim. |
 | `tpope/vim-dispatch` | `lua/plugins/dispatch.lua` | Kept for async build and command dispatch workflows. |
 | `arcticicestudio/nord-vim` | `lua/plugins/colorschemes.lua` | Kept as an available colorscheme. |
@@ -63,7 +64,6 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `sindrets/diffview.nvim` | Mini diff and Fugitive cover the current Git baseline. |
 | `levouh/tint.nvim` | Focused window behavior is covered by `focus.nvim`; inactive dimming is omitted. |
 | `nacro90/numb.nvim` | Line preview behavior is omitted. |
-| `nvim-tree/nvim-tree.lua` | LazyVim/Snacks explorer is the current file explorer baseline. |
 | `HampusHauffman/block.nvim` | Block highlighting is omitted until a concrete editing need returns. |
 | `rmagatti/goto-preview` | LazyVim LSP navigation is the current baseline. |
 | `onsails/lspkind-nvim`, `j-hui/fidget.nvim` | Omitted until LSP UI needs are re-evaluated against LazyVim/Snacks. |

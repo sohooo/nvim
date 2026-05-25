@@ -24,6 +24,7 @@ discoverability metadata and group labels in `lua/plugins/which-key.lua`.
 
 | Mode | Key | Action | Source |
 | --- | --- | --- | --- |
+| Normal | `mf` | Reveal the current file in nvim-tree. | `lua/plugins/nvim-tree.lua` |
 | Normal/Terminal | `<leader>te` | Toggle horizontal terminal. | `lua/plugins/toggleterm.lua` |
 | Normal | `<leader>tt` | Re-run the last terminal command. | `lua/plugins/toggleterm.lua` |
 | Normal | `<leader>tg` | Toggle a floating lazygit terminal. | `lua/plugins/toggleterm.lua` |
@@ -76,6 +77,7 @@ These mappings are buffer-local and appear after a language server attaches.
 | `<leader>c` | Code |
 | `<leader>g` | Git |
 | `<leader>t` | Tools |
+| `m` | More |
 | `gs` | Surround |
 
 Other LazyVim groups remain provided by LazyVim itself.

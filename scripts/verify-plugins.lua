@@ -89,6 +89,8 @@ for _, name in ipairs({
   "mini.surround",
   "mini.tabline",
   "mini.trailspace",
+  "nvim-tree",
+  "nvim-tree.api",
   "telescope",
   "telescope.builtin",
   "toggleterm",
@@ -108,6 +110,7 @@ for _, mapping in ipairs({
   "<leader>q",
   "<leader>u",
   "<leader>cw",
+  "mf",
   "ga",
   "gA",
   "gS",
@@ -123,6 +126,8 @@ assert(vim.fn.exists(":Undotree") == 2, "missing native :Undotree")
 assert(type(require("undotree").open) == "function", "missing undotree.open")
 assert(vim.fn.exists(":ToggleTerm") == 2, "missing :ToggleTerm")
 assert(vim.fn.exists(":TermExec") == 2, "missing :TermExec")
+assert(vim.fn.exists(":NvimTreeFindFile") == 2, "missing :NvimTreeFindFile")
+assert(vim.fn.exists(":NvimTreeToggle") == 2, "missing :NvimTreeToggle")
 assert(vim.fn.exists(":Git") == 2, "missing :Git")
 vim.cmd("silent Git --version")
 assert(vim.fn.exists(":Dispatch") == 2, "missing :Dispatch")

@@ -24,6 +24,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `nvim-telescope/telescope-fzf-native.nvim` | `lua/plugins/telescope.lua` | Native FZF sorter for Telescope. | Built with `make` when available. |
 | `nvim-lua/plenary.nvim` | `lua/plugins/telescope.lua` | Lua utility dependency. | Telescope dependency. |
 | `nvim-mini/mini.jump` | `lua/plugins/mini.lua` | Enhanced `f`, `F`, `t`, and `T` motions. | Migrated as the Mini replacement for sneak-style movement. |
+| `nvim-tree/nvim-tree.lua` | `lua/plugins/nvim-tree.lua` | File explorer. | Restores the old nvim-tree setup; `mf` reveals the current file. |
 
 ## UI And Layout
 

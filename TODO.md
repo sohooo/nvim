@@ -50,6 +50,7 @@ When the todo list is empty, promote the next deferred or omitted item by follow
 - migration workflow documentation
 - empty migration queue handoff
 - native LSP setup
+- nvim-tree.lua
 
 ## todo
 
@@ -76,7 +77,6 @@ No active migration items.
 | `sindrets/diffview.nvim` | `prev_cfg/init.lua` | Omitted; Mini diff and Fugitive cover the current Git baseline. | Revisit if file history/diff review UI is wanted. | Git workflow preference. |
 | `levouh/tint.nvim` | `prev_cfg/init.lua` | Omitted; `focus.nvim` covers window focus behavior. | Revisit if inactive-window dimming is still wanted. | None. |
 | `nacro90/numb.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit if line-number preview workflow is missed. | None. |
-| `nvim-tree/nvim-tree.lua` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/nvim-tree.lua` | Omitted; LazyVim/Snacks explorer is baseline. | Decide between Snacks explorer and nvim-tree. | Explorer preference. |
 | `HampusHauffman/block.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit if code block highlighting is wanted. | None. |
 | `rmagatti/goto-preview` | `prev_cfg/init.lua` | Omitted; LazyVim LSP navigation is baseline. | Revisit if preview windows are preferred over jumps. | LSP keymap policy. |
 | `norcalli/nvim-colorizer.lua` | `prev_cfg/init.lua` | Omitted. | Consider a current colorizer plugin if color previews are wanted. | None. |
