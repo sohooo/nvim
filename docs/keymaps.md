@@ -11,9 +11,11 @@ discoverability metadata and group labels in `lua/plugins/which-key.lua`.
 | Mode | Key | Action | Source |
 | --- | --- | --- | --- |
 | Normal | `<leader>f` | Find project files with `git_files`, falling back to `find_files`. | `lua/plugins/telescope.lua` |
+| Normal | `<leader>F` | Prompt for a directory and find files inside it. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>l` | Resume the last Telescope picker. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>b` | List open buffers. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>s` | Live grep. | `lua/plugins/telescope.lua` |
+| Normal | `<leader>S` | Prompt for a directory and live grep inside it. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>th` | Search help tags. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>tc` | Preview and select colorschemes. | `lua/plugins/telescope.lua` |
 | Normal | `<leader>ts` | Search document symbols filtered to major code symbols. | `lua/plugins/telescope.lua` |

@@ -1,5 +1,29 @@
 local style = require("config.style")
 
+local function buffer_dir()
+  local name = vim.api.nvim_buf_get_name(0)
+
+  if name == "" then
+    return vim.uv.cwd()
+  end
+
+  return vim.fs.dirname(name)
+end
+
+local function prompt_directory(callback)
+  vim.ui.input({
+    prompt = "Telescope directory: ",
+    default = buffer_dir(),
+    completion = "dir",
+  }, function(input)
+    if not input or input == "" then
+      return
+    end
+
+    callback(vim.fn.fnamemodify(input, ":p"))
+  end)
+end
+
 local function project_files()
   local builtin = require("telescope.builtin")
   local opts = { disable_devicons = not style.icons_enabled() }
@@ -8,6 +32,25 @@ local function project_files()
   if not ok then
     builtin.find_files(opts)
   end
+end
+
+local function directory_files()
+  prompt_directory(function(dir)
+    require("telescope.builtin").find_files({
+      cwd = dir,
+      disable_devicons = not style.icons_enabled(),
+      prompt_title = "Find Files: " .. vim.fn.fnamemodify(dir, ":~:."),
+    })
+  end)
+end
+
+local function directory_grep()
+  prompt_directory(function(dir)
+    require("telescope.builtin").live_grep({
+      cwd = dir,
+      prompt_title = "Live Grep: " .. vim.fn.fnamemodify(dir, ":~:."),
+    })
+  end)
 end
 
 return {
@@ -25,9 +68,11 @@ return {
     },
     keys = {
       { "<leader>f", project_files, desc = "Telescope Find File" },
+      { "<leader>F", directory_files, desc = "Telescope Find File In Directory" },
       { "<leader>l", "<cmd>Telescope resume<cr>", desc = "Telescope Last Search" },
       { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Telescope Open Buffers" },
       { "<leader>s", "<cmd>Telescope live_grep<cr>", desc = "Telescope Live Grep" },
+      { "<leader>S", directory_grep, desc = "Telescope Live Grep In Directory" },
       { "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "Telescope Help Tags" },
       {
         "<leader>tc",

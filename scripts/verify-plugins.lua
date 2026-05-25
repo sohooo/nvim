@@ -101,9 +101,11 @@ end
 
 for _, mapping in ipairs({
   "<leader>f",
+  "<leader>F",
   "<leader>l",
   "<leader>b",
   "<leader>s",
+  "<leader>S",
   "<leader>te",
   "<leader>tt",
   "<leader>tg",
