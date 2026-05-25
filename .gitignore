@@ -24,3 +24,4 @@ lazy/
 # self-contained local Neovim runtime
 .xdg/
 nvim.log
+prev_cfg

@@ -1,4 +1,13 @@
-.PHONY: update-plugins verify-plugins upgrade
+.PHONY: check-external-tools healthcheck migration-status update-plugins verify verify-plugins upgrade
+
+check-external-tools:
+	bash scripts/check-external-tools.sh
+
+healthcheck:
+	bash scripts/healthcheck.sh
+
+migration-status:
+	bash scripts/check-migration-status.sh
 
 update-plugins:
 	bash scripts/update-plugins.sh
@@ -6,4 +15,6 @@ update-plugins:
 verify-plugins:
 	bash scripts/verify-plugins.sh
 
-upgrade: update-plugins verify-plugins
+verify: check-external-tools verify-plugins
+
+upgrade: update-plugins verify

@@ -1,29 +1,23 @@
 # Portable Setup
 
-Neovim follows common `XDG` env vars, so if we put the config in `~/.config`, everything will work out of the box:
+This repository can be used as a self-contained Neovim config without copying
+files into `~/.config/nvim`.
 
-```bash
-cd
-mkdir .config; cd $_
-git clone https://github.com/sohooo/nvim.git
-nvim
-# plugin installation starts
-```
+## Launcher
 
-## self-contained/custom location
-
-Use the launcher in this repository to run the installed `nvim` binary with this
-project's config and local runtime directories:
+Use the launcher in this repository to run the installed `nvim` binary with
+this project's config and local runtime directories:
 
 ```bash
 ./scripts/nvim.sh
 ```
 
 The launcher sets `XDG_CONFIG_HOME` to the parent directory of this checkout so
-Neovim discovers this repository as `$XDG_CONFIG_HOME/nvim`. It keeps runtime
-state self-contained under `.xdg/` in the repository:
+Neovim discovers this repository as `$XDG_CONFIG_HOME/nvim`.
 
-- `.xdg/data/nvim`: plugins, lazy.nvim, parser data, and other data files
+It keeps runtime state self-contained under `.xdg/` in the repository:
+
+- `.xdg/data/nvim`: lazy.nvim, plugins, parser data, and other data files
 - `.xdg/state/nvim`: ShaDa and state files
 - `.xdg/cache/nvim`: cache files
 - `.xdg/run`: runtime socket directory
@@ -34,18 +28,31 @@ To use a specific Neovim binary, set `NVIM_BIN`:
 NVIM_BIN=/path/to/nvim ./scripts/nvim.sh
 ```
 
-## plugins
+## Plugins
 
-This config uses [lazy.nvim](https://github.com/folke/lazy.nvim#-performance) to manage Neovim plugins. To install them, you do one of the following:
+This config uses LazyVim and lazy.nvim. On first startup, lazy.nvim bootstraps
+the configured plugins into the project-local `.xdg/data/nvim` directory:
 
 ```bash
-# start neovim with the repo-local launcher
-# this will install all plugins
 ./scripts/nvim.sh
-
-# restart nvim, then check if everything's there ;)
-:Lazy            # plugins
-:TSInstallInfo   # Treesitter grammars
 ```
 
-For LSP servers, I previously used [Mason](https://github.com/williamboman/mason.nvim). Now, I just use a package manager and put them in the `$PATH`.
+Useful checks inside Neovim:
+
+```vim
+:Lazy
+:checkhealth
+```
+
+For a non-interactive startup check, run:
+
+```bash
+tests/run.sh
+```
+
+## External Tools
+
+Mason is disabled. Language servers, formatters, linters, debuggers, and AI CLI
+tools should be installed outside this config and available on `PATH`.
+
+See [docs/external-tools.md](docs/external-tools.md) for the current policy.

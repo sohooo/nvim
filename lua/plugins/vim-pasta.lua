@@ -1,0 +1,5 @@
+return {
+  {
+    "sickill/vim-pasta",
+  },
+}
