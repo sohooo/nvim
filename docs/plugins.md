@@ -55,6 +55,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `stefandtw/quickfix-reflector.vim` | `lua/plugins/quickfix-reflector.lua` | Edit quickfix entries and write changes back to files. | Kept from the previous config. |
 | `abecodes/tabout.nvim` | `lua/plugins/tabout.lua` | Tab out of quotes/brackets in insert mode. | Keeps the plugin's default `<Tab>`/`<S-Tab>` behavior. |
 | Native `nvim.undotree` | `lua/config/keymaps.lua` | Neovim 0.12 built-in undo tree viewer. | Loaded on demand with `:packadd nvim.undotree`; mapped to `<leader>u`. |
+| `config.style` | `lua/config/style.lua` | Shared local style helper. | Centralizes the `NVIM_STYLE=plain` icon decision used by plugin specs. |
 
 ## Git And Terminal
 

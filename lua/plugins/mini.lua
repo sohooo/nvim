@@ -1,6 +1,4 @@
-local function hifi()
-  return vim.env.NVIM_STYLE ~= "plain"
-end
+local style = require("config.style")
 
 return {
   { import = "lazyvim.plugins.extras.coding.mini-comment" },
@@ -23,7 +21,7 @@ return {
     "nvim-mini/mini.statusline",
     event = "VeryLazy",
     opts = {
-      use_icons = hifi(),
+      use_icons = style.icons_enabled(),
     },
   },
 
@@ -31,7 +29,7 @@ return {
     "nvim-mini/mini.tabline",
     event = "VeryLazy",
     opts = {
-      show_icons = hifi(),
+      show_icons = style.icons_enabled(),
     },
   },
 

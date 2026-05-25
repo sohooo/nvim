@@ -4,7 +4,7 @@ This table records the option decisions from `prev_cfg/init.lua`.
 
 | Old setting | Decision | Current value/location | Rationale |
 | --- | --- | --- | --- |
-| `Hifi()` | Kept conceptually | Plugin-local helpers check `NVIM_STYLE ~= "plain"`. | Avoid a global helper while keeping lo-fi behavior. |
+| `Hifi()` | Kept conceptually | `lua/config/style.lua` exposes the `NVIM_STYLE ~= "plain"` decision. | Share the lo-fi icon decision without restoring a global helper. |
 | `MyColors()` | Not migrated | LazyVim default `tokyonight`; extra themes in `lua/plugins/colorschemes.lua`. | Theme selection can be revisited separately. |
 | `vim.version.ge` shim | Not migrated | None. | Current Neovim is new enough. |
 | `package.path` mutation | Not migrated | None. | LazyVim module loading handles local `lua/`. |
@@ -36,4 +36,3 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | `termguicolors` and colorscheme branch | LazyVim default preferred | LazyVim plus `lua/plugins/colorschemes.lua`. | Keep truecolor baseline; lo-fi behavior is handled plugin-by-plugin. |
 | `completeopt` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `iskeyword += "-"` | Migrated | `lua/config/options.lua`. | Preserve dashed-word movement/search behavior. |
-

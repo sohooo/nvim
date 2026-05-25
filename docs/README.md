@@ -5,6 +5,7 @@ This directory documents the current LazyVim-based configuration.
 - [Plugins](plugins.md): migrated plugin inventory and config locations.
 - [Keymaps](keymaps.md): custom keymaps added on top of LazyVim defaults.
 - [Settings](settings.md): option decisions migrated from `prev_cfg/init.lua`.
+- [Customization guide](customization-guide.md): where to add options, functions, keymaps, plugin specs, LSP servers, and docs.
 - [LSP](lsp.md): native Neovim LSP setup using externally installed binaries.
 - [External tools](external-tools.md): policy for LSP servers, formatters, linters, debuggers, and AI CLIs.
 - [Healthcheck](healthcheck.md): latest captured `:checkhealth` report.

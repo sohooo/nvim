@@ -1,10 +1,8 @@
-local function hifi()
-  return vim.env.NVIM_STYLE ~= "plain"
-end
+local style = require("config.style")
 
 local function project_files()
   local builtin = require("telescope.builtin")
-  local opts = { disable_devicons = not hifi() }
+  local opts = { disable_devicons = not style.icons_enabled() }
   local ok = pcall(builtin.git_files, opts)
 
   if not ok then
@@ -53,7 +51,7 @@ return {
       local actions = require("telescope.actions")
 
       return {
-        disable_devicons = not hifi(),
+        disable_devicons = not style.icons_enabled(),
         color_devicons = true,
         defaults = {
           mappings = {
@@ -66,7 +64,7 @@ return {
         },
         pickers = {
           buffers = {
-            disable_devicons = not hifi(),
+            disable_devicons = not style.icons_enabled(),
             sort_lastused = true,
             theme = "dropdown",
             mappings = {
@@ -79,7 +77,7 @@ return {
             },
           },
           find_files = {
-            disable_devicons = not hifi(),
+            disable_devicons = not style.icons_enabled(),
           },
         },
       }
