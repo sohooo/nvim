@@ -4,12 +4,45 @@ Generated with `scripts/healthcheck.sh`.
 
 - Exit status: `0`
 
-- Errors: `12`
-- Warnings: `17`
+- Errors: `10`
+- Warnings: `13`
 
 ## Report
 
 ```text
+
+==============================================================================
+blink.cmp:                                                                1 ⚠️
+
+System ~
+- ✅ OK curl is installed
+- ✅ OK git is installed
+- ✅ OK Your system is supported by pre-built binaries (aarch64-apple-darwin)
+- ✅ OK blink_cmp_fuzzy lib is downloaded/built
+
+Sources ~
+- ⚠️ WARNING Some providers may show up as "disabled" but are enabled dynamically (e.g. cmdline)
+
+Default sources ~
+- lsp (blink.cmp.sources.lsp)
+- path (blink.cmp.sources.path)
+- snippets (blink.cmp.sources.snippets)
+- buffer (blink.cmp.sources.buffer)
+
+Cmdline sources ~
+- buffer (blink.cmp.sources.buffer)
+- cmdline (blink.cmp.sources.cmdline)
+
+Disabled sources ~
+- lazydev (lazydev.integrations.blink)
+- omni (blink.cmp.sources.complete_func)
+
+==============================================================================
+config:                                                                     ✅
+
+Local health policy ~
+- ✅ OK vim.ui.input uses Snacks.input
+- ✅ OK vim.ui.select uses Snacks.picker.select
 
 ==============================================================================
 lazy:                                                                     2 ⚠️
@@ -48,7 +81,7 @@ LazyVim nvim-treesitter ~
 - Run `:checkhealth nvim-treesitter` for more information.
 
 ==============================================================================
-snacks:                                                             8 ⚠️ 11 ❌
+snacks:                                                             8 ⚠️  9 ❌
 
 Snacks ~
 - ✅ OK setup called
@@ -91,7 +124,7 @@ Snacks.image ~
 
 Snacks.input ~
 - ✅ OK setup {enabled}
-- ❌ ERROR `vim.ui.input` is not set to `Snacks.input`
+- ✅ OK `vim.ui.input` is set to `Snacks.input`
 
 Snacks.lazygit ~
 - ✅ OK {lazygit} installed
@@ -102,7 +135,7 @@ Snacks.notifier ~
 
 Snacks.picker ~
 - ✅ OK setup {enabled}
-- ❌ ERROR `vim.ui.select` is not set to `Snacks.picker.select`
+- ✅ OK `vim.ui.select` is set to `Snacks.picker.select`
 - ⚠️ WARNING Missing Treesitter languages:
     `regex`
 - ✅ OK 'git' `git version 2.52.0`
@@ -177,11 +210,11 @@ External Tools ~
   Features: alt-svc AsynchDNS GSS-API HSTS HTTP2 HTTPS-proxy IPv6 Kerberos Largefile libz MultiSSL NTLM SPNEGO SSL threadsafe UnixSockets
 
 ==============================================================================
-vim.lsp:                                                                    ✅
+vim.lsp:                                                                  1 ⚠️
 
 - LSP log level : WARN
 - Log path: /Users/sven/Code/lab/nvim/.xdg/state/nvim/lsp.log
-- Log size: 7 KB
+- Log size: 15 KB
 
 vim.lsp: Active Features ~
 
@@ -189,6 +222,1539 @@ vim.lsp: Active Clients ~
 - No active clients
 
 vim.lsp: Enabled Configurations ~
+- gopls:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "gopls" }
+  - filetypes: go, gomod, gosum, gotmpl
+  - root_markers: { "go.work", "go.mod", ".git" }
+
+- lua_ls:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "lua-language-server" }
+  - filetypes: lua
+  - root_markers: { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" }
+  - settings: {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" }
+        },
+        runtime = {
+          version = "LuaJIT"
+        },
+        telemetry = {
+          enable = false
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = { "/Users/sven/Code/lab/nvim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/site", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/lazy.nvim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/friendly-snippets", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/blink.cmp", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/kanagawa.nvim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/nord-vim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/quickfix-reflector.vim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/nvim-unception", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/snacks.nvim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/tokyonight.nvim", "/Users/sven/Code/lab/nvim/.xdg/data/nvim/lazy/LazyVim", "/opt/homebrew/Cellar/neovim/0.12.2/share/nvim/runtime", "/opt/homebrew/Cellar/neovim/0.12.2/share/nvim/runtime/pack/dist/opt/netrw", "/opt/homebrew/Cellar/neovim/0.12.2/share/nvim/runtime/pack/dist/opt/matchit", "/opt/homebrew/Cellar/neovim/0.12.2/lib/nvim", "/Users/sven/Code/lab/nvim/.xdg/state/nvim/lazy/readme" }
+        }
+      }
+    }
+
+- ⚠️ WARNING 'puppet-languageserver' is not executable. Configuration will not be used.
+- puppet:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "puppet-languageserver", "--stdio", "--timeout=10", "--puppet-settings=--modulepath,/modules", "--local-workspace=/Users/sven/puppetenvs/kpm" }
+  - filetypes: puppet
+  - root_markers: { "metadata.json", "Puppetfile", ".git" }
+
+- ruby-lsp:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "ruby-lsp" }
+  - filetypes: ruby, eruby
+  - init_options: {
+      addonSettings = {
+        ["Ruby LSP Rails"] = {
+          enablePendingMigrationsPrompt = false
+        }
+      },
+      formatter = "standard",
+      linters = { "standard" }
+    }
+  - root_markers: { "Gemfile", ".git" }
+
+- ruff:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "ruff", "server" }
+  - filetypes: python
+  - root_markers: { "pyproject.toml", "ruff.toml", ".ruff.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" }
+
+- rust_analyzer:
+  - capabilities: {
+      general = {
+        positionEncodings = { "utf-8", "utf-16", "utf-32" }
+      },
+      textDocument = {
+        callHierarchy = {
+          dynamicRegistration = false
+        },
+        codeAction = {
+          codeActionLiteralSupport = {
+            codeActionKind = {
+              valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImports" }
+            }
+          },
+          dataSupport = true,
+          disabledSupport = true,
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          isPreferredSupport = true,
+          resolveSupport = {
+            properties = { "edit", "command" }
+          }
+        },
+        codeLens = {
+          dynamicRegistration = false,
+          resolveSupport = {
+            properties = { "command" }
+          }
+        },
+        colorProvider = {
+          dynamicRegistration = true
+        },
+        completion = {
+          completionItem = {
+            commitCharactersSupport = false,
+            deprecatedSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            insertReplaceSupport = true,
+            insertTextModeSupport = {
+              valueSet = { 1 }
+            },
+            labelDetailsSupport = true,
+            preselectSupport = false,
+            resolveSupport = {
+              properties = { "additionalTextEdits", "command", "documentation" }
+            },
+            snippetSupport = true,
+            tagSupport = {
+              valueSet = { 1 }
+            }
+          },
+          completionItemKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 }
+          },
+          completionList = {
+            itemDefaults = { "editRange", "insertTextFormat", "insertTextMode", "data" }
+          },
+          contextSupport = true,
+          dynamicRegistration = false,
+          insertTextMode = 1
+        },
+        declaration = {
+          linkSupport = true
+        },
+        definition = {
+          dynamicRegistration = true,
+          linkSupport = true
+        },
+        diagnostic = {
+          dataSupport = true,
+          dynamicRegistration = true,
+          relatedDocumentSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        documentHighlight = {
+          dynamicRegistration = false
+        },
+        documentLink = {
+          dynamicRegistration = false,
+          tooltipSupport = false
+        },
+        documentSymbol = {
+          dynamicRegistration = false,
+          hierarchicalDocumentSymbolSupport = true,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          },
+          tagSupport = {
+            valueSet = { 1 }
+          }
+        },
+        foldingRange = {
+          dynamicRegistration = false,
+          foldingRange = {
+            collapsedText = true
+          },
+          foldingRangeKind = {
+            valueSet = { "comment", "imports", "region" }
+          },
+          lineFoldingOnly = true
+        },
+        formatting = {
+          dynamicRegistration = true
+        },
+        hover = {
+          contentFormat = { "markdown", "plaintext" },
+          dynamicRegistration = true
+        },
+        implementation = {
+          linkSupport = true
+        },
+        inlayHint = {
+          dynamicRegistration = true,
+          resolveSupport = {
+            properties = { "textEdits", "tooltip", "location", "command" }
+          }
+        },
+        inlineCompletion = {
+          dynamicRegistration = false
+        },
+        linkedEditingRange = {
+          dynamicRegistration = false
+        },
+        onTypeFormatting = {
+          dynamicRegistration = false
+        },
+        publishDiagnostics = {
+          dataSupport = true,
+          relatedInformation = true,
+          tagSupport = {
+            valueSet = { 1, 2 }
+          }
+        },
+        rangeFormatting = {
+          dynamicRegistration = true,
+          rangesSupport = true
+        },
+        references = {
+          dynamicRegistration = false
+        },
+        rename = {
+          dynamicRegistration = true,
+          honorsChangeAnnotations = true,
+          prepareSupport = true
+        },
+        selectionRange = {
+          dynamicRegistration = false
+        },
+        semanticTokens = {
+          augmentsSyntaxTokens = true,
+          dynamicRegistration = false,
+          formats = { "relative" },
+          multilineTokenSupport = true,
+          overlappingTokenSupport = true,
+          requests = {
+            full = {
+              delta = true
+            },
+            range = true
+          },
+          serverCancelSupport = false,
+          tokenModifiers = { "declaration", "definition", "readonly", "static", "deprecated", "abstract", "async", "modification", "documentation", "defaultLibrary" },
+          tokenTypes = { "namespace", "type", "class", "enum", "interface", "struct", "typeParameter", "parameter", "variable", "property", "enumMember", "event", "function", "method", "macro", "keyword", "modifier", "comment", "string", "number", "regexp", "operator", "decorator" }
+        },
+        signatureHelp = {
+          dynamicRegistration = false,
+          signatureInformation = {
+            activeParameterSupport = true,
+            documentationFormat = { "markdown", "plaintext" },
+            noActiveParameterSupport = true,
+            parameterInformation = {
+              labelOffsetSupport = true
+            }
+          }
+        },
+        synchronization = {
+          didSave = true,
+          dynamicRegistration = false,
+          willSave = true,
+          willSaveWaitUntil = true
+        },
+        typeDefinition = {
+          linkSupport = true
+        }
+      },
+      window = {
+        showDocument = {
+          support = true
+        },
+        showMessage = {
+          messageActionItem = {
+            additionalPropertiesSupport = true
+          }
+        },
+        workDoneProgress = true
+      },
+      workspace = {
+        applyEdit = true,
+        codeLens = {
+          refreshSupport = true
+        },
+        configuration = true,
+        diagnostics = {
+          refreshSupport = true
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = false
+        },
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+          relativePatternSupport = true
+        },
+        fileOperations = {
+          didCreate = false,
+          didDelete = false,
+          didRename = false,
+          dynamicRegistration = false,
+          willCreate = false,
+          willDelete = false,
+          willRename = false
+        },
+        inlayHint = {
+          refreshSupport = true
+        },
+        semanticTokens = {
+          refreshSupport = true
+        },
+        symbol = {
+          dynamicRegistration = false,
+          symbolKind = {
+            valueSet = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 }
+          }
+        },
+        workspaceEdit = {
+          changeAnnotationSupport = {
+            groupsOnLabel = true
+          },
+          normalizesLineEndings = true,
+          resourceOperations = { "rename", "create", "delete" }
+        },
+        workspaceFolders = true
+      }
+    }
+  - cmd: { "rust-analyzer" }
+  - filetypes: rust
+  - root_markers: { "Cargo.toml", "rust-project.json", ".git" }
+
 
 vim.lsp: File Watcher ~
 - file watching "(workspace/didChangeWatchedFiles)" disabled on all clients
@@ -203,51 +1769,22 @@ vim.pack: basics ~
 - ✅ OK `vim.pack` is not used
 
 ==============================================================================
-vim.provider:                                                             6 ⚠️
+vim.provider:                                                               ✅
 
 Clipboard (optional) ~
 - ✅ OK Clipboard tool found: pbcopy
 
 Node.js provider (optional) ~
-- ⚠️ WARNING `node` and `npm` (or `yarn`, `pnpm`) must be in $PATH.
-  - ADVICE:
-    - Install Node.js and verify that `node` and `npm` (or `yarn`, `pnpm`) commands work.
+- Disabled (loaded_node_provider=0).
 
 Perl provider (optional) ~
-- ⚠️ WARNING "Neovim::Ext" cpan module is not installed
-  - ADVICE:
-    - See :help |provider-perl| for more information.
-    - You can disable this provider (and warning) by adding `let g:loaded_perl_provider = 0` to your init.vim
-- ⚠️ WARNING No usable perl executable found
+- Disabled (loaded_perl_provider=0).
 
 Python 3 provider (optional) ~
-- ⚠️ WARNING No Python executable found that can `import neovim`. Using the first available executable for diagnostics.
-- ⚠️ WARNING Could not load Python :
-  Checking /Users/sven/.asdf/shims/python3 caused an unknown error. (126, output: ) Report this at https://github.com/neovim/neovim
-  /opt/homebrew/bin/python3.14 does not have the "neovim" module.
-  /opt/homebrew/bin/python3.13 does not have the "neovim" module.
-  /opt/homebrew/bin/python3.12 does not have the "neovim" module.
-  Checking /Users/sven/.asdf/shims/python3.11 caused an unknown error. (126, output: ) Report this at https://github.com/neovim/neovim
-  Checking /Users/sven/.asdf/shims/python3.10 caused an unknown error. (126, output: ) Report this at https://github.com/neovim/neovim
-  /opt/homebrew/bin/python3.9 does not have the "neovim" module.
-  Checking /Users/sven/.asdf/shims/python caused an unknown error. (126, output: ) Report this at https://github.com/neovim/neovim
-  - ADVICE:
-    - See :help |provider-python| for more information.
-    - You can disable this provider (and warning) by adding `let g:loaded_python3_provider = 0` to your init.vim
-- Executable: Not found
-
-Python virtualenv ~
-- ✅ OK no $VIRTUAL_ENV
+- Disabled (loaded_python3_provider=0).
 
 Ruby provider (optional) ~
-- Ruby: nil
-- ⚠️ WARNING `neovim-ruby-host` not found.
-  - ADVICE:
-    - Run `gem install neovim` to ensure the neovim RubyGem is installed.
-    - Run `gem environment` to ensure the gem bin directory is in $PATH.
-    - If you are using rvm/rbenv/chruby, try "rehashing".
-    - See :help |g:ruby_host_prog| for non-standard gem installations.
-    - You can disable this provider (and warning) by adding `let g:loaded_ruby_provider = 0` to your init.vim
+- Disabled (loaded_ruby_provider=0).
 
 ==============================================================================
 vim.treesitter:                                                             ✅
@@ -305,5 +1842,5 @@ Treesitter queries ~
 ## Command Output
 
 ```text
-checkhealth:  11% checking lazycheckhealth:  22% checking lazyvimcheckhealth:  33% checking snackscheckhealth:  44% checking vim.deprecatedcheckhealth:  55% checking vim.healthcheckhealth:  66% checking vim.lspcheckhealth:  77% checking vim.packcheckhealth:  88% checking vim.providercheckhealth: 100% checking vim.treesittercheckhealth: checks done
+checkhealth:   9% checking blink.cmpcheckhealth:  18% checking configcheckhealth:  27% checking lazycheckhealth:  36% checking lazyvimcheckhealth:  45% checking snackscheckhealth:  54% checking vim.deprecatedcheckhealth:  63% checking vim.healthcheckhealth:  72% checking vim.lspcheckhealth:  81% checking vim.packcheckhealth:  90% checking vim.providercheckhealth: 100% checking vim.treesittercheckhealth: checks done
 ```

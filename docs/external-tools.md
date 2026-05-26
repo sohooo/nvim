@@ -63,6 +63,27 @@ configuration.
 | `tree-sitter` | nvim-treesitter | Builds or updates parsers. | Optional for startup; install before parser maintenance. |
 | `make` | Plugin build hooks and local build tasks | Runs native plugin or project build commands when needed. | Optional for current startup; useful for plugin maintenance. |
 
+## Optional Image And Render Tools
+
+Snacks image rendering is optional. Missing tools are documented by
+`make healthcheck`, but they should not block startup or normal editing.
+
+| Tool | Used By | Purpose | Requirement |
+| --- | --- | --- | --- |
+| `kitty`, `wezterm`, or `ghostty` | Snacks image | Terminal graphics support. | Optional; required only for inline image rendering in supported terminals. |
+| `magick` or `convert` | Snacks image | Converts non-PNG image formats. | Optional; required only for broader image format support. |
+| `gs` | Snacks image | Renders PDF files. | Optional; required only for PDF image rendering. |
+| `tectonic` or `pdflatex` | Snacks image | Renders LaTeX math expressions. | Optional; required only for LaTeX image rendering. |
+| `mmdc` | Snacks image | Renders Mermaid diagrams. | Optional; required only for Mermaid image rendering. |
+
+## Disabled Neovim Providers
+
+The Node, Perl, Python 3, and Ruby providers are disabled in
+`lua/config/options.lua`. This keeps the healthcheck baseline clean because this
+config does not use remote plugins that require those providers. Re-enable a
+provider only when adding a plugin or workflow that explicitly needs it, then
+install the provider package externally.
+
 Run the external tool check with:
 
 ```bash

@@ -14,6 +14,15 @@ optional=(
   trash
   lazygit
   tree-sitter
+  kitty
+  wezterm
+  ghostty
+  magick
+  convert
+  gs
+  tectonic
+  pdflatex
+  mmdc
   gopls
   ruff
   rust-analyzer

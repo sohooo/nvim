@@ -16,7 +16,15 @@ assert(vim.o.iskeyword:find("-", 1, true) ~= nil, "iskeyword should include dash
 
 assert_require("config.lsp")
 assert_require("config.style")
+assert_require("config.filetypes")
+assert_require("config.health")
 assert(require("config.style").icons_enabled() == (vim.env.NVIM_STYLE ~= "plain"), "style icon preference mismatch")
+assert(vim.g.loaded_node_provider == 0, "node provider should be disabled")
+assert(vim.g.loaded_perl_provider == 0, "perl provider should be disabled")
+assert(vim.g.loaded_python3_provider == 0, "python provider should be disabled")
+assert(vim.g.loaded_ruby_provider == 0, "ruby provider should be disabled")
+assert(vim.filetype.match({ filename = "example.gotmpl" }) == "gotmpl", "gotmpl filetype should be registered")
+assert(vim.filetype.match({ filename = "manifests/site.pp" }) == "puppet", "puppet filetype should be registered")
 
 local function assert_contains(values, expected, label)
   for _, value in ipairs(values or {}) do
@@ -129,6 +137,9 @@ for _, name in ipairs({
 }) do
   assert_require(name)
 end
+
+assert(vim.ui.input == Snacks.input.input, "vim.ui.input should use Snacks.input")
+assert(vim.ui.select == Snacks.picker.select, "vim.ui.select should use Snacks.picker.select")
 
 for _, mapping in ipairs({
   "<leader>f",
