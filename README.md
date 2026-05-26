@@ -86,6 +86,7 @@ follow-up work.
 - [docs/settings.md](docs/settings.md)
 - [docs/customization-guide.md](docs/customization-guide.md)
 - [docs/lsp.md](docs/lsp.md)
+- [docs/treesitter.md](docs/treesitter.md)
 - [docs/external-tools.md](docs/external-tools.md)
 - [docs/healthcheck.md](docs/healthcheck.md)
 - [docs/healthcheck-findings.md](docs/healthcheck-findings.md)

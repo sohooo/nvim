@@ -7,6 +7,7 @@ This directory documents the current LazyVim-based configuration.
 - [Settings](settings.md): option decisions migrated from `prev_cfg/init.lua`.
 - [Customization guide](customization-guide.md): where to add options, functions, keymaps, plugin specs, LSP servers, and docs.
 - [LSP](lsp.md): native Neovim LSP setup using externally installed binaries.
+- [Treesitter](treesitter.md): parser coverage for shell, YAML, and LSP-backed languages.
 - [External tools](external-tools.md): policy for LSP servers, formatters, linters, debuggers, and AI CLIs.
 - [Healthcheck](healthcheck.md): latest captured `:checkhealth` report.
 - [Healthcheck findings](healthcheck-findings.md): actionable baseline extracted from the current report.

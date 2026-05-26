@@ -8,15 +8,10 @@ why older plugins were migrated, replaced, deferred, or omitted.
 
 | Previous plugin | Current location | Decision |
 | --- | --- | --- |
-| `nvim-telescope/telescope.nvim` | `lua/plugins/telescope.lua` | Kept for file, grep, buffer, help, colorscheme, and symbol pickers. |
-| `nvim-telescope/telescope-fzf-native.nvim` | `lua/plugins/telescope.lua` | Kept as an optional native Telescope sorter. |
 | `folke/which-key.nvim` | `lua/plugins/which-key.lua` | Kept through LazyVim with local group additions only. |
-| `akinsho/toggleterm.nvim` | `lua/plugins/toggleterm.lua` | Kept for terminal and lazygit workflows. |
-| `beauwilliams/focus.nvim` | `lua/plugins/focus.lua` | Kept for automatic split resizing. |
-| `tpope/vim-repeat` | `lua/plugins/vim-repeat.lua` | Kept for repeatable plugin actions. |
-| `sickill/vim-pasta` | `lua/plugins/vim-pasta.lua` | Kept for indentation-aware paste behavior. |
+| LazyVim/Snacks picker keymaps | `lua/plugins/pickers.lua` | Moved broad LazyVim picker families to `<leader>p` while preserving immediate `<leader>f`, `<leader>b`, and `<leader>s` picker actions. |
+| Snacks terminal keymaps | `lua/plugins/snacks-terminal.lua` | Preserves terminal and lazygit workflows on `<leader>te`, `<leader>tt`, and `<leader>tg`. |
 | `stefandtw/quickfix-reflector.vim` | `lua/plugins/quickfix-reflector.lua` | Kept for quickfix editing workflows. |
-| `abecodes/tabout.nvim` | `lua/plugins/tabout.lua` | Kept for tabbing out of pairs in insert mode. |
 | `samjwill/nvim-unception` | `lua/plugins/nvim-unception.lua` | Kept for terminal Neovim nesting behavior. |
 | `tpope/vim-fugitive` | `lua/plugins/fugitive.lua` | Kept for Git command integration inside Neovim. |
 | `tpope/vim-dispatch` | `lua/plugins/dispatch.lua` | Kept for async build and command dispatch workflows. |
@@ -31,18 +26,20 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `numToStr/Comment.nvim` | `mini.comment` | Use LazyVim's Mini extra instead of a separate commenting plugin. |
 | `kylechui/nvim-surround` | `mini.surround` | Use LazyVim's Mini extra for surround editing. |
 | `windwp/nvim-autopairs` | `mini.pairs` | Use LazyVim's default Mini pairs integration. |
-| `famiu/bufdelete.nvim` | `mini.bufremove` | Use Mini buffer removal and keep `<leader>q`. |
+| `famiu/bufdelete.nvim` | `Snacks.bufdelete()` | Use LazyVim's built-in buffer deletion path and keep `<leader>q`. |
 | `ggandor/leap.nvim`, `ggandor/flit.nvim` | `mini.jump` | Use Mini motions for the current baseline. |
-| `hoob3rt/lualine.nvim` | `mini.statusline` | Prefer the smaller Mini statusline. |
-| `kdheepak/tabline.nvim` | `mini.tabline` | Prefer the smaller Mini tabline. |
-| `RRethy/vim-illuminate` | `mini.cursorword` | Use Mini word highlighting. |
-| `lukas-reineke/indent-blankline.nvim` | `mini.indentscope` | Use Mini indentation scope highlighting. |
-| `lewis6991/gitsigns.nvim` | `mini.diff` | Use Mini diff signs and overlays for the baseline. |
+| `hoob3rt/lualine.nvim` | LazyVim `lualine.nvim` | Restore LazyVim's statusline default instead of a local Mini statusline. |
+| `kdheepak/tabline.nvim` | LazyVim `bufferline.nvim` | Restore LazyVim's bufferline default and move local buffer actions under `<leader>B`. |
+| `RRethy/vim-illuminate` | `Snacks.words` | Use LazyVim's word reference highlighting/navigation. |
+| `lukas-reineke/indent-blankline.nvim` | LazyVim/Snacks indent behavior | Use LazyVim's current indent baseline instead of Mini indentscope. |
+| `lewis6991/gitsigns.nvim` | LazyVim `gitsigns.nvim` | Restore LazyVim's default Git signs and hunk actions. |
 | `jiaoshijie/undotree` | Neovim 0.12 `nvim.undotree` | Use the native optional package loaded on demand. |
 | `nvim-tree/nvim-tree.lua` | Snacks explorer | Use LazyVim's built-in Snacks explorer baseline, with `<leader>d` and `mf` preserving the old directory/reveal workflows. |
 | `LuaSnip` and completion snippet glue | `mini.snippets` | Use LazyVim's Mini snippet extra for this baseline. |
 | `neovim/nvim-lspconfig` | Native `vim.lsp` | Define and enable local LSP servers in `lua/config/lsp.lua`. |
 | `solargraph`, `standardrb` LSP setup | Shopify `ruby-lsp` | Use Ruby LSP with Standard formatter/linter init options. |
+| `nvim-telescope/telescope.nvim`, `telescope-fzf-native.nvim` | Snacks picker | Use LazyVim's picker stack while preserving old short bindings. |
+| `akinsho/toggleterm.nvim` | Snacks terminal | Use LazyVim's terminal stack while preserving local terminal/lazygit keys. |
 
 ## Covered By LazyVim Baseline
 
@@ -54,16 +51,19 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `nvim-tree/nvim-web-devicons` | LazyVim/Mini icons | Avoid adding a separate icon layer unless needed later. |
 | `nvim-treesitter/nvim-treesitter` | LazyVim core | Keep parser management in the LazyVim baseline. |
 | `nvim-treesitter/nvim-treesitter-context` | LazyVim UI extra | Enabled for sticky code context headers. |
+| `folke/todo-comments.nvim` | LazyVim core with `lua/plugins/pickers.lua` key overrides | Keep LazyVim's TODO/FIX/FIXME indexing and move picker mappings under `<leader>ps`. |
 | `hrsh7th/nvim-cmp` and cmp sources | LazyVim core | Replaced by LazyVim's completion baseline, currently `blink.cmp`. |
+| `nvim-lualine/lualine.nvim` | LazyVim core | Restored as the default statusline. |
+| `akinsho/bufferline.nvim` | LazyVim core with `lua/plugins/bufferline.lua` overrides | Restored as the default bufferline with local `<leader>B` remaps. |
+| `lewis6991/gitsigns.nvim` | LazyVim core | Restored as the default Git signs integration. |
 
 ## Omitted For Now
 
 | Previous plugin | Reason |
 | --- | --- |
 | `stevearc/dressing.nvim` | LazyVim/Snacks already provides UI integration points; revisit only if a workflow needs Dressing behavior specifically. |
-| `folke/todo-comments.nvim` | Not needed in the current baseline. |
-| `sindrets/diffview.nvim` | Mini diff and Fugitive cover the current Git baseline. |
-| `levouh/tint.nvim` | Focused window behavior is covered by `focus.nvim`; inactive dimming is omitted. |
+| `sindrets/diffview.nvim` | Gitsigns and Fugitive cover the current Git baseline. |
+| `levouh/tint.nvim` | LazyVim/Snacks window tools cover the current focus baseline; inactive dimming is omitted. |
 | `nacro90/numb.nvim` | Line preview behavior is omitted. |
 | `HampusHauffman/block.nvim` | Block highlighting is omitted until a concrete editing need returns. |
 | `rmagatti/goto-preview` | LazyVim LSP navigation is the current baseline. |
@@ -79,6 +79,25 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `mfussenegger/nvim-dap` | Debugging is deferred until debugger adapters are supplied outside Mason. |
 | `nvimtools/none-ls.nvim`, `nvimtools/none-ls-extras.nvim` | Formatting and linting are deferred until external tools are selected outside Mason. |
 | Additional old colorschemes | Only `tokyonight`, `nord`, `catppuccin`, and `kanagawa` are kept in the baseline. |
+
+## Removed After Overlap Review
+
+| Removed plugin | Replacement | Reason |
+| --- | --- | --- |
+| `nvim-telescope/telescope.nvim` | Snacks picker | Avoid a second picker stack while preserving the old short picker keys. |
+| `nvim-telescope/telescope-fzf-native.nvim` | Snacks picker | Telescope-specific sorter no longer needed. |
+| `akinsho/toggleterm.nvim` | Snacks terminal | LazyVim already ships terminal helpers through Snacks. |
+| `beauwilliams/focus.nvim` | LazyVim window tools | Removed adjacent layout behavior to stay closer to LazyVim defaults. |
+| `abecodes/tabout.nvim` | Mini pairs and default insert-mode behavior | Removed insert-mode mapping overlap. |
+| `sickill/vim-pasta` | Neovim/LazyVim paste behavior | Removed legacy paste override until a concrete paste issue returns. |
+| `tpope/vim-repeat` | Native/LazyVim plugin behavior | Removed low-signal compatibility plugin with no current mapped workflow. |
+| `nvim-mini/mini.bufremove` | `Snacks.bufdelete()` | Avoid duplicate buffer deletion implementation. |
+| `nvim-mini/mini.statusline` | `lualine.nvim` | Prefer LazyVim's default statusline. |
+| `nvim-mini/mini.tabline` | `bufferline.nvim` | Prefer LazyVim's default bufferline. |
+| `nvim-mini/mini.diff` | `gitsigns.nvim` | Prefer LazyVim's default Git signs integration. |
+| `nvim-mini/mini.cursorword` | `Snacks.words` | Prefer LazyVim's default word reference behavior. |
+| `nvim-mini/mini.cmdline` | Noice/LazyVim UI | Avoid overlapping command-line UI layers. |
+| `nvim-mini/mini.indentscope` | Snacks/LazyVim indent behavior | Avoid duplicate scope/indent visuals. |
 
 ## Deferred
 

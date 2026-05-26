@@ -1,5 +1,0 @@
-return {
-  {
-    "sickill/vim-pasta",
-  },
-}

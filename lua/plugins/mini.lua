@@ -1,51 +1,7 @@
-local style = require("config.style")
-
 return {
   { import = "lazyvim.plugins.extras.coding.mini-comment" },
   { import = "lazyvim.plugins.extras.coding.mini-snippets" },
   { import = "lazyvim.plugins.extras.coding.mini-surround" },
-  { import = "lazyvim.plugins.extras.editor.mini-diff" },
-  { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    enabled = false,
-  },
-
-  {
-    "akinsho/bufferline.nvim",
-    enabled = false,
-  },
-
-  {
-    "nvim-mini/mini.statusline",
-    event = "VeryLazy",
-    opts = {
-      use_icons = style.icons_enabled(),
-    },
-  },
-
-  {
-    "nvim-mini/mini.tabline",
-    event = "VeryLazy",
-    opts = {
-      show_icons = style.icons_enabled(),
-    },
-  },
-
-  {
-    "nvim-mini/mini.bufremove",
-    keys = {
-      {
-        "<leader>q",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Close Current Buffer",
-      },
-    },
-    opts = {},
-  },
 
   {
     "nvim-mini/mini.align",
@@ -71,12 +27,6 @@ return {
   },
 
   {
-    "nvim-mini/mini.cursorword",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  {
     "nvim-mini/mini.trailspace",
     event = "VeryLazy",
     keys = {
@@ -88,12 +38,6 @@ return {
         desc = "Trim Trailing Whitespace",
       },
     },
-    opts = {},
-  },
-
-  {
-    "nvim-mini/mini.cmdline",
-    event = "CmdlineEnter",
     opts = {},
   },
 }

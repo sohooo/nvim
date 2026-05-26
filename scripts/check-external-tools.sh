@@ -8,7 +8,12 @@ required=(
 
 optional=(
   make
+  rg
+  fd
+  fzf
+  trash
   lazygit
+  tree-sitter
   gopls
   ruff
   rust-analyzer

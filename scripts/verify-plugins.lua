@@ -73,29 +73,58 @@ for _, mapping in ipairs({ "gd", "gr", "gI", "gy", "gD", "K", "gK", "<leader>ca"
 end
 assert(vim.fn.maparg("<C-k>", "i") ~= "", "missing LSP insert signature mapping")
 
+local treesitter_parsers = {
+  bash = { filetypes = { "sh" } },
+  embedded_template = { filetypes = { "eruby" } },
+  go = { filetypes = { "go" } },
+  gomod = { filetypes = { "gomod" } },
+  gosum = { filetypes = { "gosum" } },
+  gotmpl = { filetypes = { "gotmpl" } },
+  lua = { filetypes = { "lua" } },
+  puppet = { filetypes = { "puppet" } },
+  python = { filetypes = { "python" } },
+  ruby = { filetypes = { "ruby" } },
+  rust = { filetypes = { "rust" } },
+  yaml = { filetypes = { "yaml" } },
+}
+
+local treesitter_opts = require("lazy.core.config").spec.plugins["nvim-treesitter"].opts
+local available_parsers = require("nvim-treesitter.config").get_available()
+local installed_parsers = require("nvim-treesitter.config").get_installed("parsers")
+
+for parser, spec in pairs(treesitter_parsers) do
+  assert_contains(treesitter_opts.ensure_installed, parser, "treesitter ensure_installed")
+  assert_contains(available_parsers, parser, "treesitter available parsers")
+
+  for _, filetype in ipairs(spec.filetypes) do
+    assert(vim.treesitter.language.get_lang(filetype) == parser, "treesitter parser alias mismatch for " .. filetype)
+  end
+
+  if vim.list_contains(installed_parsers, parser) then
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "" })
+    assert(vim.treesitter.get_parser(buf, parser) ~= nil, "failed to create treesitter parser for " .. parser)
+  end
+end
+
 for _, name in ipairs({
-  "focus",
+  "bufferline",
+  "gitsigns",
+  "grug-far",
+  "lualine",
   "mini.align",
-  "mini.bufremove",
-  "mini.cmdline",
   "mini.comment",
-  "mini.cursorword",
-  "mini.diff",
   "mini.icons",
-  "mini.indentscope",
   "mini.jump",
   "mini.pairs",
   "mini.snippets",
   "mini.splitjoin",
-  "mini.statusline",
   "mini.surround",
-  "mini.tabline",
   "mini.trailspace",
+  "noice",
   "snacks",
-  "telescope",
-  "telescope.builtin",
+  "todo-comments",
   "treesitter-context",
-  "toggleterm",
   "which-key",
 }) do
   assert_require(name)
@@ -104,6 +133,15 @@ end
 for _, mapping in ipairs({
   "<leader>f",
   "<leader>F",
+  "<leader>Bb",
+  "<leader>Bd",
+  "<leader>Bp",
+  "<leader>pff",
+  "<leader>pfb",
+  "<leader>psg",
+  "<leader>psr",
+  "<leader>pst",
+  "<leader>psT",
   "<leader>d",
   "<leader>l",
   "<leader>b",
@@ -126,17 +164,48 @@ for _, mapping in ipairs({
   assert(vim.fn.maparg(mapping, "n") ~= "", "missing normal mapping " .. mapping)
 end
 
+for _, mapping in ipairs({
+  "<leader>ff",
+  "<leader>fb",
+  "<leader>bp",
+  "<leader>bP",
+  "<leader>br",
+  "<leader>bl",
+  "<leader>bj",
+  "<leader>bb",
+  "<leader>bd",
+  "<leader>bo",
+  "<leader>bi",
+  "<leader>bD",
+  "<leader>fe",
+  "<leader>ft",
+  "<leader>sg",
+  "<leader>sr",
+  "<leader>st",
+  "<leader>snl",
+}) do
+  assert(vim.fn.maparg(mapping, "n") == "", "unexpected conflicting normal mapping " .. mapping)
+end
+
+for _, mapping in ipairs({
+  "<leader>sw",
+  "<leader>sW",
+  "<leader>sr",
+}) do
+  assert(vim.fn.maparg(mapping, "x") == "", "unexpected conflicting visual mapping " .. mapping)
+end
+
 assert(vim.fn.maparg("<Esc><Esc>", "t") ~= "", "missing terminal escape mapping")
 
 vim.cmd.packadd("nvim.undotree")
 assert(vim.fn.exists(":Undotree") == 2, "missing native :Undotree")
 assert(type(require("undotree").open) == "function", "missing undotree.open")
-assert(vim.fn.exists(":ToggleTerm") == 2, "missing :ToggleTerm")
-assert(vim.fn.exists(":TermExec") == 2, "missing :TermExec")
 assert(vim.fn.exists(":Git") == 2, "missing :Git")
 vim.cmd("silent Git --version")
 assert(vim.fn.exists(":Dispatch") == 2, "missing :Dispatch")
 assert(vim.fn.exists(":Make") == 2, "missing :Make")
+assert(vim.fn.exists(":Focus") == 2, "missing :Focus")
+assert(vim.fn.exists(":Start") == 2, "missing :Start")
 
 for _, scheme in ipairs({
   "nord",

@@ -6,8 +6,13 @@ return {
         {
           mode = { "n", "x" },
           { "<leader>", group = "local" },
+          { "<leader>B", group = "buffers" },
           { "<leader>c", group = "code" },
           { "<leader>g", group = "git" },
+          { "<leader>p", group = "pickers" },
+          { "<leader>pf", group = "find" },
+          { "<leader>ps", group = "search" },
+          { "<leader>psn", group = "noice" },
           { "<leader>t", group = "tools" },
           { "<leader>d", desc = "Directory Tree" },
           { "<leader>u", desc = "Undo Tree" },

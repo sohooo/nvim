@@ -8,14 +8,8 @@ When the todo list is empty, promote the next deferred or omitted item by follow
 
 ## done
 
-- telescope
 - which-key
-- toggleterm
-- focus.nvim
-- vim-pasta
-- vim-repeat
 - quickfix-reflector.vim
-- tabout.nvim
 - nvim-unception
 - vim-fugitive
 - vim-dispatch
@@ -26,19 +20,12 @@ When the todo list is empty, promote the next deferred or omitted item by follow
   - mini.surround (replaces nvim-surround)
   - mini.comment (replaces Comment.nvim)
   - mini.pairs (replaces nvim-autopairs)
-  - mini.bufremove (replaces bufdelete.nvim)
   - mini.splitjoin
   - mini.align
   - mini.jump (replaces vim-sneak)
-  - mini.statusline (replaces lualine)
-  - mini.tabline (replaces tabline)
-  - mini.cursorword (replaces vim-illuminate)
-  - mini.indentscope (replaces indent-blankline.nvim)
   - mini.trailspace
   - mini.icons
   - mini.snippets
-  - mini.cmdline
-  - mini.diff (replaces gitsigns.nvim)
 - neovim 0.12-native undotree
 - migrated-plugin smoke checks
 - external-tool prerequisite check
@@ -51,7 +38,30 @@ When the todo list is empty, promote the next deferred or omitted item by follow
 - empty migration queue handoff
 - native LSP setup
 - Snacks explorer
+- Snacks picker
+- Snacks terminal
+- LazyVim lualine/bufferline/gitsigns defaults
+- LazyVim todo-comments baseline
 - nvim-treesitter-context
+
+## removed
+
+| Removed item | Replacement | Reason |
+| --- | --- | --- |
+| `telescope.nvim` | Snacks picker | Prefer LazyVim's built-in picker stack while preserving `,f`, `,b`, and `,s`. |
+| `telescope-fzf-native.nvim` | Snacks picker | Telescope-specific sorter is no longer needed. |
+| `toggleterm.nvim` | Snacks terminal | Prefer LazyVim's built-in terminal helper while preserving `,te`, `,tt`, and `,tg`. |
+| `focus.nvim` | LazyVim window tools | Removed adjacent auto-resize behavior to reduce local layout policy. |
+| `tabout.nvim` | Mini pairs and default insert-mode behavior | Removed insert-mode `<Tab>` overlap. |
+| `vim-pasta` | Neovim/LazyVim paste behavior | Removed legacy paste override until a concrete paste issue returns. |
+| `vim-repeat` | Native/LazyVim plugin behavior | Removed low-signal compatibility plugin with no current mapped workflow. |
+| `mini.bufremove` | `Snacks.bufdelete()` | Avoid duplicate buffer deletion implementation. |
+| `mini.statusline` | `lualine.nvim` | Restore LazyVim's default statusline. |
+| `mini.tabline` | `bufferline.nvim` | Restore LazyVim's default bufferline. |
+| `mini.diff` | `gitsigns.nvim` | Restore LazyVim's default Git signs integration. |
+| `mini.cursorword` | `Snacks.words` | Prefer LazyVim's built-in word reference behavior. |
+| `mini.cmdline` | Noice/LazyVim UI | Avoid overlapping command-line UI layers. |
+| `mini.indentscope` | Snacks/LazyVim indent behavior | Avoid duplicate scope/indent visuals. |
 
 ## todo
 
@@ -74,9 +84,8 @@ No active migration items.
 | Mouse toggle helper | `prev_cfg/lua/sohooo/which-key.lua` | Not migrated; mouse is disabled by option. | Add a toggle mapping only if runtime mouse switching is wanted. | Keymap preference. |
 | Old bootstrap/runtime shims | `prev_cfg/init.lua` | Not migrated. | No action; LazyVim and project-local XDG startup replace them. | None. |
 | `stevearc/dressing.nvim` | `prev_cfg/init.lua` | Omitted; LazyVim/Snacks provides UI integration. | Revisit only if Snacks input/select remains insufficient. | Concrete UI issue. |
-| `folke/todo-comments.nvim` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/todo-comments.lua` | Omitted. | Consider reintroducing if TODO/FIXME search is wanted. | None. |
-| `sindrets/diffview.nvim` | `prev_cfg/init.lua` | Omitted; Mini diff and Fugitive cover the current Git baseline. | Revisit if file history/diff review UI is wanted. | Git workflow preference. |
-| `levouh/tint.nvim` | `prev_cfg/init.lua` | Omitted; `focus.nvim` covers window focus behavior. | Revisit if inactive-window dimming is still wanted. | None. |
+| `sindrets/diffview.nvim` | `prev_cfg/init.lua` | Omitted; Gitsigns and Fugitive cover the current Git baseline. | Revisit if file history/diff review UI is wanted. | Git workflow preference. |
+| `levouh/tint.nvim` | `prev_cfg/init.lua` | Omitted; LazyVim/Snacks window tools cover the current focus baseline. | Revisit if inactive-window dimming is still wanted. | None. |
 | `nacro90/numb.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit if line-number preview workflow is missed. | None. |
 | `HampusHauffman/block.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit if code block highlighting is wanted. | None. |
 | `rmagatti/goto-preview` | `prev_cfg/init.lua` | Omitted; LazyVim LSP navigation is baseline. | Revisit if preview windows are preferred over jumps. | LSP keymap policy. |
@@ -102,3 +111,16 @@ No active migration items.
 | Commented treesitter extras | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/treesitter.lua` | Not migrated; inactive in old baseline. | Promote individually only if a concrete treesitter workflow is wanted. | Parser/tooling coverage. |
 | Commented Noice setup | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/noice.lua` | Not migrated from old config; LazyVim already includes its own UI choices. | Revisit only through LazyVim extras/UI policy. | UI preference. |
 | Additional old colorschemes | `prev_cfg/init.lua` | Omitted. | Add only themes that are actively used. | Theme preference. |
+
+## LazyVim overlap review
+
+The direct overlap items from the first review were resolved by the removal
+table above. Remaining items are intentionally distinct workflows to revisit
+only if they become noisy or unused.
+
+| Area | Current local piece | LazyVim/baseline overlap | Current impact | Suggested next action |
+| --- | --- | --- | --- | --- |
+| File explorer keys | `lua/plugins/snacks-explorer.lua` customizes Snacks explorer. | LazyVim already provides Snacks explorer as the default explorer extra. | Intentional key and behavior override, not a plugin duplicate. | Keep unless LazyVim upstream key behavior becomes preferable. |
+| Completion/snippets | `mini.snippets` LazyVim extra with Blink completion. | LazyVim Blink baseline can work with multiple snippet engines depending on extras. | Intentional current snippet choice. | Keep unless snippet behavior requires LuaSnip or native snippets. |
+| Quickfix editing | `quickfix-reflector.vim`. | LazyVim/Trouble/Snacks provide quickfix viewing and pickers, but not write-back editing. | Distinct capability with adjacent UI overlap. | Keep if editing quickfix lists is part of the workflow. |
+| Git workflow | `vim-fugitive`, lazygit terminal, Snacks Git pickers, and Gitsigns. | LazyVim/Snacks already provide git pickers and terminal helpers. | Multiple Git interfaces with overlapping but distinct workflows. | Keep Fugitive while `:Git` command workflows are useful. |
