@@ -14,6 +14,7 @@ return {
           { "<leader>ps", group = "search" },
           { "<leader>psn", group = "noice" },
           { "<leader>t", group = "tools" },
+          { "<leader>tp", group = "profiler" },
           { "<leader>d", desc = "Directory Tree" },
           { "<leader>u", desc = "Undo Tree" },
           { "<leader>q", desc = "Close Buffer" },

@@ -21,6 +21,9 @@ for _, lhs in ipairs({
   "<leader>bo",
   "<leader>bi",
   "<leader>bD",
+  "<leader>dph",
+  "<leader>dpp",
+  "<leader>dps",
   "<leader>fn",
   "<leader>ft",
   "<leader>fT",
@@ -50,3 +53,13 @@ end, { desc = "Terminal (Root Dir)" })
 vim.keymap.set("n", "<leader>pfT", function()
   Snacks.terminal()
 end, { desc = "Terminal (cwd)" })
+
+vim.keymap.set("n", "<leader>tpp", function()
+  Snacks.toggle.profiler():toggle()
+end, { desc = "Toggle Profiler" })
+vim.keymap.set("n", "<leader>tph", function()
+  Snacks.toggle.profiler_highlights():toggle()
+end, { desc = "Toggle Profiler Highlights" })
+vim.keymap.set("n", "<leader>tps", function()
+  Snacks.profiler.scratch()
+end, { desc = "Profiler Scratch Buffer" })

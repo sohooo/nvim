@@ -56,6 +56,9 @@ The same rule applies to `<leader>b`: buffer-management commands live under
 | Normal/Terminal | `<leader>te` | Toggle a root terminal. | `lua/plugins/snacks-terminal.lua` |
 | Normal | `<leader>tt` | Toggle a root terminal. | `lua/plugins/snacks-terminal.lua` |
 | Normal | `<leader>tg` | Toggle a floating lazygit terminal. | `lua/plugins/snacks-terminal.lua` |
+| Normal | `<leader>tpp` | Toggle Snacks profiler. | `lua/config/keymaps.lua` |
+| Normal | `<leader>tph` | Toggle Snacks profiler highlights. | `lua/config/keymaps.lua` |
+| Normal | `<leader>tps` | Open Snacks profiler scratch buffer. | `lua/config/keymaps.lua` |
 | Normal | `<leader>u` | Open the Neovim 0.12 native undo tree. | `lua/config/keymaps.lua` |
 | Terminal | `<Esc><Esc>` | Leave terminal mode. | `lua/config/misc.lua` |
 
@@ -121,6 +124,7 @@ These mappings are buffer-local and appear after a language server attaches.
 | `<leader>ps` | Search |
 | `<leader>psn` | Noice |
 | `<leader>t` | Tools |
+| `<leader>tp` | Profiler |
 | `m` | More |
 | `gs` | Surround |
 
