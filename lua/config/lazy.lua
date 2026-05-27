@@ -1,5 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  if vim.env.NVIM_AIRGAP == "1" then
+    vim.api.nvim_echo({
+      { "lazy.nvim is missing from this airgap bundle:\n", "ErrorMsg" },
+      { lazypath, "WarningMsg" },
+    }, true, {})
+    os.exit(1)
+  end
+
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
   if vim.v.shell_error ~= 0 then
@@ -32,7 +40,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
+    enabled = vim.env.NVIM_AIRGAP ~= "1", -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
   performance = {

@@ -25,3 +25,4 @@ lazy/
 .xdg/
 nvim.log
 prev_cfg
+dist/

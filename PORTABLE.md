@@ -56,3 +56,18 @@ Mason is disabled. Language servers, formatters, linters, debuggers, and AI CLI
 tools should be installed outside this config and available on `PATH`.
 
 See [docs/external-tools.md](docs/external-tools.md) for the current policy.
+
+## Airgap Bundle
+
+For Linux x86_64 systems, this repo can build a tarball that includes an
+extracted official Neovim AppImage, this config, pinned lazy.nvim plugins, and
+compiled Treesitter parsers:
+
+```bash
+make airgap-bundle
+make verify-airgap-bundle TARBALL=dist/nvim-airgap-linux-x86_64-*.tar.gz
+```
+
+The AppImage is extracted during the build, so the resulting bundle runs on
+target systems without FUSE. See
+[docs/airgap-bundle.md](docs/airgap-bundle.md) for the full workflow.

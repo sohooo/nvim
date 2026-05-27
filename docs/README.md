@@ -9,6 +9,7 @@ This directory documents the current LazyVim-based configuration.
 - [LSP](lsp.md): native Neovim LSP setup using externally installed binaries.
 - [Treesitter](treesitter.md): parser coverage for shell, YAML, and LSP-backed languages.
 - [External tools](external-tools.md): policy for LSP servers, formatters, linters, debuggers, and AI CLIs.
+- [Airgap bundle](airgap-bundle.md): Linux x86_64 tarball workflow with extracted Neovim AppImage, plugins, and parsers.
 - [Healthcheck](healthcheck.md): latest captured `:checkhealth` report.
 - [Healthcheck findings](healthcheck-findings.md): actionable baseline extracted from the current report.
 - [Migration decisions](migration-decisions.md): mapping from `prev_cfg/` plugins to the LazyVim baseline.

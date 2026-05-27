@@ -66,6 +66,13 @@ Capture a healthcheck report:
 make healthcheck
 ```
 
+Build and verify a Linux x86_64 airgap tarball:
+
+```bash
+make airgap-bundle
+make verify-airgap-bundle TARBALL=dist/nvim-airgap-linux-x86_64-*.tar.gz
+```
+
 ## Tooling Policy
 
 Mason is disabled. Language servers, formatters, linters, debuggers, and AI CLI
@@ -81,6 +88,7 @@ follow-up work.
 ## Documentation
 
 - [PORTABLE.md](PORTABLE.md)
+- [docs/airgap-bundle.md](docs/airgap-bundle.md)
 - [docs/plugins.md](docs/plugins.md)
 - [docs/keymaps.md](docs/keymaps.md)
 - [docs/settings.md](docs/settings.md)
