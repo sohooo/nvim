@@ -5,7 +5,7 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | Old setting | Decision | Current value/location | Rationale |
 | --- | --- | --- | --- |
 | `Hifi()` | Kept conceptually | `lua/config/style.lua` exposes the `NVIM_STYLE ~= "plain"` decision. | Share the lo-fi icon decision without restoring a global helper. |
-| `MyColors()` | Not migrated | LazyVim default `tokyonight`; extra themes in `lua/plugins/colorschemes.lua`. | Theme selection can be revisited separately. |
+| `MyColors()` | Migrated | `lua/config/theme.lua` selects a profile from `GIT_USERNAME`. | Keeps the previous user-specific theme workflow while exposing colorscheme, lualine, and bufferline choices from one module. |
 | `vim.version.ge` shim | Not migrated | None. | Current Neovim is new enough. |
 | `package.path` mutation | Not migrated | None. | LazyVim module loading handles local `lua/`. |
 | `runtimepath` append | Not migrated | None. | Project-local startup already points XDG config at this repo. |

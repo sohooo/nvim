@@ -15,6 +15,7 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `samjwill/nvim-unception` | `lua/plugins/nvim-unception.lua` | Kept for terminal Neovim nesting behavior. |
 | `tpope/vim-fugitive` | `lua/plugins/fugitive.lua` | Kept for Git command integration inside Neovim. |
 | `tpope/vim-dispatch` | `lua/plugins/dispatch.lua` | Kept for async build and command dispatch workflows. |
+| `MyColors()` | `lua/config/theme.lua` | Migrated to a LazyVim-compatible profile module selected by `GIT_USERNAME`. |
 | `arcticicestudio/nord-vim` | `lua/plugins/colorschemes.lua` | Kept as an available colorscheme. |
 | `catppuccin/nvim` | `lua/plugins/colorschemes.lua` | Kept as an available colorscheme family. |
 | `rebelot/kanagawa.nvim` | `lua/plugins/colorschemes.lua` | Kept as an available colorscheme family. |

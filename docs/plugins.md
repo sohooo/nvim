@@ -39,8 +39,8 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `folke/noice.nvim` | `lua/plugins/pickers.lua` | Command-line, message, and notification UI. | Provided by LazyVim; local keys move Noice actions under `<leader>psn`. |
 | `MunifTanjim/nui.nvim` | Dependencies | UI component dependency. | Pulled by LazyVim UI plugins such as Noice. |
 | `nvim-treesitter/nvim-treesitter-context` | `lua/plugins/treesitter-context.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
-| `nvim-lualine/lualine.nvim` | LazyVim core | Statusline. | Restored as the LazyVim default. |
-| `akinsho/bufferline.nvim` | `lua/plugins/bufferline.lua` | Buffer/tab line. | Restored as the LazyVim default; local buffer-management mappings are moved under `<leader>B` so `<leader>b` remains instant. |
+| `nvim-lualine/lualine.nvim` | `lua/plugins/bufferline.lua` | Statusline. | LazyVim default layout with theme selected by `lua/config/theme.lua`. |
+| `akinsho/bufferline.nvim` | `lua/plugins/bufferline.lua` | Buffer/tab line. | LazyVim default with local `<leader>B` remaps and optional highlights from `lua/config/theme.lua`. |
 | `nvim-mini/mini.icons` | LazyVim core | Icon provider. | Already enabled by LazyVim; used instead of adding a separate icon layer. |
 
 ## Editing
@@ -88,10 +88,10 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Plugin | Config path | Description | Notes |
 | --- | --- | --- | --- |
-| `folke/tokyonight.nvim` | LazyVim core | Tokyo Night colorscheme. | LazyVim default remains unchanged. |
-| `arcticicestudio/nord-vim` | `lua/plugins/colorschemes.lua` | Nord colorscheme. | Migrated from the previous config and available as `:colorscheme nord`. |
-| `catppuccin/nvim` | `lua/plugins/colorschemes.lua` | Catppuccin colorscheme collection. | Available as `catppuccin` plus latte/frappe/macchiato/mocha variants. |
-| `rebelot/kanagawa.nvim` | `lua/plugins/colorschemes.lua` | Kanagawa colorscheme collection. | Available as `kanagawa`, `kanagawa-wave`, `kanagawa-dragon`, and `kanagawa-lotus`. |
+| `folke/tokyonight.nvim` | `lua/plugins/colorschemes.lua` | Tokyo Night colorscheme. | Default profile selected by `lua/config/theme.lua`. |
+| `arcticicestudio/nord-vim` | `lua/plugins/colorschemes.lua` | Nord colorscheme. | Selected by the migrated `pUSER` theme profile and available as `:colorscheme nord`. |
+| `catppuccin/nvim` | `lua/plugins/colorschemes.lua` | Catppuccin colorscheme collection. | Available for future profiles as `catppuccin` plus latte/frappe/macchiato/mocha variants. |
+| `rebelot/kanagawa.nvim` | `lua/plugins/colorschemes.lua` | Kanagawa colorscheme collection. | Available for future profiles as `kanagawa`, `kanagawa-wave`, `kanagawa-dragon`, and `kanagawa-lotus`. |
 
 ## Deferred
 

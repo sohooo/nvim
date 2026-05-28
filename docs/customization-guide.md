@@ -12,6 +12,7 @@ predictable.
 | Global non-plugin keymaps | `lua/config/keymaps.lua` | Use for mappings that do not belong to a plugin. |
 | Small global commands | `lua/config/misc.lua` | Use for typo aliases and tiny commands that are always available. |
 | Shared helper functions | `lua/config/<name>.lua` | Use only when more than one module needs the helper. |
+| User theme profiles | `lua/config/theme.lua` | Add `GIT_USERNAME`-selected colorscheme, lualine, and bufferline choices here. |
 | Plugin setup and plugin-owned keymaps | `lua/plugins/<plugin>.lua` | Prefer lazy.nvim `keys`, `cmd`, `event`, and `opts` fields. |
 | Which-key metadata | `lua/plugins/which-key.lua` | Add group labels and descriptions only; runtime mappings stay with their owner. |
 | Native LSP servers and LSP keymaps | `lua/config/lsp.lua` | Use `vim.lsp.config` and `vim.lsp.enable`; do not add `nvim-lspconfig`. |
@@ -70,6 +71,20 @@ return {
   },
 }
 ```
+
+Add a user-specific theme profile in `lua/config/theme.lua`:
+
+```lua
+work = {
+  colorscheme = "kanagawa-wave",
+  lualine = "kanagawa",
+  kanagawa_theme = "wave",
+}
+```
+
+Profiles are selected with `GIT_USERNAME`. Supported fields are `colorscheme`,
+`lualine`, `background`, `tokyonight_style`, `catppuccin_flavour`,
+`kanagawa_theme`, and optional `bufferline` highlights.
 
 Add a native LSP server in `lua/config/lsp.lua`:
 

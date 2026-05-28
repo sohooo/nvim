@@ -43,6 +43,7 @@ When the todo list is empty, promote the next deferred or omitted item by follow
 - LazyVim lualine/bufferline/gitsigns defaults
 - LazyVim todo-comments baseline
 - nvim-treesitter-context
+- MyColors user/theme profile
 
 ## removed
 
@@ -78,7 +79,6 @@ No active migration items.
 
 | Item | Old source | Current decision | Suggested next action | Prerequisites |
 | --- | --- | --- | --- | --- |
-| `MyColors()` user/theme switch | `prev_cfg/init.lua` | Not migrated. | Revisit if `GIT_USERNAME`-based theme selection is still useful. | Theme policy. |
 | Global `Hifi()` helper | `prev_cfg/init.lua` | Replaced by plugin-local `NVIM_STYLE` checks. | Keep local helpers unless many plugins need the same function. | None. |
 | Lo-fi `termguicolors = false` branch | `prev_cfg/init.lua` | Not migrated; truecolor remains LazyVim baseline. | Revisit if plain terminal color support is needed. | Plain terminal target. |
 | Mouse toggle helper | `prev_cfg/lua/sohooo/which-key.lua` | Not migrated; mouse is disabled by option. | Add a toggle mapping only if runtime mouse switching is wanted. | Keymap preference. |
