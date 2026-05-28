@@ -2,10 +2,15 @@
 
 This directory documents the current LazyVim-based configuration.
 
+Current baseline: comma leader, Snacks pickers/explorer/terminal, Mason
+disabled, native `vim.lsp`, and optional Linux x86_64 airgap bundles with an
+extracted Neovim AppImage.
+
 - [Plugins](plugins.md): migrated plugin inventory and config locations.
 - [Keymaps](keymaps.md): custom keymaps added on top of LazyVim defaults.
 - [Settings](settings.md): option decisions migrated from `prev_cfg/init.lua`.
 - [Customization guide](customization-guide.md): where to add options, functions, keymaps, plugin specs, LSP servers, and docs.
+- [AI](ai.md): current AI-assisted coding direction and plugin evaluation notes.
 - [LSP](lsp.md): native Neovim LSP setup using externally installed binaries.
 - [Treesitter](treesitter.md): parser coverage for shell, YAML, and LSP-backed languages.
 - [External tools](external-tools.md): policy for LSP servers, formatters, linters, debuggers, and AI CLIs.

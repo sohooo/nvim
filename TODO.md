@@ -1,68 +1,12 @@
 # Plugin Migrations
 
-Migrate the following plugins one by one by adding them to the correct position in `lua/plugins/`. Take inspiration from the old configuration under `prev_cfg/` regarding bindings (which-key) and settings for the current version of the plugin (where it makes sense).
+Use this file only for the active migration queue and pending review items.
+Historical migrated, replaced, removed, and omitted decisions live in
+`docs/migration-decisions.md`.
 
-After successful and verified integration of the plugin, move it from the `## todo` to the `## done` section below.
-When the todo list is empty, promote the next deferred or omitted item by following `docs/migration-workflow.md`.
-
-
-## done
-
-- which-key
-- quickfix-reflector.vim
-- nvim-unception
-- vim-fugitive
-- vim-dispatch
-- nord-vim
-- catppuccin
-- kanagawa
-- mini.nvim
-  - mini.surround (replaces nvim-surround)
-  - mini.comment (replaces Comment.nvim)
-  - mini.pairs (replaces nvim-autopairs)
-  - mini.splitjoin
-  - mini.align
-  - mini.jump (replaces vim-sneak)
-  - mini.trailspace
-  - mini.icons
-  - mini.snippets
-- neovim 0.12-native undotree
-- migrated-plugin smoke checks
-- external-tool prerequisite check
-- healthcheck capture script
-- healthcheck findings baseline
-- migration status check
-- migration decisions baseline
-- combined verification target
-- migration workflow documentation
-- empty migration queue handoff
-- native LSP setup
-- Snacks explorer
-- Snacks picker
-- Snacks terminal
-- LazyVim lualine/bufferline/gitsigns defaults
-- LazyVim todo-comments baseline
-- nvim-treesitter-context
-- MyColors user/theme profile
-
-## removed
-
-| Removed item | Replacement | Reason |
-| --- | --- | --- |
-| `telescope.nvim` | Snacks picker | Prefer LazyVim's built-in picker stack while preserving `,f`, `,b`, and `,s`. |
-| `telescope-fzf-native.nvim` | Snacks picker | Telescope-specific sorter is no longer needed. |
-| `toggleterm.nvim` | Snacks terminal | Prefer LazyVim's built-in terminal helper while preserving `,te`, `,tt`, and `,tg`. |
-| `focus.nvim` | LazyVim window tools | Removed adjacent auto-resize behavior to reduce local layout policy. |
-| `tabout.nvim` | Mini pairs and default insert-mode behavior | Removed insert-mode `<Tab>` overlap. |
-| `vim-pasta` | Neovim/LazyVim paste behavior | Removed legacy paste override until a concrete paste issue returns. |
-| `vim-repeat` | Native/LazyVim plugin behavior | Removed low-signal compatibility plugin with no current mapped workflow. |
-| `mini.bufremove` | `Snacks.bufdelete()` | Avoid duplicate buffer deletion implementation. |
-| `mini.statusline` | `lualine.nvim` | Restore LazyVim's default statusline. |
-| `mini.tabline` | `bufferline.nvim` | Restore LazyVim's default bufferline. |
-| `mini.diff` | `gitsigns.nvim` | Restore LazyVim's default Git signs integration. |
-| `mini.cursorword` | `Snacks.words` | Prefer LazyVim's built-in word reference behavior. |
-| `mini.cmdline` | Noice/LazyVim UI | Avoid overlapping command-line UI layers. |
-| `mini.indentscope` | Snacks/LazyVim indent behavior | Avoid duplicate scope/indent visuals. |
+When promoting work, follow `docs/migration-workflow.md`: migrate one workflow
+at a time, keep plugin specs under `lua/plugins/`, document external binaries,
+and run the configured verification checks.
 
 ## todo
 
@@ -70,10 +14,23 @@ No active migration items.
 
 ## deferred
 
-- https://github.com/folke/sidekick.nvim#-ai-cli-integration - AI CLI integration
-  - Requires a configured Copilot LSP and optional AI CLI binaries provided outside Mason.
-  - External binary policy is documented in `docs/external-tools.md`.
-  - Revisit after Copilot LSP and desired AI CLI commands are configured explicitly.
+- AI-assisted coding
+  - Current decision: prefer a small Crush terminal integration next.
+  - Next action: add optional `crush` tool docs/checks, then add Snacks terminal mappings and commands.
+  - Prerequisites: `crush` installed on `PATH` and configured for the local endpoint.
+  - Notes: CodeCompanion and Parrot remain future candidates; Node-required AI plugins are out of scope.
+- Formatting/linting beyond LSP
+  - Current decision: deferred; external formatter/linter policy is no Mason auto-install.
+  - Next action: decide between native LSP formatting, conform/lint integrations, or no extra layer.
+  - Prerequisites: external formatters/linters on `PATH`.
+- Debugging
+  - Current decision: deferred.
+  - Next action: add only with selected adapters.
+  - Prerequisites: debug adapters supplied outside Mason.
+- Test runner integration
+  - Current decision: deferred.
+  - Next action: define test runner workflow before adding plugins back.
+  - Prerequisites: language-specific test tools on `PATH`.
 
 ## review
 
@@ -98,15 +55,12 @@ No active migration items.
 | `LuaSnip`, `cmp_luasnip` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/lsp.lua` | Replaced by `mini.snippets`. | Revisit only if LuaSnip-specific snippets/features are needed. | Snippet engine decision. |
 | `friendly-snippets` | `prev_cfg/init.lua` | Covered by LazyVim baseline. | Keep as dependency unless snippet engine changes. | None. |
 | `nvim-tree/nvim-tree.lua` | `prev_cfg/init.lua` | Replaced by Snacks explorer. | No action unless Snacks explorer lacks a required workflow. | Concrete explorer gap. |
-| `none-ls.nvim`, `none-ls-extras.nvim` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/null-ls.lua` | Deferred; external formatter/linter policy is no Mason auto-install. | Select external tools first, then migrate sources intentionally. | Tools available on `PATH`. |
 | `neotest`, `neotest-rspec` | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/neotest.lua` | Omitted. | Define test runner workflow before adding back. | Ruby/RSpec tooling on `PATH`. |
 | `ThePrimeagen/refactoring.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit with concrete refactoring mappings. | Treesitter parser coverage. |
 | `simrat39/symbols-outline.nvim` | `prev_cfg/init.lua` | Omitted; LazyVim symbol navigation is baseline. | Revisit if a persistent outline panel is wanted. | None. |
 | `cshuaimin/ssr.nvim` | `prev_cfg/init.lua` | Omitted. | Revisit if structural search/replace is still wanted. | Treesitter parser coverage. |
 | Optional Python type server: `pyright` or `pylsp` | `prev_cfg/lua/sohooo/lsp.lua` | Deferred; Python currently uses Ruff only. | Add only if Python type/completion support is needed beyond Ruff. | External `pyright` or `pylsp` on `PATH`. |
 | Language-specific plugins: `vim-go`, `rust-tools.nvim`, `dbtpal` | `prev_cfg/init.lua` | Deferred; baseline LSP uses native `vim.lsp`. | Migrate one workflow at a time only if native LSP is insufficient. | External language tools supplied outside Mason. |
-| Formatting/linting beyond LSP | `prev_cfg/lua/sohooo/null-ls.lua` | Deferred. | Decide between native LSP formatting, conform/lint integrations, or no extra layer. | External formatters/linters on `PATH`. |
-| `nvim-dap` | `prev_cfg/init.lua` | Deferred. | Add only with selected adapters. | Debug adapters supplied outside Mason. |
 | `vim-go` globals from `misc.lua` | `prev_cfg/lua/sohooo/misc.lua` | Blocked. | Copy only if `vim-go` is reintroduced. | `vim-go` migrated. |
 | Commented treesitter extras | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/treesitter.lua` | Not migrated; inactive in old baseline. | Promote individually only if a concrete treesitter workflow is wanted. | Parser/tooling coverage. |
 | Commented Noice setup | `prev_cfg/init.lua`, `prev_cfg/lua/sohooo/noice.lua` | Not migrated from old config; LazyVim already includes its own UI choices. | Revisit only through LazyVim extras/UI policy. | UI preference. |
@@ -114,9 +68,9 @@ No active migration items.
 
 ## LazyVim overlap review
 
-The direct overlap items from the first review were resolved by the removal
-table above. Remaining items are intentionally distinct workflows to revisit
-only if they become noisy or unused.
+The direct overlap items from the first review were resolved and recorded in
+`docs/migration-decisions.md`. Remaining items are intentionally distinct
+workflows to revisit only if they become noisy or unused.
 
 | Area | Current local piece | LazyVim/baseline overlap | Current impact | Suggested next action |
 | --- | --- | --- | --- | --- |

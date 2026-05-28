@@ -1,6 +1,8 @@
 # Neovim Healthcheck
 
-Generated with `scripts/healthcheck.sh`.
+Generated with `scripts/healthcheck.sh` through `make healthcheck`. Do not edit
+the report body by hand; summarize actionable items in
+`docs/healthcheck-findings.md`.
 
 - Exit status: `0`
 

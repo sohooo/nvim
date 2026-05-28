@@ -15,8 +15,9 @@ The bundle includes:
 - compiled Treesitter parsers configured in `lua/plugins/treesitter.lua`;
 - self-contained `data`, `state`, `cache`, and `run` directories.
 
-The bundle does not include LSP servers or optional editor CLI tools. Those
-remain host-provided and are documented in [External tools](external-tools.md).
+The bundle does not include LSP servers, AI CLIs, or optional editor CLI tools.
+Those remain host-provided and are documented in
+[External tools](external-tools.md).
 
 ## Build
 

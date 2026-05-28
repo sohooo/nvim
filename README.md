@@ -3,6 +3,15 @@
 LazyVim-based Neovim configuration with project-local startup, plugin state,
 and cache directories.
 
+Current baseline:
+
+- LazyVim with local overrides under `lua/`.
+- Comma is the leader key.
+- Snacks provides pickers, file explorer, terminal integration, and UI prompts.
+- Mason is disabled; LSP and tool binaries come from `PATH`.
+- Native `vim.lsp` config lives in this repo.
+- Linux x86_64 airgap bundles use an extracted Neovim AppImage.
+
 ## Run
 
 Use the wrapper script so Neovim sees this repository as its config and stores
@@ -89,6 +98,7 @@ follow-up work.
 
 - [PORTABLE.md](PORTABLE.md)
 - [docs/airgap-bundle.md](docs/airgap-bundle.md)
+- [docs/ai.md](docs/ai.md)
 - [docs/plugins.md](docs/plugins.md)
 - [docs/keymaps.md](docs/keymaps.md)
 - [docs/settings.md](docs/settings.md)

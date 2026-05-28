@@ -29,10 +29,10 @@ optional=(
   ruby-lsp
   lua-language-server
   puppet-languageserver
+  crush
   codex
   claude
   gemini
-  copilot-language-server
 )
 
 missing_required=0

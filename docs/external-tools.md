@@ -33,11 +33,11 @@ experience. Missing tools should degrade features instead of breaking startup.
 
 | Tool | Used By | Purpose | Requirement |
 | --- | --- | --- | --- |
-| `rg` | Snacks picker, LazyVim health | Fast text search for live grep and word search. | Optional, strongly recommended for `<leader>s`, `<leader>S`, and search pickers. |
+| `rg` | Snacks picker, LazyVim health | Fast text search for live grep and word search. | Optional, strongly recommended for `,s`, `,S`, and search pickers. |
 | `fd` | Snacks picker, LazyVim health | Fast file discovery. | Optional, strongly recommended for file pickers. |
 | `fzf` | LazyVim/Snacks integrations | Fuzzy filtering support where available. | Optional; healthcheck may warn if missing. |
 | `trash` | Snacks/LazyVim file actions | Move deleted files to the system trash when file actions use it. | Optional; direct buffer deletion does not require it. |
-| `lazygit` | `lua/plugins/snacks-terminal.lua` | Floating terminal Git UI on `<leader>tg`. | Optional; mapping works when `lazygit` is on `PATH`. |
+| `lazygit` | `lua/plugins/snacks-terminal.lua` | Floating terminal Git UI on `,tg`. | Optional; mapping works when `lazygit` is on `PATH`. |
 
 ## LSP Binaries
 
@@ -93,25 +93,24 @@ make check-external-tools
 The check fails only for required tools. Optional tools are reported so deferred
 integrations can be evaluated without enabling auto-installers.
 
-## Deferred AI CLI Tools
+## Optional AI CLI Tools
 
-These tools are not active baseline dependencies. They are tracked because the
-deferred Sidekick/Copilot work may use them later.
+These tools are not active baseline dependencies. AI integrations should use
+locally installed CLIs or local endpoints and must not make Node.js a required
+dependency for this config.
 
 | Tool | Used By | Requirement |
 | --- | --- | --- |
-| `codex` | Future Sidekick or AI CLI integration. | Optional. |
-| `claude` | Future Sidekick or AI CLI integration. | Optional. |
-| `gemini` | Future Sidekick or AI CLI integration. | Optional. |
-| `copilot-language-server` | Future Copilot LSP setup. | Optional. |
+| `crush` | Preferred future AI terminal integration. | Optional. |
+| `codex` | Future AI CLI integration. | Optional. |
+| `claude` | Future AI CLI integration. | Optional. |
+| `gemini` | Future AI CLI integration. | Optional. |
 
-## Deferred AI CLI Integration
+## AI Integration Policy
 
-`folke/sidekick.nvim` is deferred. It can be reconsidered after the following
-are explicitly configured:
+No AI plugin is active yet. The preferred next step is a small Crush integration
+through Snacks terminal mappings, with CodeCompanion or Parrot kept as possible
+future Neovim-native options. See [AI-assisted coding](ai.md).
 
-- Copilot LSP setup using a binary supplied outside Mason.
-- The AI CLI commands to expose, such as `codex`, `claude`, `gemini`, or
-  another locally installed tool.
-- A healthcheck or smoke test that verifies Sidekick loads without requiring
-  Mason-managed downloads.
+Node-required AI plugins and Copilot-first workflows are out of scope for the
+current baseline.

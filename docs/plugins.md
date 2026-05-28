@@ -24,23 +24,23 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Plugin | Config path | Description | Notes |
 | --- | --- | --- | --- |
-| `folke/snacks.nvim` explorer | `lua/plugins/snacks-explorer.lua` | File explorer from LazyVim's Snacks baseline. | Mapped to `<leader>d`; `mf` reveals the current file; `o` confirms instead of opening Finder. |
-| `folke/snacks.nvim` pickers | `lua/plugins/pickers.lua` | Primary picker stack for files, buffers, grep, help, colorschemes, and symbols. | Keeps `<leader>f`, `<leader>b`, and `<leader>s` as immediate old-config style actions; broader LazyVim picker families live under `<leader>p`. |
+| `folke/snacks.nvim` explorer | `lua/plugins/snacks-explorer.lua` | File explorer from LazyVim's Snacks baseline. | Mapped to `,d`; `mf` reveals the current file; `o` confirms instead of opening Finder. |
+| `folke/snacks.nvim` pickers | `lua/plugins/pickers.lua` | Primary picker stack for files, buffers, grep, help, colorschemes, and symbols. | Keeps `,f`, `,b`, and `,s` as immediate old-config style actions; broader LazyVim picker families live under `,p`. |
 | `folke/flash.nvim` | LazyVim core | Jump/search navigation. | Kept as part of the LazyVim baseline. |
 | `folke/trouble.nvim` | LazyVim core | Diagnostics, references, symbols, and quickfix views. | Complements Snacks pickers and native LSP navigation. |
-| `folke/todo-comments.nvim` | `lua/plugins/pickers.lua` | TODO/FIX/FIXME comment indexing and picker integration. | Provided by LazyVim; local keys move TODO pickers under `<leader>ps`. |
+| `folke/todo-comments.nvim` | `lua/plugins/pickers.lua` | TODO/FIX/FIXME comment indexing and picker integration. | Provided by LazyVim; local keys move TODO pickers under `,ps`. |
 | `nvim-mini/mini.jump` | `lua/plugins/mini.lua` | Enhanced `f`, `F`, `t`, and `T` motions. | Migrated as the Mini replacement for sneak-style movement. |
 
 ## UI And Layout
 
 | Plugin | Config path | Description | Notes |
 | --- | --- | --- | --- |
-| `folke/which-key.nvim` | `lua/plugins/which-key.lua` | Shows available key sequences while typing. | Adds the local `<leader>t` tools group. |
-| `folke/noice.nvim` | `lua/plugins/pickers.lua` | Command-line, message, and notification UI. | Provided by LazyVim; local keys move Noice actions under `<leader>psn`. |
+| `folke/which-key.nvim` | `lua/plugins/which-key.lua` | Shows available key sequences while typing. | Adds local comma-leader group metadata. |
+| `folke/noice.nvim` | `lua/plugins/pickers.lua` | Command-line, message, and notification UI. | Provided by LazyVim; local keys move Noice actions under `,psn`. |
 | `MunifTanjim/nui.nvim` | Dependencies | UI component dependency. | Pulled by LazyVim UI plugins such as Noice. |
 | `nvim-treesitter/nvim-treesitter-context` | `lua/plugins/treesitter-context.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
 | `nvim-lualine/lualine.nvim` | `lua/plugins/bufferline.lua` | Statusline. | LazyVim default layout with theme selected by `lua/config/theme.lua`. |
-| `akinsho/bufferline.nvim` | `lua/plugins/bufferline.lua` | Buffer/tab line. | LazyVim default with local `<leader>B` remaps and optional highlights from `lua/config/theme.lua`. |
+| `akinsho/bufferline.nvim` | `lua/plugins/bufferline.lua` | Buffer/tab line. | LazyVim default with local `,B` remaps and optional highlights from `lua/config/theme.lua`. |
 | `nvim-mini/mini.icons` | LazyVim core | Icon provider. | Already enabled by LazyVim; used instead of adding a separate icon layer. |
 
 ## Editing
@@ -53,12 +53,12 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `nvim-mini/mini.pairs` | LazyVim core | Automatic bracket and quote pairing. | Replaces `nvim-autopairs`; already enabled by LazyVim. |
 | `nvim-mini/mini.align` | `lua/plugins/mini.lua` | Interactive alignment. | Keeps `ga` and `gA` mappings. |
 | `nvim-mini/mini.splitjoin` | `lua/plugins/mini.lua` | Toggle between single-line and multi-line forms. | Mapped to `gS`. |
-| `nvim-mini/mini.trailspace` | `lua/plugins/mini.lua` | Highlight and trim trailing whitespace. | Trim mapped to `<leader>cw`. |
+| `nvim-mini/mini.trailspace` | `lua/plugins/mini.lua` | Highlight and trim trailing whitespace. | Trim mapped to `,cw`. |
 | `nvim-mini/mini.snippets` | `lua/plugins/mini.lua` | Snippet engine. | Imported from LazyVim's Mini extra; replaces LuaSnip for this baseline. |
 | `rafamadriz/friendly-snippets` | LazyVim core | Snippet collection. | Used by the snippet/completion baseline. |
-| `MagicDuck/grug-far.nvim` | `lua/plugins/pickers.lua` | Search and replace UI. | LazyVim baseline plugin; local key is moved to `<leader>psr`. |
+| `MagicDuck/grug-far.nvim` | `lua/plugins/pickers.lua` | Search and replace UI. | LazyVim baseline plugin; local key is moved to `,psr`. |
 | `stefandtw/quickfix-reflector.vim` | `lua/plugins/quickfix-reflector.lua` | Edit quickfix entries and write changes back to files. | Kept from the previous config. |
-| Native `nvim.undotree` | `lua/config/keymaps.lua` | Neovim 0.12 built-in undo tree viewer. | Loaded on demand with `:packadd nvim.undotree`; mapped to `<leader>u`. |
+| Native `nvim.undotree` | `lua/config/keymaps.lua` | Neovim 0.12 built-in undo tree viewer. | Loaded on demand with `:packadd nvim.undotree`; mapped to `,u`. |
 | `config.style` | `lua/config/style.lua` | Shared local style helper. | Centralizes the `NVIM_STYLE=plain` icon decision used by plugin specs. |
 
 ## Git And Terminal
@@ -68,7 +68,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `lewis6991/gitsigns.nvim` | LazyVim core | Git signs and hunk actions. | Restored as the LazyVim default. |
 | `tpope/vim-fugitive` | `lua/plugins/fugitive.lua` | Git command integration inside Neovim. | Loaded on Fugitive commands such as `:Git`; complements lazygit and Gitsigns. |
 | `tpope/vim-dispatch` | `lua/plugins/dispatch.lua` | Async build and command dispatcher. | Loaded on Dispatch commands including `:Dispatch`, `:Make`, `:Start`, and vim-dispatch's `:Focus`; no external tool is invoked at startup. |
-| `folke/snacks.nvim` terminal | `lua/plugins/snacks-terminal.lua` | Terminal and lazygit workflow. | Replaces the previous terminal plugin while preserving `<leader>te`, `<leader>tt`, and `<leader>tg`. |
+| `folke/snacks.nvim` terminal | `lua/plugins/snacks-terminal.lua` | Terminal and lazygit workflow. | Replaces the previous terminal plugin while preserving `,te`, `,tt`, and `,tg`. |
 | `samjwill/nvim-unception` | `lua/plugins/nvim-unception.lua` | Avoids nested Neovim sessions from terminal Neovim. | Active only when a UI/server context is available. |
 
 ## LSP
@@ -97,4 +97,4 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Plugin | Reason |
 | --- | --- |
-| `folke/sidekick.nvim` | Deferred until Copilot LSP and external AI CLI binaries are configured outside Mason. See [External tools](external-tools.md). |
+| AI assistant plugin | No active runtime plugin yet. Crush terminal integration is the preferred next direction; CodeCompanion and Parrot remain future candidates. See [AI-assisted coding](ai.md). |

@@ -45,9 +45,9 @@ LSP buffer-local mappings are registered on `LspAttach`:
 | `gD` | Go to declaration |
 | `K` | Hover |
 | `gK`, `<C-k>` in insert mode | Signature help |
-| `<leader>ca` | Code action |
-| `<leader>cr` | Rename |
-| `<leader>cl` | `:checkhealth vim.lsp` |
+| `,ca` | Code action |
+| `,cr` | Rename |
+| `,cl` | `:checkhealth vim.lsp` |
 
 ## Verification
 
