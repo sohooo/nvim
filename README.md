@@ -35,6 +35,37 @@ NVIM_BIN=/path/to/nvim scripts/nvim.sh
    terminal, and AI integrations.
 4. Run `make healthcheck` when you want to refresh the captured health report.
 
+## Plugins And Keybinds
+
+The full plugin inventory lives in [docs/plugins.md](docs/plugins.md). This is
+the quick map for day-to-day use.
+
+| Area | Plugins | Source | Main keys |
+| --- | --- | --- | --- |
+| Plugin/runtime foundation | `lazy.nvim`, `LazyVim`, `lazydev.nvim`, `persistence.nvim`, `plenary.nvim` | LazyVim plus local bootstrap | `:Lazy` |
+| Completion and snippets | `blink.cmp`, `mini.snippets`, `friendly-snippets` | LazyVim | Completion appears in insert mode. |
+| Files, buffers, search | `snacks.nvim` pickers/explorer, `todo-comments.nvim`, `flash.nvim`, `trouble.nvim`, `grug-far.nvim` | LazyVim with local key overrides | `,f`, `,F`, `,s`, `,S`, `,b`, `,d`, `mf`, `,psr`, `,pst`, `,psT` |
+| UI and navigation | `which-key.nvim`, `noice.nvim`, `nvim-treesitter-context`, `lualine.nvim`, `bufferline.nvim`, `mini.icons` | LazyVim with local overrides | `,tc`, `,psn...`, `<Tab>`, `<S-Tab>`, `,B...` |
+| Editing | `mini.surround`, `mini.ai`, `mini.comment`, `mini.pairs`, `mini.align`, `mini.splitjoin`, `mini.trailspace`, native `nvim.undotree` | LazyVim plus local Mini/native setup | `gc`, `gsa`, `gsd`, `gsr`, `ga`, `gA`, `gS`, `,cw`, `,u`, `,q` |
+| Git and terminal | `gitsigns.nvim`, `vim-fugitive`, `vim-dispatch`, `snacks.nvim` terminal, `nvim-unception` | LazyVim plus local additions | `,tg`, `,te`, `,tt`, `:Git`, `:Dispatch`, `:Make` |
+| LSP, formatting, linting | Native `vim.lsp`, `conform.nvim`, `nvim-lint` | Local native LSP plus LazyVim integrations | `gd`, `gr`, `K`, `gK`, `,ca`, `,cr`, `,cl` |
+| Treesitter | `nvim-treesitter`, `nvim-treesitter-textobjects`, `nvim-ts-autotag`, `nvim-ts-context-commentstring`, `ts-comments.nvim` | LazyVim with local parser list | Syntax, textobjects, comments, and context header are automatic. |
+| Themes | `tokyonight.nvim`, `nord-vim`, `catppuccin`, `kanagawa.nvim` | LazyVim plus local theme profiles | `,tc` |
+
+Most important keys:
+
+| Key | Action |
+| --- | --- |
+| `,f` / `,s` / `,b` | Find files, grep text, or pick buffers instantly. |
+| `,F` / `,S` | Limit file or grep search to a chosen directory. |
+| `,d` / `mf` | Open the project tree or reveal the current file in it. |
+| `<Tab>` / `<S-Tab>` | Move through buffers in the tabline. |
+| `,q` / `,B...` | Close the current buffer or use buffer-management actions. |
+| `gd`, `gr`, `K`, `,ca`, `,cr` | LSP navigation, references, hover, code action, and rename. |
+| `ga`, `gA`, `gS`, `gsa`, `gsd`, `gsr`, `gc` | Align, split/join, surround, and comment editing helpers. |
+| `,te`, `,tt`, `,tg` | Open terminal and lazygit workflows. |
+| `,u`, `,cw`, `,tc` | Undo tree, trim trailing whitespace, and colorscheme picker. |
+
 ## Verify
 
 Run the headless startup test:
