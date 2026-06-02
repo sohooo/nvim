@@ -36,6 +36,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Trust checkout directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Build airgap AppImage
         run: make airgap-appimage
 
