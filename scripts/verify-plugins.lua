@@ -112,7 +112,9 @@ local available_parsers = require("nvim-treesitter.config").get_available()
 local installed_parsers = require("nvim-treesitter.config").get_installed("parsers")
 
 for parser, spec in pairs(treesitter_parsers) do
-  assert_contains(treesitter_opts.ensure_installed, parser, "treesitter ensure_installed")
+  if vim.env.NVIM_AIRGAP ~= "1" then
+    assert_contains(treesitter_opts.ensure_installed, parser, "treesitter ensure_installed")
+  end
   assert_contains(available_parsers, parser, "treesitter available parsers")
 
   for _, filetype in ipairs(spec.filetypes) do

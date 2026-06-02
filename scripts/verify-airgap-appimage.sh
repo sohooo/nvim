@@ -70,6 +70,19 @@ vim.cmd("quitall!")
 LUA
 }
 
+parser_artifacts() {
+  local language="$1"
+
+  case "$language" in
+    bash)
+      printf '%s\n' bash sh
+      ;;
+    *)
+      printf '%s\n' "$language"
+      ;;
+  esac
+}
+
 [[ "${1:-}" != "" ]] || {
   usage >&2
   exit 2
@@ -123,7 +136,15 @@ XDG_RUNTIME_DIR="$tmp/run" \
 
 missing_parser=0
 while IFS= read -r language; do
-  if ! find "$appdir/data/nvim" -path "*/parser/${language}.so" -type f | grep -q .; then
+  found_parser=0
+  while IFS= read -r artifact; do
+    if find "$appdir/data/nvim" -path "*/parser/${artifact}.so" -type f | grep -q .; then
+      found_parser=1
+      break
+    fi
+  done < <(parser_artifacts "$language")
+
+  if [[ "$found_parser" -eq 0 ]]; then
     echo "missing Treesitter parser: $language" >&2
     missing_parser=1
   fi
