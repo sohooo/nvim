@@ -1,0 +1,53 @@
+name: airgap-appimage
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - name: Install Fedora build dependencies
+        run: |
+          dnf install -y \
+            curl \
+            desktop-file-utils \
+            file \
+            findutils \
+            gawk \
+            fuse \
+            gcc \
+            git \
+            gzip \
+            make \
+            sed \
+            tar \
+            tree-sitter-cli \
+            xz
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build airgap AppImage
+        run: make airgap-appimage
+
+      - name: Verify airgap AppImage
+        run: make verify-airgap-appimage APPIMAGE=dist/nvim-airgap-linux-x86_64.AppImage
+
+      - name: Upload latest release asset
+        if: github.ref == 'refs/heads/master'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/nvim-airgap-linux-x86_64.AppImage
+          asset_name: nvim-airgap-linux-x86_64.AppImage
+          tag: latest
+          overwrite: true

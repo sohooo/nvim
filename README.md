@@ -10,7 +10,8 @@ Current baseline:
 - Snacks provides pickers, file explorer, terminal integration, and UI prompts.
 - Mason is disabled; LSP and tool binaries come from `PATH`.
 - Native `vim.lsp` config lives in this repo.
-- Linux x86_64 airgap bundles use an extracted Neovim AppImage.
+- Linux x86_64 airgap builds support a GitHub release AppImage and a local
+  extracted tarball.
 
 ## Run
 
@@ -106,11 +107,36 @@ Capture a healthcheck report:
 make healthcheck
 ```
 
-Build and verify a Linux x86_64 airgap tarball:
+Build and verify a local Linux x86_64 airgap tarball:
 
 ```bash
 make airgap-bundle
 make verify-airgap-bundle TARBALL=dist/nvim-airgap-linux-x86_64-*.tar.gz
+```
+
+Build and verify a local Linux x86_64 release-style AppImage:
+
+```bash
+make airgap-appimage
+make verify-airgap-appimage APPIMAGE=dist/nvim-airgap-linux-x86_64.AppImage
+```
+
+The GitHub Actions workflow builds the AppImage from Fedora userspace and
+publishes `nvim-airgap-linux-x86_64.AppImage` to the `latest` release.
+
+Run the release AppImage normally:
+
+```bash
+chmod +x nvim-airgap-linux-x86_64.AppImage
+./nvim-airgap-linux-x86_64.AppImage
+```
+
+Run it on systems without FUSE support:
+
+```bash
+chmod +x nvim-airgap-linux-x86_64.AppImage
+./nvim-airgap-linux-x86_64.AppImage --appimage-extract
+./squashfs-root/AppRun
 ```
 
 ## Tooling Policy
