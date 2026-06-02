@@ -129,6 +129,28 @@ bootstrap_lazy_nvim() {
   [[ "$(git -C "$lazy_dir" rev-parse HEAD)" == "$lazy_commit" ]] || die "failed to pin lazy.nvim to $lazy_commit"
 }
 
+pin_plugins_to_lock() {
+  local plugin
+  local plugin_dir
+  local commit
+
+  while IFS= read -r plugin; do
+    [[ -n "$plugin" ]] || continue
+    plugin_dir="$BUNDLE_ROOT/data/nvim/lazy/$plugin"
+    commit="$(lock_field "$plugin" commit)"
+
+    [[ -n "$commit" ]] || die "$plugin commit missing from lazy-lock.json"
+    [[ -d "$plugin_dir/.git" ]] || continue
+
+    if ! git -C "$plugin_dir" cat-file -e "$commit^{commit}" >/dev/null 2>&1; then
+      git -C "$plugin_dir" fetch --filter=blob:none origin "$commit"
+    fi
+
+    git -C "$plugin_dir" checkout --detach "$commit"
+    [[ "$(git -C "$plugin_dir" rev-parse HEAD)" == "$commit" ]] || die "failed to pin $plugin to $commit"
+  done < <(plugin_names)
+}
+
 write_build_lua_scripts() {
   cat >"$BUILD_DIR/restore-lazy.lua" <<'LUA'
 local function fail(message)
@@ -407,6 +429,7 @@ if [[ "$staged_lock_sha_after" != "$staged_lock_sha_before" ]]; then
   echo "lazy.nvim rewrote the staged lazy-lock.json during restore; restoring the source lockfile"
   cp "$ROOT/lazy-lock.json" "$BUNDLE_ROOT/config/nvim/lazy-lock.json"
 fi
+pin_plugins_to_lock
 "$nvim_bin" --headless "+luafile $BUILD_DIR/check-lazy-restore.lua"
 AIRGAP_TS_LANGUAGES="$(treesitter_languages | paste -sd' ' -)" "$nvim_bin" --headless "+luafile $BUILD_DIR/install-treesitter.lua"
 "$nvim_bin" --headless "+qa"
