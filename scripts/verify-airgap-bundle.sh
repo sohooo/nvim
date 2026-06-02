@@ -30,8 +30,37 @@ treesitter_languages() {
   ' "$ROOT/lua/plugins/treesitter.lua"
 }
 
-plugin_names() {
-  sed -n 's/^  "\([^"]*\)":.*/\1/p' "$ROOT/lazy-lock.json"
+write_lazy_restore_check() {
+  cat >"$tmp/check-lazy-restore.lua" <<'LUA'
+local Config = require("lazy.core.config")
+local Git = require("lazy.manage.git")
+local Lock = require("lazy.manage.lock")
+
+Lock._loaded = false
+Lock.load()
+
+local failures = {}
+
+for _, plugin in pairs(Config.plugins) do
+  if plugin.url and not plugin._.is_local then
+    local lock = Lock.get(plugin)
+    if not lock then
+      table.insert(failures, plugin.name .. " is active but missing from lazy-lock.json")
+    elseif not plugin._.installed then
+      table.insert(failures, plugin.name .. " is active but was not installed")
+    else
+      local info = Git.info(plugin.dir)
+      if info.commit ~= lock.commit then
+        table.insert(failures, plugin.name .. " is at " .. tostring(info.commit) .. " instead of " .. lock.commit)
+      end
+    end
+  end
+end
+
+if #failures > 0 then
+  error("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
+end
+LUA
 }
 
 [[ "${1:-}" != "" ]] || {
@@ -48,6 +77,7 @@ tarball="$1"
 
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
+write_lazy_restore_check
 
 tar -xzf "$tarball" -C "$tmp"
 
@@ -71,14 +101,7 @@ XDG_CACHE_HOME="$bundle_root/cache" \
 XDG_RUNTIME_DIR="$bundle_root/run" \
   "$bundle_root/config/nvim/scripts/verify-plugins.sh"
 
-missing_plugin=0
-while IFS= read -r plugin; do
-  [[ -d "$bundle_root/data/nvim/lazy/$plugin" ]] || {
-    echo "missing plugin directory: $plugin" >&2
-    missing_plugin=1
-  }
-done < <(plugin_names)
-[[ "$missing_plugin" -eq 0 ]] || exit 1
+"$bundle_root/bin/nvim" --headless "+luafile $tmp/check-lazy-restore.lua" +qa
 
 missing_parser=0
 while IFS= read -r language; do

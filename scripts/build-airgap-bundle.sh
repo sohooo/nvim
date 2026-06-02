@@ -97,6 +97,39 @@ plugin_names() {
   sed -n 's/^  "\([^"]*\)":.*/\1/p' "$ROOT/lazy-lock.json"
 }
 
+write_lazy_restore_check() {
+  cat >"$BUILD_DIR/check-lazy-restore.lua" <<'LUA'
+local Config = require("lazy.core.config")
+local Git = require("lazy.manage.git")
+local Lock = require("lazy.manage.lock")
+
+Lock._loaded = false
+Lock.load()
+
+local failures = {}
+
+for _, plugin in pairs(Config.plugins) do
+  if plugin.url and not plugin._.is_local then
+    local lock = Lock.get(plugin)
+    if not lock then
+      table.insert(failures, plugin.name .. " is active but missing from lazy-lock.json")
+    elseif not plugin._.installed then
+      table.insert(failures, plugin.name .. " is active but was not installed")
+    else
+      local info = Git.info(plugin.dir)
+      if info.commit ~= lock.commit then
+        table.insert(failures, plugin.name .. " is at " .. tostring(info.commit) .. " instead of " .. lock.commit)
+      end
+    end
+  end
+end
+
+if #failures > 0 then
+  error("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
+end
+LUA
+}
+
 copy_config() {
   mkdir -p "$BUNDLE_ROOT/config/nvim"
   (
@@ -270,6 +303,7 @@ ln -sfn "squashfs-root/AppRun" "$BUNDLE_ROOT/opt/nvim-appimage/AppRun"
 copy_config
 write_launcher
 write_readme
+write_lazy_restore_check
 staged_lock_sha_before="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")"
 
 export NVIM_AIRGAP=0
@@ -284,7 +318,11 @@ nvim_version="$("$nvim_bin" --version | head -n 1)"
 
 "$nvim_bin" --headless "+Lazy! restore" +qa
 staged_lock_sha_after="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")"
-[[ "$staged_lock_sha_after" == "$staged_lock_sha_before" ]] || die "lazy.nvim changed lazy-lock.json during restore"
+if [[ "$staged_lock_sha_after" != "$staged_lock_sha_before" ]]; then
+  echo "lazy.nvim rewrote the staged lazy-lock.json during restore; restoring the source lockfile"
+  cp "$ROOT/lazy-lock.json" "$BUNDLE_ROOT/config/nvim/lazy-lock.json"
+fi
+"$nvim_bin" --headless "+luafile $BUILD_DIR/check-lazy-restore.lua" +qa
 "$nvim_bin" --headless "+TSInstallSync $(treesitter_languages | paste -sd' ' -)" +qa
 "$nvim_bin" --headless "+qa"
 
