@@ -367,34 +367,20 @@ write_manifest() {
 MANIFEST
 }
 
-extract_appimage_tool() {
-  local tool="$1"
-  local target="$2"
-
-  mkdir -p "$target"
-  (
-    cd "$target"
-    "$tool" --appimage-extract >/dev/null
-  )
-  [[ -x "$target/squashfs-root/AppRun" ]] || die "failed to extract appimagetool"
-  printf '%s\n' "$target/squashfs-root/AppRun"
-}
-
 run_appimagetool() {
   local tool="$DOWNLOAD_DIR/appimagetool-x86_64.AppImage"
-  local runner="$tool"
   local output="$DIST_DIR/$OUTPUT_NAME"
 
   curl -fL "$APPIMAGETOOL_URL" -o "$tool"
   chmod 755 "$tool"
 
-  if ! "$tool" --appimage-version >/dev/null 2>&1; then
-    runner="$(extract_appimage_tool "$tool" "$BUILD_DIR/appimagetool")"
-  fi
-
   mkdir -p "$DIST_DIR"
   rm -f "$output"
-  ARCH=x86_64 "$runner" "$APPDIR" "$output"
+  if "$tool" --appimage-version >/dev/null 2>&1; then
+    ARCH=x86_64 "$tool" "$APPDIR" "$output"
+  else
+    ARCH=x86_64 APPIMAGE_EXTRACT_AND_RUN=1 "$tool" "$APPDIR" "$output"
+  fi
   chmod 755 "$output"
   echo "Airgap AppImage written to $output"
 }
