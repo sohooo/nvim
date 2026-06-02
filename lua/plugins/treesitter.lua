@@ -31,8 +31,8 @@ return {
         vim.treesitter.language.register(parser, filetype)
       end
     end,
-    opts = {
-      ensure_installed = ensure_installed,
-    },
+    opts = function(_, opts)
+      opts.ensure_installed = ensure_installed
+    end,
   },
 }

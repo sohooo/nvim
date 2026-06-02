@@ -107,7 +107,13 @@ local treesitter_parsers = {
   yaml = { filetypes = { "yaml" } },
 }
 
-local treesitter_opts = require("lazy.core.config").spec.plugins["nvim-treesitter"].opts
+local treesitter_spec_opts = require("lazy.core.config").spec.plugins["nvim-treesitter"].opts
+local treesitter_opts = {}
+if type(treesitter_spec_opts) == "function" then
+  treesitter_spec_opts(nil, treesitter_opts)
+else
+  treesitter_opts = treesitter_spec_opts
+end
 local available_parsers = require("nvim-treesitter.config").get_available()
 local installed_parsers = require("nvim-treesitter.config").get_installed("parsers")
 
