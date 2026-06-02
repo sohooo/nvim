@@ -229,10 +229,13 @@ local ok, err = xpcall(function()
     error("AIRGAP_TS_LANGUAGES is empty")
   end
 
-  local task = require("nvim-treesitter.install").install(languages, { summary = true })
-  local success = task:wait()
-  if not success then
-    error("failed to install all Treesitter parsers")
+  local install = require("nvim-treesitter.install").install
+  for _, language in ipairs(languages) do
+    local task = install({ language }, { summary = true })
+    local success = task:wait()
+    if not success then
+      error("failed to install Treesitter parser: " .. language)
+    end
   end
 end, debug.traceback)
 

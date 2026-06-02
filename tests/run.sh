@@ -3,7 +3,9 @@ set -e
 
 DIR="$(dirname "$0")"
 
-if ! command -v nvim >/dev/null 2>&1; then
+nvim_bin="${NVIM_BIN:-nvim}"
+
+if ! command -v "$nvim_bin" >/dev/null 2>&1; then
   echo "Neovim not found; installing latest release..."
   tmp_dir="$(mktemp -d)"
   trap 'rm -rf "$tmp_dir"' EXIT
