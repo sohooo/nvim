@@ -18,6 +18,11 @@ local parser_languages = {
   "yaml",
 }
 
+local ensure_installed = parser_languages
+if vim.env.NVIM_AIRGAP == "1" or vim.env.NVIM_AIRGAP_BUILD == "1" then
+  ensure_installed = {}
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -27,7 +32,7 @@ return {
       end
     end,
     opts = {
-      ensure_installed = parser_languages,
+      ensure_installed = ensure_installed,
     },
   },
 }

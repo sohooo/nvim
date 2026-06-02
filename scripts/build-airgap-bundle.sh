@@ -417,6 +417,7 @@ bootstrap_lazy_nvim
 staged_lock_sha_before="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")"
 
 export NVIM_AIRGAP=0
+export NVIM_AIRGAP_BUILD=1
 export XDG_CONFIG_HOME="$BUNDLE_ROOT/config"
 export XDG_DATA_HOME="$BUNDLE_ROOT/data"
 export XDG_STATE_HOME="$BUNDLE_ROOT/state"

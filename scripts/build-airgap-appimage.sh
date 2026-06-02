@@ -452,6 +452,7 @@ write_readme
 staged_lock_sha_before="$(sha256_file "$APPDIR/config/nvim/lazy-lock.json")"
 
 export NVIM_AIRGAP=0
+export NVIM_AIRGAP_BUILD=1
 export XDG_CONFIG_HOME="$APPDIR/config"
 export XDG_DATA_HOME="$APPDIR/data"
 export XDG_STATE_HOME="$BUILD_DIR/state"
