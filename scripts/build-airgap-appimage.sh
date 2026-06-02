@@ -376,11 +376,7 @@ run_appimagetool() {
 
   mkdir -p "$DIST_DIR"
   rm -f "$output"
-  if "$tool" --appimage-version >/dev/null 2>&1; then
-    ARCH=x86_64 "$tool" "$APPDIR" "$output"
-  else
-    ARCH=x86_64 APPIMAGE_EXTRACT_AND_RUN=1 "$tool" "$APPDIR" "$output"
-  fi
+  ARCH=x86_64 APPIMAGE_EXTRACT_AND_RUN=1 "$tool" "$APPDIR" "$output"
   chmod 755 "$output"
   echo "Airgap AppImage written to $output"
 }
