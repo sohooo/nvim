@@ -32,6 +32,11 @@ treesitter_languages() {
 
 write_lazy_restore_check() {
   cat >"$tmp/check-lazy-restore.lua" <<'LUA'
+local function fail(message)
+  vim.api.nvim_err_writeln(message)
+  vim.cmd("cquit 1")
+end
+
 local Config = require("lazy.core.config")
 local Git = require("lazy.manage.git")
 local Lock = require("lazy.manage.lock")
@@ -58,8 +63,10 @@ for _, plugin in pairs(Config.plugins) do
 end
 
 if #failures > 0 then
-  error("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
+  fail("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
 end
+
+vim.cmd("quitall!")
 LUA
 }
 
@@ -101,7 +108,7 @@ XDG_CACHE_HOME="$bundle_root/cache" \
 XDG_RUNTIME_DIR="$bundle_root/run" \
   "$bundle_root/config/nvim/scripts/verify-plugins.sh"
 
-"$bundle_root/bin/nvim" --headless "+luafile $tmp/check-lazy-restore.lua" +qa
+"$bundle_root/bin/nvim" --headless "+luafile $tmp/check-lazy-restore.lua"
 
 missing_parser=0
 while IFS= read -r language; do

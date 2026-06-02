@@ -97,8 +97,62 @@ plugin_names() {
   sed -n 's/^  "\([^"]*\)":.*/\1/p' "$ROOT/lazy-lock.json"
 }
 
-write_lazy_restore_check() {
+lock_field() {
+  local plugin="$1"
+  local field="$2"
+
+  awk -v plugin="$plugin" -v field="$field" '
+    index($0, "\"" plugin "\":") {
+      line = $0
+      sub("^.*\"" field "\": *\"", "", line)
+      sub("\".*$", "", line)
+      print line
+      exit
+    }
+  ' "$ROOT/lazy-lock.json"
+}
+
+bootstrap_lazy_nvim() {
+  local lazy_dir="$BUNDLE_ROOT/data/nvim/lazy/lazy.nvim"
+  local lazy_branch
+  local lazy_commit
+
+  lazy_branch="$(lock_field lazy.nvim branch)"
+  lazy_commit="$(lock_field lazy.nvim commit)"
+
+  [[ -n "$lazy_branch" ]] || die "lazy.nvim branch missing from lazy-lock.json"
+  [[ -n "$lazy_commit" ]] || die "lazy.nvim commit missing from lazy-lock.json"
+
+  mkdir -p "$(dirname "$lazy_dir")"
+  git clone --filter=blob:none --branch "$lazy_branch" https://github.com/folke/lazy.nvim.git "$lazy_dir"
+  git -C "$lazy_dir" checkout --detach "$lazy_commit"
+  [[ "$(git -C "$lazy_dir" rev-parse HEAD)" == "$lazy_commit" ]] || die "failed to pin lazy.nvim to $lazy_commit"
+}
+
+write_build_lua_scripts() {
+  cat >"$BUILD_DIR/restore-lazy.lua" <<'LUA'
+local function fail(message)
+  vim.api.nvim_err_writeln(message)
+  vim.cmd("cquit 1")
+end
+
+local ok, err = xpcall(function()
+  require("lazy.manage").restore({ wait = true, show = false })
+end, debug.traceback)
+
+if not ok then
+  fail(err)
+end
+
+vim.cmd("quitall!")
+LUA
+
   cat >"$BUILD_DIR/check-lazy-restore.lua" <<'LUA'
+local function fail(message)
+  vim.api.nvim_err_writeln(message)
+  vim.cmd("cquit 1")
+end
+
 local Config = require("lazy.core.config")
 local Git = require("lazy.manage.git")
 local Lock = require("lazy.manage.lock")
@@ -125,8 +179,38 @@ for _, plugin in pairs(Config.plugins) do
 end
 
 if #failures > 0 then
-  error("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
+  fail("lazy restore verification failed:\n" .. table.concat(failures, "\n"))
 end
+
+vim.cmd("quitall!")
+LUA
+
+  cat >"$BUILD_DIR/install-treesitter.lua" <<'LUA'
+local function fail(message)
+  vim.api.nvim_err_writeln(message)
+  vim.cmd("cquit 1")
+end
+
+local ok, err = xpcall(function()
+  require("lazy.core.loader").load({ "nvim-treesitter" }, { cmd = "airgap bundle" })
+
+  local languages = vim.split(vim.env.AIRGAP_TS_LANGUAGES or "", "%s+", { trimempty = true })
+  if #languages == 0 then
+    error("AIRGAP_TS_LANGUAGES is empty")
+  end
+
+  local task = require("nvim-treesitter.install").install(languages, { summary = true })
+  local success = task:wait()
+  if not success then
+    error("failed to install all Treesitter parsers")
+  end
+end, debug.traceback)
+
+if not ok then
+  fail(err)
+end
+
+vim.cmd("quitall!")
 LUA
 }
 
@@ -303,7 +387,8 @@ ln -sfn "squashfs-root/AppRun" "$BUNDLE_ROOT/opt/nvim-appimage/AppRun"
 copy_config
 write_launcher
 write_readme
-write_lazy_restore_check
+write_build_lua_scripts
+bootstrap_lazy_nvim
 staged_lock_sha_before="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")"
 
 export NVIM_AIRGAP=0
@@ -316,14 +401,14 @@ export XDG_RUNTIME_DIR="$BUNDLE_ROOT/run"
 nvim_bin="$BUNDLE_ROOT/bin/nvim"
 nvim_version="$("$nvim_bin" --version | head -n 1)"
 
-"$nvim_bin" --headless "+Lazy! restore" +qa
+"$nvim_bin" --headless "+luafile $BUILD_DIR/restore-lazy.lua"
 staged_lock_sha_after="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")"
 if [[ "$staged_lock_sha_after" != "$staged_lock_sha_before" ]]; then
   echo "lazy.nvim rewrote the staged lazy-lock.json during restore; restoring the source lockfile"
   cp "$ROOT/lazy-lock.json" "$BUNDLE_ROOT/config/nvim/lazy-lock.json"
 fi
-"$nvim_bin" --headless "+luafile $BUILD_DIR/check-lazy-restore.lua" +qa
-"$nvim_bin" --headless "+TSInstallSync $(treesitter_languages | paste -sd' ' -)" +qa
+"$nvim_bin" --headless "+luafile $BUILD_DIR/check-lazy-restore.lua"
+AIRGAP_TS_LANGUAGES="$(treesitter_languages | paste -sd' ' -)" "$nvim_bin" --headless "+luafile $BUILD_DIR/install-treesitter.lua"
 "$nvim_bin" --headless "+qa"
 
 bundle_git_commit="$(git -C "$ROOT" rev-parse HEAD)"
