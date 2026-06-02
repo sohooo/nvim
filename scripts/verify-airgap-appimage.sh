@@ -79,7 +79,7 @@ LUA
   exit 0
 }
 
-appimage="$1"
+appimage="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 [[ -f "$appimage" ]] || die "AppImage not found: $appimage"
 [[ -x "$appimage" ]] || chmod 755 "$appimage"
 
