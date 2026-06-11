@@ -188,6 +188,7 @@ for _, mapping in ipairs({
   "<leader>cw",
   "<Tab>",
   "<S-Tab>",
+  "<BS>",
   "mf",
   "ga",
   "gA",

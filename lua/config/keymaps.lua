@@ -14,6 +14,7 @@ end, { desc = "Toggle Undo Tree" })
 
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
+vim.keymap.set("n", "<BS>", "<C-w>h", { desc = "Go to Left Window" })
 
 for _, lhs in ipairs({
   "<leader>bb",
