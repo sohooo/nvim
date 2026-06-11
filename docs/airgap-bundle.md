@@ -33,7 +33,7 @@ Red Hat based targets.
 The workflow publishes each verified asset twice:
 
 - a versioned release tagged `airgap-YYYY.MM.DD-<short-sha>`, with an asset
-  named `nvim-airgap-linux-x86_64-airgap-YYYY.MM.DD-<short-sha>.AppImage`;
+  named `nvim-airgap-linux-x86_64-YYYY.MM.DD-<short-sha>.AppImage`;
 - the moving `latest` release, with the stable asset name
   `nvim-airgap-linux-x86_64.AppImage`.
 

@@ -50,9 +50,10 @@ jobs:
         run: |
           short_sha="$(git rev-parse --short=12 HEAD)"
           release_version="airgap-$(date -u +%Y.%m.%d)-${short_sha}"
+          asset_version="${release_version#airgap-}"
           {
             echo "RELEASE_VERSION=$release_version"
-            echo "VERSIONED_ASSET=nvim-airgap-linux-x86_64-${release_version}.AppImage"
+            echo "VERSIONED_ASSET=nvim-airgap-linux-x86_64-${asset_version}.AppImage"
           } >> "$GITHUB_ENV"
 
       - name: Upload versioned release asset
