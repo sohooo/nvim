@@ -54,8 +54,21 @@ sudo mv squashfs-root /opt/nvim-airgap
 ln -s /opt/nvim-airgap/AppRun ~/.local/bin/nvim-airgap
 ```
 
-The AppImage is read-only at runtime. Its launcher uses bundled config/data and
-host-writable state, cache, and runtime directories.
+The AppImage is read-only at runtime. Its launcher uses bundled config and
+plugin data, but writes mutable files outside the image by default:
+
+| Purpose | Default path |
+| --- | --- |
+| State, ShaDa, undo, sessions | `$HOME/.local/state/nvim-airgap/nvim` |
+| Cache | `$HOME/.cache/nvim-airgap/nvim` |
+| Runtime sockets | `${TMPDIR:-/tmp}/nvim-airgap-$UID` |
+| Temporary files | `${TMPDIR:-/tmp}/nvim-airgap-$UID/tmp` |
+
+These defaults are based on the effective user. A root session, including
+`sudo`, writes to root's home and `/tmp/nvim-airgap-0` instead of creating
+root-owned files in another user's directories. Override the defaults only when
+intentional with `NVIM_AIRGAP_STATE_HOME`, `NVIM_AIRGAP_CACHE_HOME`, and
+`NVIM_AIRGAP_RUNTIME_DIR`.
 
 ## Build AppImage Locally
 
@@ -123,7 +136,9 @@ Copy the tarball to the target machine, extract it, and run:
 
 The launcher executes `opt/nvim-appimage/squashfs-root/AppRun` directly. This
 is the extracted AppImage runtime, so FUSE is not required on the target host.
-The launcher sets all XDG paths inside the extracted bundle directory.
+The launcher uses the extracted bundle for config and plugin data, and uses
+the same per-effective-user state, cache, runtime, and temp policy as the
+AppImage launcher.
 
 ## Update Workflow
 

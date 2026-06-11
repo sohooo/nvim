@@ -139,6 +139,13 @@ chmod +x nvim-airgap-linux-x86_64.AppImage
 ./squashfs-root/AppRun
 ```
 
+The AppImage uses bundled config and plugin data, but writes state, cache,
+runtime sockets, and temporary files to per-effective-user locations:
+`$HOME/.local/state/nvim-airgap`, `$HOME/.cache/nvim-airgap`, and
+`${TMPDIR:-/tmp}/nvim-airgap-$UID`. This keeps normal users and `sudo`/root
+sessions separate. Override these with `NVIM_AIRGAP_STATE_HOME`,
+`NVIM_AIRGAP_CACHE_HOME`, or `NVIM_AIRGAP_RUNTIME_DIR` when needed.
+
 ## Tooling Policy
 
 Mason is disabled. Language servers, formatters, linters, debuggers, and AI CLI

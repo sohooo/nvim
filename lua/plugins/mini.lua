@@ -1,8 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.coding.mini-comment" },
-  { import = "lazyvim.plugins.extras.coding.mini-snippets" },
-  { import = "lazyvim.plugins.extras.coding.mini-surround" },
-
   {
     "nvim-mini/mini.align",
     keys = {

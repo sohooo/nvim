@@ -85,6 +85,19 @@ sudo mv squashfs-root /opt/nvim-airgap
 ln -s /opt/nvim-airgap/AppRun ~/.local/bin/nvim-airgap
 ```
 
+The AppImage and tarball launchers keep bundled config/plugin data read-only
+from the artifact, but write mutable files outside the artifact by default:
+
+- state: `$HOME/.local/state/nvim-airgap/nvim`
+- cache: `$HOME/.cache/nvim-airgap/nvim`
+- runtime sockets and temp files: `${TMPDIR:-/tmp}/nvim-airgap-$UID`
+
+The paths are based on the effective user. Running through `sudo` uses root's
+home and `/tmp/nvim-airgap-0`, so root-owned files are not created in another
+user's cache or state directories. Set `NVIM_AIRGAP_STATE_HOME`,
+`NVIM_AIRGAP_CACHE_HOME`, or `NVIM_AIRGAP_RUNTIME_DIR` to override this
+deliberately.
+
 This repo can also build a local tarball fallback:
 
 ```bash

@@ -260,12 +260,14 @@ if [[ ! -x "$NVIM_APPDIR/AppRun" ]]; then
   exit 1
 fi
 
-state_home="${NVIM_AIRGAP_STATE_HOME:-${XDG_STATE_HOME:-$HOME/.local/state}/nvim-airgap}"
-cache_home="${NVIM_AIRGAP_CACHE_HOME:-${XDG_CACHE_HOME:-$HOME/.cache}/nvim-airgap}"
-runtime_home="${NVIM_AIRGAP_RUNTIME_DIR:-${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}/nvim-airgap-${UID:-$(id -u)}}}"
+uid="${UID:-$(id -u)}"
+home="${HOME:-${TMPDIR:-/tmp}/nvim-airgap-home-$uid}"
+state_home="${NVIM_AIRGAP_STATE_HOME:-$home/.local/state/nvim-airgap}"
+cache_home="${NVIM_AIRGAP_CACHE_HOME:-$home/.cache/nvim-airgap}"
+runtime_home="${NVIM_AIRGAP_RUNTIME_DIR:-${TMPDIR:-/tmp}/nvim-airgap-$uid}"
 
-mkdir -p "$state_home/nvim" "$cache_home/nvim" "$runtime_home"
-chmod 700 "$runtime_home"
+mkdir -p "$state_home/nvim" "$cache_home/nvim" "$runtime_home/tmp"
+chmod 700 "$state_home" "$state_home/nvim" "$cache_home" "$cache_home/nvim" "$runtime_home" "$runtime_home/tmp" 2>/dev/null || true
 
 export NVIM_AIRGAP=1
 export XDG_CONFIG_HOME="$OUTER_APPDIR/config"
@@ -273,6 +275,7 @@ export XDG_DATA_HOME="$OUTER_APPDIR/data"
 export XDG_STATE_HOME="$state_home"
 export XDG_CACHE_HOME="$cache_home"
 export XDG_RUNTIME_DIR="$runtime_home"
+export TMPDIR="$runtime_home/tmp"
 
 if [[ -d "$OUTER_APPDIR/tools/bin" ]]; then
   export PATH="$OUTER_APPDIR/tools/bin:$PATH"

@@ -262,16 +262,23 @@ if [[ ! -x "$APPDIR/AppRun" ]]; then
   exit 1
 fi
 
-mkdir -p "$BUNDLE_ROOT/state/nvim" "$BUNDLE_ROOT/cache/nvim" "$BUNDLE_ROOT/run"
-chmod 700 "$BUNDLE_ROOT/run"
+uid="${UID:-$(id -u)}"
+home="${HOME:-${TMPDIR:-/tmp}/nvim-airgap-home-$uid}"
+state_home="${NVIM_AIRGAP_STATE_HOME:-$home/.local/state/nvim-airgap}"
+cache_home="${NVIM_AIRGAP_CACHE_HOME:-$home/.cache/nvim-airgap}"
+runtime_home="${NVIM_AIRGAP_RUNTIME_DIR:-${TMPDIR:-/tmp}/nvim-airgap-$uid}"
+
+mkdir -p "$state_home/nvim" "$cache_home/nvim" "$runtime_home/tmp"
+chmod 700 "$state_home" "$state_home/nvim" "$cache_home" "$cache_home/nvim" "$runtime_home" "$runtime_home/tmp" 2>/dev/null || true
 
 export APPDIR
 export NVIM_AIRGAP="${NVIM_AIRGAP:-1}"
 export XDG_CONFIG_HOME="$BUNDLE_ROOT/config"
 export XDG_DATA_HOME="$BUNDLE_ROOT/data"
-export XDG_STATE_HOME="$BUNDLE_ROOT/state"
-export XDG_CACHE_HOME="$BUNDLE_ROOT/cache"
-export XDG_RUNTIME_DIR="$BUNDLE_ROOT/run"
+export XDG_STATE_HOME="$state_home"
+export XDG_CACHE_HOME="$cache_home"
+export XDG_RUNTIME_DIR="$runtime_home"
+export TMPDIR="$runtime_home/tmp"
 
 if [[ -d "$BUNDLE_ROOT/tools/bin" ]]; then
   export PATH="$BUNDLE_ROOT/tools/bin:$PATH"
