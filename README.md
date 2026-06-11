@@ -121,8 +121,11 @@ make airgap-appimage
 make verify-airgap-appimage APPIMAGE=dist/nvim-airgap-linux-x86_64.AppImage
 ```
 
-The GitHub Actions workflow builds the AppImage from Fedora userspace and
-publishes `nvim-airgap-linux-x86_64.AppImage` to the `latest` release.
+The GitHub Actions workflow builds the AppImage from Fedora userspace,
+publishes a versioned release named `airgap-YYYY.MM.DD-<short-sha>`, and also
+updates the moving `latest` release. Use the versioned release when you need a
+stable artifact reference, and `latest` when you want the newest successful
+build.
 
 Run the release AppImage normally:
 

@@ -30,7 +30,15 @@ container on GitHub Actions. The Ubuntu runner only hosts the container; build
 dependencies and parser compilation run in Fedora userspace to better match
 Red Hat based targets.
 
-The workflow publishes the verified asset to the `latest` release.
+The workflow publishes each verified asset twice:
+
+- a versioned release tagged `airgap-YYYY.MM.DD-<short-sha>`, with an asset
+  named `nvim-airgap-linux-x86_64-airgap-YYYY.MM.DD-<short-sha>.AppImage`;
+- the moving `latest` release, with the stable asset name
+  `nvim-airgap-linux-x86_64.AppImage`.
+
+Use the versioned release when you need a stable artifact reference. Use
+`latest` only as a convenience alias for the newest successful build.
 
 Run normally:
 

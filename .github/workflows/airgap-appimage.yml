@@ -45,6 +45,27 @@ jobs:
       - name: Verify airgap AppImage
         run: make verify-airgap-appimage APPIMAGE=dist/nvim-airgap-linux-x86_64.AppImage
 
+      - name: Prepare release version
+        if: github.ref == 'refs/heads/master'
+        run: |
+          short_sha="$(git rev-parse --short=12 HEAD)"
+          release_version="airgap-$(date -u +%Y.%m.%d)-${short_sha}"
+          {
+            echo "RELEASE_VERSION=$release_version"
+            echo "VERSIONED_ASSET=nvim-airgap-linux-x86_64-${release_version}.AppImage"
+          } >> "$GITHUB_ENV"
+
+      - name: Upload versioned release asset
+        if: github.ref == 'refs/heads/master'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/nvim-airgap-linux-x86_64.AppImage
+          asset_name: ${{ env.VERSIONED_ASSET }}
+          tag: ${{ env.RELEASE_VERSION }}
+          release_name: ${{ env.RELEASE_VERSION }}
+          overwrite: true
+
       - name: Upload latest release asset
         if: github.ref == 'refs/heads/master'
         uses: svenstaro/upload-release-action@v2
