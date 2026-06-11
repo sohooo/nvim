@@ -106,22 +106,36 @@ bundle_root="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
 [[ -x "$bundle_root/bin/nvim" ]] || die "missing executable bundle launcher"
 [[ -x "$bundle_root/opt/nvim-appimage/squashfs-root/AppRun" ]] || die "missing extracted AppRun"
 [[ -f "$bundle_root/manifest.json" ]] || die "missing manifest.json"
+[[ -f "$bundle_root/config/nvim/scripts/airgap-paths.sh" ]] || die "missing bundled airgap path helper"
+grep -q "airgap_prepare_xdg_paths" "$bundle_root/bin/nvim" || die "bundle launcher does not use shared airgap path helper"
 
 export HOME="$tmp/home"
 mkdir -p "$HOME"
 
-"$bundle_root/bin/nvim" --version >/dev/null
-"$bundle_root/bin/nvim" --headless "+qa"
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$bundle_root/bin/nvim" --version >/dev/null
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$bundle_root/bin/nvim" --headless "+qa"
 
 NVIM_BIN="$bundle_root/bin/nvim" \
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
 XDG_CONFIG_HOME="$bundle_root/config" \
 XDG_DATA_HOME="$bundle_root/data" \
-XDG_STATE_HOME="$bundle_root/state" \
-XDG_CACHE_HOME="$bundle_root/cache" \
-XDG_RUNTIME_DIR="$bundle_root/run" \
+XDG_STATE_HOME="$tmp/state" \
+XDG_CACHE_HOME="$tmp/cache" \
+XDG_RUNTIME_DIR="$tmp/run" \
   "$bundle_root/config/nvim/scripts/verify-plugins.sh"
 
-"$bundle_root/bin/nvim" --headless "+luafile $tmp/check-lazy-restore.lua"
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$bundle_root/bin/nvim" --headless "+luafile $tmp/check-lazy-restore.lua"
 
 missing_parser=0
 while IFS= read -r language; do
@@ -140,7 +154,7 @@ while IFS= read -r language; do
 done < <(treesitter_languages)
 [[ "$missing_parser" -eq 0 ]] || exit 1
 
-if [[ -e "$HOME/.local/share/nvim" || -e "$HOME/.config/nvim" || -e "$HOME/.cache/nvim" ]]; then
+if [[ -e "$HOME/.local/share/nvim" || -e "$HOME/.local/state/nvim-airgap" || -e "$HOME/.config/nvim" || -e "$HOME/.cache/nvim" || -e "$HOME/.cache/nvim-airgap" ]]; then
   die "verification wrote Neovim files outside the bundle XDG paths"
 fi
 

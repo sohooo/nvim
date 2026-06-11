@@ -1,4 +1,4 @@
-.PHONY: airgap-appimage airgap-bundle check-external-tools healthcheck migration-status update-plugins verify verify-airgap-appimage verify-airgap-bundle verify-plugins upgrade
+.PHONY: airgap-appimage airgap-bundle check-airgap-paths check-external-tools healthcheck migration-status update-plugins verify verify-airgap-appimage verify-airgap-bundle verify-plugins upgrade
 
 airgap-appimage:
 	bash scripts/build-airgap-appimage.sh
@@ -8,6 +8,9 @@ airgap-bundle:
 
 check-external-tools:
 	bash scripts/check-external-tools.sh
+
+check-airgap-paths:
+	bash scripts/test-airgap-paths.sh
 
 healthcheck:
 	bash scripts/healthcheck.sh
@@ -21,7 +24,7 @@ update-plugins:
 verify-plugins:
 	bash scripts/verify-plugins.sh
 
-verify: check-external-tools verify-plugins
+verify: check-airgap-paths check-external-tools verify-plugins
 
 verify-airgap-bundle:
 	@test -n "$(TARBALL)" || { echo "usage: make verify-airgap-bundle TARBALL=dist/nvim-airgap-linux-x86_64-*.tar.gz" >&2; exit 2; }

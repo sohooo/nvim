@@ -88,15 +88,26 @@ ln -s /opt/nvim-airgap/AppRun ~/.local/bin/nvim-airgap
 The AppImage and tarball launchers keep bundled config/plugin data read-only
 from the artifact, but write mutable files outside the artifact by default:
 
-- state: `$HOME/.local/state/nvim-airgap/nvim`
-- cache: `$HOME/.cache/nvim-airgap/nvim`
-- runtime sockets and temp files: `${TMPDIR:-/tmp}/nvim-airgap-$UID`
+- state: `<effective-home>/.local/state/nvim-airgap/nvim`
+- cache: `<effective-home>/.cache/nvim-airgap/nvim`
+- runtime sockets and temp files: `${TMPDIR:-/tmp}/nvim-airgap-<effective-uid>`
 
-The paths are based on the effective user. Running through `sudo` uses root's
-home and `/tmp/nvim-airgap-0`, so root-owned files are not created in another
-user's cache or state directories. Set `NVIM_AIRGAP_STATE_HOME`,
-`NVIM_AIRGAP_CACHE_HOME`, or `NVIM_AIRGAP_RUNTIME_DIR` to override this
-deliberately.
+The state and cache paths use the effective user's passwd-database home, not an
+inherited `$HOME`. Running through `sudo`, including environments where
+`HOME=/home/<user>` leaks through, uses root's home and `/tmp/nvim-airgap-0`.
+This prevents root-owned files from appearing in another user's cache or state
+directories. Set `NVIM_AIRGAP_STATE_HOME`, `NVIM_AIRGAP_CACHE_HOME`, or
+`NVIM_AIRGAP_RUNTIME_DIR` to override this deliberately.
+
+If an older release already created root-owned files under the normal user's
+home, clean them once:
+
+```bash
+sudo rm -rf ~/.local/state/nvim-airgap ~/.cache/nvim-airgap
+```
+
+Use `sudo chown -R "$USER":"$USER"` on those paths instead if you want to keep
+their contents.
 
 This repo can also build a local tarball fallback:
 

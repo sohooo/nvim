@@ -144,10 +144,18 @@ chmod +x nvim-airgap-linux-x86_64.AppImage
 
 The AppImage uses bundled config and plugin data, but writes state, cache,
 runtime sockets, and temporary files to per-effective-user locations:
-`$HOME/.local/state/nvim-airgap`, `$HOME/.cache/nvim-airgap`, and
-`${TMPDIR:-/tmp}/nvim-airgap-$UID`. This keeps normal users and `sudo`/root
-sessions separate. Override these with `NVIM_AIRGAP_STATE_HOME`,
-`NVIM_AIRGAP_CACHE_HOME`, or `NVIM_AIRGAP_RUNTIME_DIR` when needed.
+`<effective-home>/.local/state/nvim-airgap`,
+`<effective-home>/.cache/nvim-airgap`, and
+`${TMPDIR:-/tmp}/nvim-airgap-<effective-uid>`. The launcher resolves
+`<effective-home>` from the effective UID instead of trusting inherited
+`$HOME`, so `sudo`/root sessions use root's home and do not create root-owned
+files in the invoking user's directories. Override these with
+`NVIM_AIRGAP_STATE_HOME`, `NVIM_AIRGAP_CACHE_HOME`, or
+`NVIM_AIRGAP_RUNTIME_DIR` when needed.
+
+If an older AppImage already created root-owned files in your normal user's
+home, remove the cache/state once or change ownership before running as that
+user again.
 
 ## Tooling Policy
 

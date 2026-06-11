@@ -100,7 +100,10 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 write_lazy_restore_check
 
-if "$appimage" --version >/dev/null 2>&1; then
+if NVIM_AIRGAP_STATE_HOME="$tmp/normal-state" \
+  NVIM_AIRGAP_CACHE_HOME="$tmp/normal-cache" \
+  NVIM_AIRGAP_RUNTIME_DIR="$tmp/normal-run" \
+  "$appimage" --version >/dev/null 2>&1; then
   echo "Normal AppImage execution verified"
 else
   echo "Normal AppImage execution unavailable; continuing with extracted FUSE-free verification"
@@ -117,14 +120,25 @@ appdir="$extract_dir/squashfs-root"
 [[ -x "$appdir/AppRun" ]] || die "missing executable extracted AppRun"
 [[ -x "$appdir/opt/nvim-appimage/squashfs-root/AppRun" ]] || die "missing bundled Neovim AppRun"
 [[ -f "$appdir/manifest.json" ]] || die "missing manifest.json"
+[[ -f "$appdir/config/nvim/scripts/airgap-paths.sh" ]] || die "missing bundled airgap path helper"
+grep -q "airgap_prepare_xdg_paths" "$appdir/AppRun" || die "AppRun does not use shared airgap path helper"
 
 export HOME="$tmp/home"
 mkdir -p "$HOME"
 
-"$appdir/AppRun" --version >/dev/null
-"$appdir/AppRun" --headless "+qa"
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$appdir/AppRun" --version >/dev/null
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$appdir/AppRun" --headless "+qa"
 
 NVIM_BIN="$appdir/AppRun" \
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
 XDG_CONFIG_HOME="$appdir/config" \
 XDG_DATA_HOME="$appdir/data" \
 XDG_STATE_HOME="$tmp/state" \
@@ -132,7 +146,10 @@ XDG_CACHE_HOME="$tmp/cache" \
 XDG_RUNTIME_DIR="$tmp/run" \
   "$appdir/config/nvim/scripts/verify-plugins.sh"
 
-"$appdir/AppRun" --headless "+luafile $tmp/check-lazy-restore.lua"
+NVIM_AIRGAP_STATE_HOME="$tmp/state" \
+NVIM_AIRGAP_CACHE_HOME="$tmp/cache" \
+NVIM_AIRGAP_RUNTIME_DIR="$tmp/run" \
+  "$appdir/AppRun" --headless "+luafile $tmp/check-lazy-restore.lua"
 
 missing_parser=0
 while IFS= read -r language; do
@@ -151,7 +168,7 @@ while IFS= read -r language; do
 done < <(treesitter_languages)
 [[ "$missing_parser" -eq 0 ]] || exit 1
 
-if [[ -e "$HOME/.local/share/nvim" || -e "$HOME/.config/nvim" || -e "$HOME/.cache/nvim" ]]; then
+if [[ -e "$HOME/.local/share/nvim" || -e "$HOME/.local/state/nvim-airgap" || -e "$HOME/.config/nvim" || -e "$HOME/.cache/nvim" || -e "$HOME/.cache/nvim-airgap" ]]; then
   die "verification wrote Neovim files outside the configured XDG paths"
 fi
 

@@ -67,16 +67,32 @@ plugin data, but writes mutable files outside the image by default:
 
 | Purpose | Default path |
 | --- | --- |
-| State, ShaDa, undo, sessions | `$HOME/.local/state/nvim-airgap/nvim` |
-| Cache | `$HOME/.cache/nvim-airgap/nvim` |
-| Runtime sockets | `${TMPDIR:-/tmp}/nvim-airgap-$UID` |
-| Temporary files | `${TMPDIR:-/tmp}/nvim-airgap-$UID/tmp` |
+| State, ShaDa, undo, sessions | `<effective-home>/.local/state/nvim-airgap/nvim` |
+| Cache | `<effective-home>/.cache/nvim-airgap/nvim` |
+| Runtime sockets | `${TMPDIR:-/tmp}/nvim-airgap-<effective-uid>` |
+| Temporary files | `${TMPDIR:-/tmp}/nvim-airgap-<effective-uid>/tmp` |
 
-These defaults are based on the effective user. A root session, including
-`sudo`, writes to root's home and `/tmp/nvim-airgap-0` instead of creating
-root-owned files in another user's directories. Override the defaults only when
-intentional with `NVIM_AIRGAP_STATE_HOME`, `NVIM_AIRGAP_CACHE_HOME`, and
+These defaults are based on the effective user. The launcher resolves
+`<effective-home>` from the effective UID's passwd-database entry and only uses
+`$HOME` as a fallback when that directory is owned by the effective UID. A root
+session, including `sudo` with an inherited user home, writes to root's home and
+`/tmp/nvim-airgap-0` instead of creating root-owned files in another user's
+directories. Override the defaults only when intentional with
+`NVIM_AIRGAP_STATE_HOME`, `NVIM_AIRGAP_CACHE_HOME`, and
 `NVIM_AIRGAP_RUNTIME_DIR`.
+
+If an older release already created root-owned files under a normal user's
+home, remove the disposable state/cache directories once:
+
+```bash
+sudo rm -rf /home/funky/.local/state/nvim-airgap /home/funky/.cache/nvim-airgap
+```
+
+Use `sudo chown -R funky:funky` on those paths instead if you need to preserve
+their contents.
+
+Set `NVIM_AIRGAP_DEBUG_PATHS=1` before launching the AppImage to print the
+resolved state, cache, runtime, and temp paths.
 
 ## Build AppImage Locally
 

@@ -262,23 +262,19 @@ if [[ ! -x "$APPDIR/AppRun" ]]; then
   exit 1
 fi
 
-uid="${UID:-$(id -u)}"
-home="${HOME:-${TMPDIR:-/tmp}/nvim-airgap-home-$uid}"
-state_home="${NVIM_AIRGAP_STATE_HOME:-$home/.local/state/nvim-airgap}"
-cache_home="${NVIM_AIRGAP_CACHE_HOME:-$home/.cache/nvim-airgap}"
-runtime_home="${NVIM_AIRGAP_RUNTIME_DIR:-${TMPDIR:-/tmp}/nvim-airgap-$uid}"
-
-mkdir -p "$state_home/nvim" "$cache_home/nvim" "$runtime_home/tmp"
-chmod 700 "$state_home" "$state_home/nvim" "$cache_home" "$cache_home/nvim" "$runtime_home" "$runtime_home/tmp" 2>/dev/null || true
+if [[ ! -r "$BUNDLE_ROOT/config/nvim/scripts/airgap-paths.sh" ]]; then
+  echo "error: bundled airgap path helper is missing: $BUNDLE_ROOT/config/nvim/scripts/airgap-paths.sh" >&2
+  exit 1
+fi
 
 export APPDIR
 export NVIM_AIRGAP="${NVIM_AIRGAP:-1}"
 export XDG_CONFIG_HOME="$BUNDLE_ROOT/config"
 export XDG_DATA_HOME="$BUNDLE_ROOT/data"
-export XDG_STATE_HOME="$state_home"
-export XDG_CACHE_HOME="$cache_home"
-export XDG_RUNTIME_DIR="$runtime_home"
-export TMPDIR="$runtime_home/tmp"
+
+# shellcheck source=scripts/airgap-paths.sh
+source "$BUNDLE_ROOT/config/nvim/scripts/airgap-paths.sh"
+airgap_prepare_xdg_paths
 
 if [[ -d "$BUNDLE_ROOT/tools/bin" ]]; then
   export PATH="$BUNDLE_ROOT/tools/bin:$PATH"
@@ -425,11 +421,14 @@ staged_lock_sha_before="$(sha256_file "$BUNDLE_ROOT/config/nvim/lazy-lock.json")
 
 export NVIM_AIRGAP=0
 export NVIM_AIRGAP_BUILD=1
+export NVIM_AIRGAP_STATE_HOME="$BUNDLE_ROOT/state"
+export NVIM_AIRGAP_CACHE_HOME="$BUNDLE_ROOT/cache"
+export NVIM_AIRGAP_RUNTIME_DIR="$BUNDLE_ROOT/run"
 export XDG_CONFIG_HOME="$BUNDLE_ROOT/config"
 export XDG_DATA_HOME="$BUNDLE_ROOT/data"
-export XDG_STATE_HOME="$BUNDLE_ROOT/state"
-export XDG_CACHE_HOME="$BUNDLE_ROOT/cache"
-export XDG_RUNTIME_DIR="$BUNDLE_ROOT/run"
+export XDG_STATE_HOME="$NVIM_AIRGAP_STATE_HOME"
+export XDG_CACHE_HOME="$NVIM_AIRGAP_CACHE_HOME"
+export XDG_RUNTIME_DIR="$NVIM_AIRGAP_RUNTIME_DIR"
 
 nvim_bin="$BUNDLE_ROOT/bin/nvim"
 nvim_version="$("$nvim_bin" --version | head -n 1)"
