@@ -22,6 +22,22 @@ return {
     opts = function(_, opts)
       opts.options = opts.options or {}
       opts.options.theme = require("config.theme").lualine_theme()
+
+      if opts.sections and opts.sections.lualine_c then
+        opts.sections.lualine_c[4] = {
+          function()
+            local name = vim.api.nvim_buf_get_name(0)
+            if name == "" then
+              return "[No Name]"
+            end
+            return vim.fn.fnamemodify(name, ":p")
+          end,
+          cond = function()
+            return vim.bo.buftype == ""
+          end,
+          padding = { left = 0, right = 1 },
+        }
+      end
     end,
   },
 }
