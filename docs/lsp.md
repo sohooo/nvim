@@ -11,23 +11,27 @@ disabled; every server binary must already be available on `PATH`.
 | `gopls` | Go, Go modules, Go sums, Go templates | `gopls` | `go.work`, `go.mod`, `.git` | Migrated from `prev_cfg/lua/sohooo/lsp.lua`. | Install `gopls` outside Neovim. |
 | `ruff` | Python | `ruff server` | `pyproject.toml`, `ruff.toml`, `.ruff.toml`, `setup.py`, `setup.cfg`, `requirements.txt`, `.git` | Migrated from the old active Ruff setup. | Install `ruff` outside Neovim. |
 | `rust_analyzer` | Rust | `rust-analyzer` | `Cargo.toml`, `rust-project.json`, `.git` | Migrated from `prev_cfg/lua/sohooo/lsp.lua`. | Install `rust-analyzer` outside Neovim. |
-| `ruby-lsp` | Ruby, ERB | `ruby-lsp` | `Gemfile`, `.git` | Replaces old `solargraph` and `standardrb` LSP servers. | Install Shopify Ruby LSP in the active Ruby environment. |
+| `solargraph` | Ruby, ERB | `solargraph stdio` | `Gemfile`, `.git` | Restored from `prev_cfg/lua/sohooo/lsp.lua`. | Install `solargraph` in the active Ruby environment. |
 | `lua_ls` | Lua | `lua-language-server` | `.luarc.json`, `.luarc.jsonc`, `.luacheckrc`, `.stylua.toml`, `stylua.toml`, `selene.toml`, `selene.yml`, `.git` | Migrated from the old Lua LS setup. | Install Lua Language Server outside Neovim. |
 | `puppet` | Puppet | `puppet-languageserver --stdio --timeout=10 --puppet-settings=--modulepath,/modules --local-workspace=$HOME/puppetenvs/kpm` | `metadata.json`, `Puppetfile`, `.git` | Migrated from the old Puppet setup. | Install Puppet Editor Services outside Neovim. |
 
-## Ruby LSP
+## Ruby
 
-Ruby now uses Shopify's `ruby-lsp` instead of `solargraph` and `standardrb` as
-separate language servers. The native config follows Shopify's built-in
-`vim.lsp` setup pattern:
+Ruby uses Solargraph again. This intentionally avoids Ruby LSP's composed-bundle
+management and matches the old config's `solargraph` server choice, while still
+using Neovim's native `vim.lsp.config` API instead of `nvim-lspconfig`.
 
-- `formatter = "standard"`
-- `linters = { "standard" }`
-- `Ruby LSP Rails.enablePendingMigrationsPrompt = false`
+The command is `solargraph stdio`. Open Neovim from a shell where the intended
+Ruby environment is already active and `solargraph` is available on `PATH`.
 
-The command is intentionally `ruby-lsp`, not `bundle exec ruby-lsp` and not a
-hardcoded version-manager shim. Open Neovim from a shell where the intended Ruby
-environment is already active.
+If Solargraph does not attach, check the same command outside Neovim from the
+project root:
+
+```bash
+ruby -v
+solargraph --version
+solargraph stdio
+```
 
 ## Diagnostics And Keymaps
 
@@ -48,6 +52,13 @@ LSP buffer-local mappings are registered on `LspAttach`:
 | `,ca` | Code action |
 | `,cr` | Rename |
 | `,cl` | `:checkhealth vim.lsp` |
+
+Native helper commands are available even without `nvim-lspconfig`:
+
+| Command | Action |
+| --- | --- |
+| `:LspInfo` | Show clients attached to the current buffer. |
+| `:LspLog` | Open Neovim's native LSP log file. |
 
 ## Verification
 

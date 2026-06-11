@@ -76,10 +76,9 @@ assert_cmd("rust_analyzer", { "rust-analyzer" })
 assert_contains(vim.lsp.config.rust_analyzer.filetypes, "rust", "rust_analyzer filetypes")
 assert_contains(vim.lsp.config.rust_analyzer.root_markers, "Cargo.toml", "rust_analyzer root markers")
 
-assert_cmd("ruby-lsp", { "ruby-lsp" })
-assert_contains(vim.lsp.config["ruby-lsp"].filetypes, "ruby", "ruby-lsp filetypes")
-assert_contains(vim.lsp.config["ruby-lsp"].root_markers, "Gemfile", "ruby-lsp root markers")
-assert(vim.lsp.config["ruby-lsp"].init_options.formatter == "standard", "ruby-lsp formatter should be standard")
+assert_cmd("solargraph", { "solargraph", "stdio" })
+assert_contains(vim.lsp.config.solargraph.filetypes, "ruby", "solargraph filetypes")
+assert_contains(vim.lsp.config.solargraph.root_markers, "Gemfile", "solargraph root markers")
 
 assert_cmd("lua_ls", { "lua-language-server" })
 assert_contains(vim.lsp.config.lua_ls.filetypes, "lua", "lua_ls filetypes")

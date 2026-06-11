@@ -75,7 +75,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Integration | Config path | Description | Notes |
 | --- | --- | --- | --- |
-| Native `vim.lsp` | `lua/config/lsp.lua` | Configures Go, Python/Ruff, Rust, Ruby LSP, Lua, and Puppet language servers. | Uses only binaries already available on `PATH`; see [LSP](lsp.md). |
+| Native `vim.lsp` | `lua/config/lsp.lua` | Configures Go, Python/Ruff, Rust, Ruby/Solargraph, Lua, and Puppet language servers. | Uses only binaries already available on `PATH`; see [LSP](lsp.md). |
 | `stevearc/conform.nvim` | LazyVim core | Formatting integration. | Available from LazyVim, but external formatters must be installed outside Mason. |
 | `mfussenegger/nvim-lint` | LazyVim core | Linting integration. | Available from LazyVim, but external linters must be installed outside Mason. |
 | `nvim-treesitter/nvim-treesitter` | `lua/plugins/treesitter.lua` | Syntax parser management. | LazyVim baseline with local parser coverage for shell, YAML, and LSP-backed languages; parser builds may require the external `tree-sitter` CLI. |

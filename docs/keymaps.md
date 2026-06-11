@@ -126,7 +126,7 @@ These mappings are buffer-local and appear after a language server attaches.
 | Insert | `<C-k>` | Signature help. | `lua/config/lsp.lua` |
 | Normal/Visual | `,ca` | Code action. | `lua/config/lsp.lua` |
 | Normal | `,cr` | Rename symbol. | `lua/config/lsp.lua` |
-| Normal | `,cl` | Run `:checkhealth vim.lsp`. | `lua/config/lsp.lua` |
+| Normal | `,cl` | Run `:checkhealth vim.lsp`. | `lua/config/keymaps.lua` |
 
 ## Which-Key Groups
 

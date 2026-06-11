@@ -49,7 +49,7 @@ server only works when its binary is already available on `PATH`.
 | Go | `gopls` | `gopls` | Optional; required for Go LSP features. |
 | Python | `ruff` | `ruff server` | Optional; required for Python Ruff LSP features. |
 | Rust | `rust-analyzer` | `rust-analyzer` | Optional; required for Rust LSP features. |
-| Ruby | `ruby-lsp` | `ruby-lsp` | Optional; required for Ruby LSP features. Install in the active Ruby environment. |
+| Ruby | `solargraph` | `solargraph stdio` | Optional; required for Ruby language-server features. Install in the active Ruby environment. |
 | Lua | `lua-language-server` | `lua-language-server` | Optional; required for Lua LSP features. |
 | Puppet | `puppet-languageserver` | `puppet-languageserver --stdio ...` | Optional; required for Puppet LSP features. |
 

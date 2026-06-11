@@ -69,6 +69,45 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_user_command("LspLog", function()
+  vim.cmd.tabnew(vim.lsp.log.get_filename())
+end, { desc = "Open the native Neovim LSP log" })
+
+vim.api.nvim_create_user_command("LspInfo", function()
+  local lines = {}
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+  local function format_cmd(cmd)
+    if type(cmd) == "table" then
+      return table.concat(cmd, " ")
+    end
+    return type(cmd)
+  end
+
+  table.insert(lines, "Buffer: " .. vim.api.nvim_buf_get_name(0))
+  table.insert(lines, "Filetype: " .. vim.bo.filetype)
+  table.insert(lines, "")
+
+  if #clients == 0 then
+    table.insert(lines, "No active LSP clients attached to this buffer.")
+  else
+    table.insert(lines, "Active LSP clients:")
+    for _, client in ipairs(clients) do
+      table.insert(lines, string.format("- %s", client.name))
+      table.insert(lines, string.format("  root: %s", client.root_dir or ""))
+      table.insert(lines, string.format("  cmd: %s", format_cmd(client.config.cmd)))
+    end
+  end
+
+  vim.cmd.new()
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.swapfile = false
+  vim.bo.filetype = "markdown"
+  vim.api.nvim_buf_set_name(0, "LspInfo")
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+end, { desc = "Show native Neovim LSP clients for the current buffer" })
+
 vim.lsp.config("gopls", {
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gosum", "gotmpl" },
@@ -87,19 +126,10 @@ vim.lsp.config("rust_analyzer", {
   root_markers = { "Cargo.toml", "rust-project.json", ".git" },
 })
 
-vim.lsp.config("ruby-lsp", {
-  cmd = { "ruby-lsp" },
+vim.lsp.config("solargraph", {
+  cmd = { "solargraph", "stdio" },
   filetypes = { "ruby", "eruby" },
   root_markers = { "Gemfile", ".git" },
-  init_options = {
-    formatter = "standard",
-    linters = { "standard" },
-    addonSettings = {
-      ["Ruby LSP Rails"] = {
-        enablePendingMigrationsPrompt = false,
-      },
-    },
-  },
 })
 
 vim.lsp.config("lua_ls", {
@@ -150,7 +180,7 @@ vim.lsp.enable({
   "gopls",
   "ruff",
   "rust_analyzer",
-  "ruby-lsp",
+  "solargraph",
   "lua_ls",
   "puppet",
 })
