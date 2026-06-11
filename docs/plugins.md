@@ -97,4 +97,4 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Plugin | Reason |
 | --- | --- |
-| AI assistant plugin | No active runtime plugin yet. Crush terminal integration is the preferred next direction; CodeCompanion and Parrot remain future candidates. See [AI-assisted coding](ai.md). |
+| AI assistant plugin | No Neovim-native AI plugin is active. Crush is integrated through Snacks terminal mappings; CodeCompanion and Parrot remain future candidates. See [AI-assisted coding](ai.md). |

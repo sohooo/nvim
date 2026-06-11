@@ -17,6 +17,31 @@ vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" 
 vim.keymap.set("n", "<BS>", "<C-w>h", { desc = "Go to Left Window" })
 vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP Health" })
 
+vim.keymap.set("n", "<leader>aa", function()
+  require("config.crush").open()
+end, { desc = "Crush" })
+vim.keymap.set("n", "<leader>aA", function()
+  require("config.crush").continue()
+end, { desc = "Crush Continue" })
+vim.keymap.set("n", "<leader>af", function()
+  require("config.crush").ask_file()
+end, { desc = "Crush Current File" })
+vim.keymap.set("n", "<leader>aF", function()
+  require("config.crush").continue_file()
+end, { desc = "Crush Current File Continue" })
+vim.keymap.set("x", "<leader>as", function()
+  require("config.crush").ask_selection()
+end, { desc = "Crush Selection" })
+vim.keymap.set("x", "<leader>aS", function()
+  require("config.crush").continue_selection()
+end, { desc = "Crush Selection Continue" })
+vim.keymap.set("n", "<leader>al", function()
+  require("config.crush").logs()
+end, { desc = "Crush Logs" })
+vim.keymap.set("n", "<leader>am", function()
+  require("config.crush").models()
+end, { desc = "Crush Models" })
+
 for _, lhs in ipairs({
   "<leader>bb",
   "<leader>bd",

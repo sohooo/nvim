@@ -1,28 +1,46 @@
 # AI-Assisted Coding
 
-No AI plugin is active in the runtime baseline yet. AI tools must follow the
-same external-binary policy as LSP servers: install them outside this config,
-put them on `PATH`, and do not add Node.js as a required dependency.
+AI support is terminal-first and uses the external `crush` CLI. No Neovim AI
+plugin is active, no provider credentials live in this repo, and Node.js is not
+a required dependency.
 
-## Current Direction
+Crush must be installed on `PATH` and configured outside Neovim for the desired
+local or remote inference endpoint. Missing `crush` only shows a warning when a
+Crush mapping is used; it does not break startup.
 
-Use Crush as the preferred next integration. It already fits the requested
-workflow: AI-assisted coding through a local endpoint, driven by an external
-CLI that Neovim can open in a Snacks terminal. The planned Neovim integration is
-small: mappings and commands that launch `crush` when it is available.
-
-Recommended first mappings for a future implementation:
+## Workflow
 
 | Key | Action |
 | --- | --- |
-| `,ta` | Open Crush in a project-root terminal. |
-| `,tA` | Continue or resume a Crush session, depending on the installed CLI support. |
+| `,aa` | Open interactive Crush at the project root. |
+| `,aA` | Continue the latest interactive Crush session. |
+| visual `,as` | Ask Crush about the selected lines. |
+| visual `,aS` | Ask Crush about the selected lines and continue the latest session. |
+| `,af` | Ask Crush about the current file. |
+| `,aF` | Ask Crush about the current file and continue the latest session. |
+| `,al` | Open Crush logs. |
+| `,am` | List available Crush models. |
+
+Selection and current-file commands prompt for a question with `vim.ui.input`,
+write temporary context under Neovim's runtime directory, and pipe that context
+to `crush run`. The `continue` variants use `crush run --continue`, so they can
+append context to the latest session without relying on terminal paste behavior.
+
+Useful external checks:
+
+```bash
+crush --version
+crush dirs
+crush models
+crush --cwd /path/to/project
+crush run --continue "Follow up with this context"
+```
 
 ## Plugin Evaluation
 
 | Candidate | Decision | Reason |
 | --- | --- | --- |
-| Crush via Snacks terminal | Preferred next step | Keeps Neovim integration small, works with local inference endpoints, and avoids adding a second in-editor agent framework. |
+| Crush via Snacks terminal | Active workflow | Keeps Neovim integration small, works with local inference endpoints, and avoids adding a second in-editor agent framework. |
 | `olimorris/codecompanion.nvim` | Good future candidate | Maintained Neovim-native assistant plugin with multiple contributors and no Node.js requirement in the editor plugin itself. |
 | `frankroeder/parrot.nvim` | Lightweight fallback | Useful if a smaller chat/prompt workflow is preferred over a broader assistant framework. |
 | `Robitx/gp.nvim` | Defer | Viable, but less aligned with a Crush-first workflow. |
@@ -31,5 +49,6 @@ Recommended first mappings for a future implementation:
 
 ## External Tools
 
-`crush` should be documented and checked as an optional external tool when the
-runtime mapping is added. Missing AI tools must not fail startup.
+`crush` is listed as an optional external tool in `docs/external-tools.md` and
+checked by `make check-external-tools`. Airgap bundles do not include AI CLIs;
+install and configure Crush separately on each host.

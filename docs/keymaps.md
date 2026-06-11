@@ -22,6 +22,8 @@ discoverability metadata and group labels in `lua/plugins/which-key.lua`.
 | `,q` | Close the current buffer without disrupting the window layout. |
 | `,te` / `,tt` | Toggle a project-root terminal. |
 | `,tg` | Open lazygit in a floating terminal. |
+| `,aa` | Open Crush in a project-root terminal. |
+| `,af` | Ask Crush about the current file. |
 
 ## Search And Pickers
 
@@ -67,6 +69,14 @@ leaving `,b` as the immediate buffer picker.
 
 | Mode | Key | Action | Source |
 | --- | --- | --- | --- |
+| Normal | `,aa` | Open interactive Crush at the project root. | `lua/config/crush.lua` |
+| Normal | `,aA` | Continue the latest interactive Crush session. | `lua/config/crush.lua` |
+| Visual | `,as` | Ask Crush about the selected lines. | `lua/config/crush.lua` |
+| Visual | `,aS` | Ask Crush about the selected lines and continue the latest session. | `lua/config/crush.lua` |
+| Normal | `,af` | Ask Crush about the current file. | `lua/config/crush.lua` |
+| Normal | `,aF` | Ask Crush about the current file and continue the latest session. | `lua/config/crush.lua` |
+| Normal | `,al` | Open Crush logs. | `lua/config/crush.lua` |
+| Normal | `,am` | List Crush models. | `lua/config/crush.lua` |
 | Normal | `,d` | Open the project directory tree. | `lua/plugins/snacks-explorer.lua` |
 | Normal | `mf` | Reveal the current file in the explorer. | `lua/plugins/snacks-explorer.lua` |
 | Normal/Terminal | `,te` | Toggle a root terminal. | `lua/plugins/snacks-terminal.lua` |
@@ -133,6 +143,7 @@ These mappings are buffer-local and appear after a language server attaches.
 | Prefix | Group |
 | --- | --- |
 | `,` | Local |
+| `,a` | AI |
 | `,B` | Buffers |
 | `,c` | Code |
 | `,g` | Git |

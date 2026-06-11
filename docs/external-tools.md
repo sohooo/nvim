@@ -101,16 +101,16 @@ dependency for this config.
 
 | Tool | Used By | Requirement |
 | --- | --- | --- |
-| `crush` | Preferred future AI terminal integration. | Optional. |
+| `crush` | Active terminal-first AI workflow on `,a...` mappings. | Optional. |
 | `codex` | Future AI CLI integration. | Optional. |
 | `claude` | Future AI CLI integration. | Optional. |
 | `gemini` | Future AI CLI integration. | Optional. |
 
 ## AI Integration Policy
 
-No AI plugin is active yet. The preferred next step is a small Crush integration
-through Snacks terminal mappings, with CodeCompanion or Parrot kept as possible
-future Neovim-native options. See [AI-assisted coding](ai.md).
+The active AI workflow is a small Crush integration through Snacks terminal
+mappings, with CodeCompanion or Parrot kept as possible future Neovim-native
+options. See [AI-assisted coding](ai.md).
 
 Node-required AI plugins and Copilot-first workflows are out of scope for the
 current baseline.

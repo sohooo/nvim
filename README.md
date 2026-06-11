@@ -49,6 +49,7 @@ the quick map for day-to-day use.
 | UI and navigation | `which-key.nvim`, `noice.nvim`, `nvim-treesitter-context`, `lualine.nvim`, `bufferline.nvim`, `mini.icons` | LazyVim with local overrides | `,tc`, `,psn...`, `<Tab>`, `<S-Tab>`, `,B...` |
 | Editing | `mini.surround`, `mini.ai`, `mini.comment`, `mini.pairs`, `mini.align`, `mini.splitjoin`, `mini.trailspace`, native `nvim.undotree` | LazyVim plus local Mini/native setup | `gc`, `gsa`, `gsd`, `gsr`, `ga`, `gA`, `gS`, `,cw`, `,u`, `,q` |
 | Git and terminal | `gitsigns.nvim`, `vim-fugitive`, `vim-dispatch`, `snacks.nvim` terminal, `nvim-unception` | LazyVim plus local additions | `,tg`, `,te`, `,tt`, `:Git`, `:Dispatch`, `:Make` |
+| AI terminal workflow | External `crush` CLI through `snacks.nvim` terminal | Local helper, host-provided CLI | `,aa`, `,aA`, `,af`, `,aF`, visual `,as`, visual `,aS` |
 | LSP, formatting, linting | Native `vim.lsp`, `conform.nvim`, `nvim-lint` | Local native LSP plus LazyVim integrations | `gd`, `gr`, `K`, `gK`, `,ca`, `,cr`, `,cl` |
 | Treesitter | `nvim-treesitter`, `nvim-treesitter-textobjects`, `nvim-ts-autotag`, `nvim-ts-context-commentstring`, `ts-comments.nvim` | LazyVim with local parser list | Syntax, textobjects, comments, and context header are automatic. |
 | Themes | `tokyonight.nvim`, `nord-vim`, `catppuccin`, `kanagawa.nvim` | LazyVim plus local theme profiles | `,tc` |
@@ -65,6 +66,7 @@ Most important keys:
 | `gd`, `gr`, `K`, `,ca`, `,cr` | LSP navigation, references, hover, code action, and rename. |
 | `ga`, `gA`, `gS`, `gsa`, `gsd`, `gsr`, `gc` | Align, split/join, surround, and comment editing helpers. |
 | `,te`, `,tt`, `,tg` | Open terminal and lazygit workflows. |
+| `,aa`, `,af`, visual `,as` | Open Crush, ask about the current file, or ask about selected lines. |
 | `,u`, `,cw`, `,tc` | Undo tree, trim trailing whitespace, and colorscheme picker. |
 
 ## Verify

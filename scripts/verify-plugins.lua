@@ -21,6 +21,7 @@ if vim.env.NVIM_DISABLE_OSC52 == "1" then
 end
 
 assert_require("config.lsp")
+assert_require("config.crush")
 assert_require("config.style")
 assert_require("config.filetypes")
 assert_require("config.health")
@@ -42,6 +43,7 @@ assert(vim.g.loaded_python3_provider == 0, "python provider should be disabled")
 assert(vim.g.loaded_ruby_provider == 0, "ruby provider should be disabled")
 assert(vim.filetype.match({ filename = "example.gotmpl" }) == "gotmpl", "gotmpl filetype should be registered")
 assert(vim.filetype.match({ filename = "manifests/site.pp" }) == "puppet", "puppet filetype should be registered")
+assert(type(require("config.crush").executable()) == "boolean", "crush executable check should be side-effect free")
 
 local function assert_contains(values, expected, label)
   for _, value in ipairs(values or {}) do
@@ -194,6 +196,12 @@ for _, mapping in ipairs({
   "<Tab>",
   "<S-Tab>",
   "<BS>",
+  "<leader>aa",
+  "<leader>aA",
+  "<leader>af",
+  "<leader>aF",
+  "<leader>al",
+  "<leader>am",
   "mf",
   "ga",
   "gA",
@@ -238,6 +246,8 @@ for _, mapping in ipairs({
 end
 
 assert(vim.fn.maparg("<Esc><Esc>", "t") ~= "", "missing terminal escape mapping")
+assert(vim.fn.maparg("<leader>as", "x") ~= "", "missing visual Crush selection mapping")
+assert(vim.fn.maparg("<leader>aS", "x") ~= "", "missing visual Crush continue selection mapping")
 
 vim.cmd.packadd("nvim.undotree")
 assert(vim.fn.exists(":Undotree") == 2, "missing native :Undotree")

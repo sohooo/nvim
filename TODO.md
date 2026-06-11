@@ -14,11 +14,6 @@ No active migration items.
 
 ## deferred
 
-- AI-assisted coding
-  - Current decision: prefer a small Crush terminal integration next.
-  - Next action: add optional `crush` tool docs/checks, then add Snacks terminal mappings and commands.
-  - Prerequisites: `crush` installed on `PATH` and configured for the local endpoint.
-  - Notes: CodeCompanion and Parrot remain future candidates; Node-required AI plugins are out of scope.
 - Formatting/linting beyond LSP
   - Current decision: deferred; external formatter/linter policy is no Mason auto-install.
   - Next action: decide between native LSP formatting, conform/lint integrations, or no extra layer.
@@ -36,6 +31,7 @@ No active migration items.
 
 | Item | Old source | Current decision | Suggested next action | Prerequisites |
 | --- | --- | --- | --- | --- |
+| AI-assisted coding | `docs/ai.md`, `lua/config/crush.lua` | Crush terminal integration is active; no Neovim-native AI plugin is active. | Revisit CodeCompanion or Parrot only if terminal-first Crush is insufficient. | `crush` installed on `PATH` and configured externally. |
 | Global `Hifi()` helper | `prev_cfg/init.lua` | Replaced by plugin-local `NVIM_STYLE` checks. | Keep local helpers unless many plugins need the same function. | None. |
 | Lo-fi `termguicolors = false` branch | `prev_cfg/init.lua` | Not migrated; truecolor remains LazyVim baseline. | Revisit if plain terminal color support is needed. | Plain terminal target. |
 | Mouse toggle helper | `prev_cfg/lua/sohooo/which-key.lua` | Not migrated; mouse is disabled by option. | Add a toggle mapping only if runtime mouse switching is wanted. | Keymap preference. |
