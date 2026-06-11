@@ -35,6 +35,7 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | `splitbelow = true` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `splitright = true` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `termguicolors` and colorscheme branch | LazyVim default preferred | LazyVim plus `lua/plugins/colorschemes.lua`. | Keep truecolor baseline; lo-fi behavior is handled plugin-by-plugin. |
+| PuTTY OSC52 terminal probing | Added locally | `lua/config/options.lua` disables `g:termfeatures.osc52` when `TERM`/`TERM_PROGRAM` contains `putty`, or when `NVIM_DISABLE_OSC52=1`. | Prevent PuTTY sessions from leaking OSC52 capability probes into the dashboard. |
 | `completeopt` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `iskeyword += "-"` | Migrated | `lua/config/options.lua`. | Preserve dashed-word movement/search behavior. |
 | Neovim providers | Added locally | Node, Perl, Python 3, and Ruby providers disabled in `lua/config/options.lua`. | This config does not use remote plugins requiring those providers, so disabling them keeps healthcheck output explicit and quiet. |

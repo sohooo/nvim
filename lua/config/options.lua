@@ -11,6 +11,18 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+local term = (vim.env.TERM or ""):lower()
+local term_program = (vim.env.TERM_PROGRAM or ""):lower()
+local disable_osc52 = vim.env.NVIM_DISABLE_OSC52 == "1"
+  or term:find("putty", 1, true) ~= nil
+  or term_program:find("putty", 1, true) ~= nil
+
+if disable_osc52 then
+  vim.g.termfeatures = vim.tbl_deep_extend("force", vim.g.termfeatures or {}, {
+    osc52 = false,
+  })
+end
+
 local opt = vim.opt
 
 opt.inccommand = "split" -- show substitution previews in a split

@@ -13,6 +13,12 @@ assert(vim.o.signcolumn == "yes:2", "signcolumn should be yes:2")
 assert(vim.o.numberwidth == 4, "numberwidth should be 4")
 assert(vim.o.statuscolumn == "%s%=%l ", "statuscolumn should be fixed")
 assert(vim.o.iskeyword:find("-", 1, true) ~= nil, "iskeyword should include dash")
+if vim.env.TERM and vim.env.TERM:lower():find("putty", 1, true) then
+  assert(vim.g.termfeatures and vim.g.termfeatures.osc52 == false, "PuTTY terminals should disable OSC52 probing")
+end
+if vim.env.NVIM_DISABLE_OSC52 == "1" then
+  assert(vim.g.termfeatures and vim.g.termfeatures.osc52 == false, "NVIM_DISABLE_OSC52 should disable OSC52 probing")
+end
 
 assert_require("config.lsp")
 assert_require("config.style")
