@@ -42,7 +42,11 @@ return {
             win = {
               list = {
                 keys = {
+                  ["<c-s>"] = "edit_split",
+                  ["<c-v>"] = "edit_vsplit",
+                  ["i"] = "edit_split",
                   ["o"] = "confirm",
+                  ["s"] = "edit_vsplit",
                 },
               },
             },

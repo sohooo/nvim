@@ -24,7 +24,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 
 | Plugin | Config path | Description | Notes |
 | --- | --- | --- | --- |
-| `folke/snacks.nvim` explorer | `lua/plugins/snacks-explorer.lua` | File explorer from LazyVim's Snacks baseline. | Mapped to `,d`; `mf` reveals the current file; `o` confirms instead of opening Finder. |
+| `folke/snacks.nvim` explorer | `lua/plugins/snacks-explorer.lua` | File explorer from LazyVim's Snacks baseline. | Mapped to `,d`; `mf` reveals the current file; `o` confirms instead of opening Finder; `s`/`i` restore vertical/horizontal split opens. |
 | `folke/snacks.nvim` pickers | `lua/plugins/pickers.lua` | Primary picker stack for files, buffers, grep, help, colorschemes, and symbols. | Keeps `,f`, `,b`, and `,s` as immediate old-config style actions; broader LazyVim picker families live under `,p`. |
 | `folke/flash.nvim` | LazyVim core | Jump/search navigation. | Kept as part of the LazyVim baseline. |
 | `folke/trouble.nvim` | LazyVim core | Diagnostics, references, symbols, and quickfix views. | Complements Snacks pickers and native LSP navigation. |

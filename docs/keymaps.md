@@ -79,6 +79,8 @@ leaving `,b` as the immediate buffer picker.
 | Normal | `,am` | List Crush models. | `lua/config/crush.lua` |
 | Normal | `,d` | Open the project directory tree. | `lua/plugins/snacks-explorer.lua` |
 | Normal | `mf` | Reveal the current file in the explorer. | `lua/plugins/snacks-explorer.lua` |
+| Explorer | `s` / `<C-v>` | Open selected file in a vertical split. | `lua/plugins/snacks-explorer.lua` |
+| Explorer | `i` / `<C-s>` | Open selected file in a horizontal split. | `lua/plugins/snacks-explorer.lua` |
 | Normal/Terminal | `,te` | Toggle a root terminal. | `lua/plugins/snacks-terminal.lua` |
 | Normal | `,tt` | Toggle a root terminal. | `lua/plugins/snacks-terminal.lua` |
 | Normal | `,tg` | Toggle a floating lazygit terminal. | `lua/plugins/snacks-terminal.lua` |
@@ -87,6 +89,10 @@ leaving `,b` as the immediate buffer picker.
 | Normal | `,tps` | Open Snacks profiler scratch buffer. | `lua/config/keymaps.lua` |
 | Normal | `,u` | Open the Neovim 0.12 native undo tree. | `lua/config/keymaps.lua` |
 | Terminal | `<Esc><Esc>` | Leave terminal mode. | `lua/config/misc.lua` |
+
+In Snacks pickers such as `,f` and `,b`, use `<C-v>` for vertical splits and
+`<C-s>` for horizontal splits. Plain `s` and `i` are explorer-only so picker
+input remains normal text input.
 
 ## Editing
 

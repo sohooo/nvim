@@ -167,6 +167,12 @@ end
 assert(Snacks.config.scroll and Snacks.config.scroll.enabled == false, "Snacks smooth scrolling should be disabled")
 assert(vim.ui.input == Snacks.input.input, "vim.ui.input should use Snacks.input")
 assert(vim.ui.select == Snacks.picker.select, "vim.ui.select should use Snacks.picker.select")
+local explorer_keys = Snacks.config.get("picker").sources.explorer.win.list.keys
+assert(explorer_keys.o == "confirm", "explorer o should confirm")
+assert(explorer_keys.s == "edit_vsplit", "explorer s should open a vertical split")
+assert(explorer_keys.i == "edit_split", "explorer i should open a horizontal split")
+assert(explorer_keys["<c-v>"] == "edit_vsplit", "explorer <C-v> should open a vertical split")
+assert(explorer_keys["<c-s>"] == "edit_split", "explorer <C-s> should open a horizontal split")
 
 for _, mapping in ipairs({
   "<leader>f",
