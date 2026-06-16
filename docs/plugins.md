@@ -37,6 +37,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | --- | --- | --- | --- |
 | `folke/which-key.nvim` | `lua/plugins/which-key.lua` | Shows available key sequences while typing. | Adds local comma-leader group metadata. |
 | `folke/noice.nvim` | `lua/plugins/pickers.lua` | Command-line, message, and notification UI. | Provided by LazyVim; local keys move Noice actions under `,psn`. |
+| `folke/snacks.nvim` scroll | `lua/plugins/snacks.lua` | Smooth scrolling module from Snacks. | Disabled locally so scrolling feels immediate and snappy. |
 | `MunifTanjim/nui.nvim` | Dependencies | UI component dependency. | Pulled by LazyVim UI plugins such as Noice. |
 | `nvim-treesitter/nvim-treesitter-context` | `lua/plugins/treesitter-context.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
 | `nvim-lualine/lualine.nvim` | `lua/plugins/bufferline.lua` | Statusline. | LazyVim default layout with theme selected by `lua/config/theme.lua`. |

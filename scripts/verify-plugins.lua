@@ -164,6 +164,7 @@ for _, name in ipairs({
   assert_require(name)
 end
 
+assert(Snacks.config.scroll and Snacks.config.scroll.enabled == false, "Snacks smooth scrolling should be disabled")
 assert(vim.ui.input == Snacks.input.input, "vim.ui.input should use Snacks.input")
 assert(vim.ui.select == Snacks.picker.select, "vim.ui.select should use Snacks.picker.select")
 
