@@ -21,6 +21,7 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | `scrolloff = 8` | Migrated | `lua/config/options.lua`. | Old config wanted more context than LazyVim default. |
 | `hidden = true` | Not migrated | None. | Obsolete in modern Neovim behavior. |
 | `mouse = ""` | Migrated | `lua/config/options.lua`. | Restore keyboard-first workflow. |
+| `wrap = true` | Added locally | `lua/config/options.lua`. | Wrap long lines by default while keeping movement keyboard-first. |
 | `breakindent = true` | Migrated | `lua/config/options.lua`. | Keep readable wrapped indentation. |
 | `undofile = true` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `ignorecase = true` | LazyVim default | LazyVim options. | Default already matches old config. |
