@@ -114,7 +114,7 @@ input remains normal text input.
 | Normal | `f`, `F`, `t`, `T` | Enhanced character jumps through Mini Jump. | `lua/plugins/mini.lua` |
 | Normal | `<Tab>` | Focus the next buffer in the tabline. | `lua/config/keymaps.lua` |
 | Normal | `<S-Tab>` | Focus the previous buffer in the tabline. | `lua/config/keymaps.lua` |
-| Normal | `<BS>` | Focus the window to the left; fallback for terminals that send `Ctrl-h` as Backspace. | `lua/config/keymaps.lua` |
+| Normal | `<BS>`, `<Del>`, `<kDel>` | Clear search highlighting without changing windows. | `lua/config/keymaps.lua` |
 | Normal | `,Bb` | Switch to the alternate buffer. | `lua/config/keymaps.lua` |
 | Normal | `,Bd` | Delete the current buffer. | `lua/config/keymaps.lua` |
 | Normal | `,Bo` | Delete other buffers. | `lua/config/keymaps.lua` |

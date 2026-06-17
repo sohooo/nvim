@@ -173,6 +173,9 @@ assert(explorer_keys.s == "edit_vsplit", "explorer s should open a vertical spli
 assert(explorer_keys.i == "edit_split", "explorer i should open a horizontal split")
 assert(explorer_keys["<c-v>"] == "edit_vsplit", "explorer <C-v> should open a vertical split")
 assert(explorer_keys["<c-s>"] == "edit_split", "explorer <C-s> should open a horizontal split")
+assert(explorer_keys["<BS>"] == "clear_search", "explorer <BS> should clear search")
+assert(explorer_keys["<Del>"] == "clear_search", "explorer <Del> should clear search")
+assert(explorer_keys["<kDel>"] == "clear_search", "explorer <kDel> should clear search")
 
 for _, mapping in ipairs({
   "<leader>f",
@@ -203,6 +206,8 @@ for _, mapping in ipairs({
   "<Tab>",
   "<S-Tab>",
   "<BS>",
+  "<Del>",
+  "<kDel>",
   "<leader>aa",
   "<leader>aA",
   "<leader>af",

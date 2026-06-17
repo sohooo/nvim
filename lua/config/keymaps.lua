@@ -2,6 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local function clear_search()
+  vim.cmd.nohlsearch()
+end
+
 vim.keymap.set("n", "<leader>u", function()
   local ok = pcall(vim.cmd.packadd, "nvim.undotree")
   if not ok then
@@ -14,7 +18,9 @@ end, { desc = "Toggle Undo Tree" })
 
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
-vim.keymap.set("n", "<BS>", "<C-w>h", { desc = "Go to Left Window" })
+vim.keymap.set("n", "<BS>", clear_search, { desc = "Clear Search Highlight" })
+vim.keymap.set("n", "<Del>", clear_search, { desc = "Clear Search Highlight" })
+vim.keymap.set("n", "<kDel>", clear_search, { desc = "Clear Search Highlight" })
 vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP Health" })
 
 vim.keymap.set("n", "<leader>aa", function()

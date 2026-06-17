@@ -42,13 +42,21 @@ return {
             win = {
               list = {
                 keys = {
+                  ["<BS>"] = "clear_search",
                   ["<c-s>"] = "edit_split",
                   ["<c-v>"] = "edit_vsplit",
+                  ["<Del>"] = "clear_search",
+                  ["<kDel>"] = "clear_search",
                   ["i"] = "edit_split",
                   ["o"] = "confirm",
                   ["s"] = "edit_vsplit",
                 },
               },
+            },
+            actions = {
+              clear_search = function()
+                vim.cmd.nohlsearch()
+              end,
             },
           },
         },
