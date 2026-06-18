@@ -84,7 +84,7 @@ work = {
 
 Profiles are selected with `GIT_USERNAME`. Supported fields are `colorscheme`,
 `lualine`, `background`, `tokyonight_style`, `catppuccin_flavour`,
-`kanagawa_theme`, and optional `bufferline` highlights.
+`kanagawa_theme`, `win_separator`, and optional `bufferline` highlights.
 
 Add a native LSP server in `lua/config/lsp.lua`:
 

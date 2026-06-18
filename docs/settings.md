@@ -32,6 +32,7 @@ This table records the option decisions from `prev_cfg/init.lua`.
 | `timeoutlen = 400` | Migrated | `lua/config/options.lua`. | Keep old which-key timing preference. |
 | `signcolumn = "yes:1"` | Migrated and widened | `yes:2` in `lua/config/options.lua`. | Keep the editor column stable when diagnostics, TODO markers, or git signs appear. |
 | line-number/status column behavior | Added locally | `numberwidth = 4`, `statuscolumn = "%s%=%l "` in `lua/config/options.lua`. | Avoid horizontal jumps when switching focus between explorer and editor windows. |
+| split boundary styling | Added locally | `fillchars.vert = "│"` in `lua/config/options.lua`; `WinSeparator`/`VertSplit` colors in `lua/config/theme.lua`. | Make vertical and horizontal splits easier to distinguish without adding a bright frame. |
 | `laststatus = 2` | LazyVim default preferred | `3` from LazyVim. | Global statusline fits the LazyVim baseline. |
 | `splitbelow = true` | LazyVim default | LazyVim options. | Default already matches old config. |
 | `splitright = true` | LazyVim default | LazyVim options. | Default already matches old config. |

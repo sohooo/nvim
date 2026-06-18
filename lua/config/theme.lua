@@ -5,10 +5,12 @@ local profiles = {
     colorscheme = "tokyonight",
     lualine = "tokyonight",
     tokyonight_style = "moon",
+    win_separator = "#565f89",
   },
   pUSER = {
     colorscheme = "nord",
     lualine = "nord",
+    win_separator = "#5E81AC",
   },
 }
 
@@ -68,7 +70,25 @@ function M.load_colorscheme()
     vim.o.background = profile.background
   end
   vim.cmd.colorscheme(profile.colorscheme)
+  M.apply_window_highlights()
 end
+
+function M.apply_window_highlights()
+  local color = M.current().win_separator
+  if not color then
+    return
+  end
+
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = color })
+  vim.api.nvim_set_hl(0, "VertSplit", { fg = color })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("local-theme-highlights", { clear = true }),
+  callback = function()
+    vim.schedule(M.apply_window_highlights)
+  end,
+})
 
 local function nord_bufferline()
   return {

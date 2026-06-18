@@ -39,4 +39,5 @@ opt.timeoutlen = 400 -- old config used a slightly longer which-key timeout
 opt.signcolumn = "yes:2" -- keep a stable sign area when diagnostics/git markers appear
 opt.numberwidth = 4 -- keep line-number width stable across focus changes
 opt.statuscolumn = "%s%=%l " -- fixed signs plus right-aligned line numbers
+opt.fillchars:append({ vert = "│" }) -- make split boundaries visually consistent
 opt.iskeyword:append("-") -- treat dashed words as one word
