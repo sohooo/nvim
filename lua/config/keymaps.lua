@@ -6,6 +6,12 @@ local function clear_search()
   vim.cmd.nohlsearch()
 end
 
+for _, mode in ipairs({ "n", "i", "v", "x" }) do
+  for _, lhs in ipairs({ "<A-j>", "<A-k>", "<M-j>", "<M-k>" }) do
+    pcall(vim.keymap.del, mode, lhs)
+  end
+end
+
 vim.keymap.set("n", "<leader>u", function()
   local ok = pcall(vim.cmd.packadd, "nvim.undotree")
   if not ok then

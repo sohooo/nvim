@@ -263,6 +263,12 @@ for _, mapping in ipairs({
   assert(vim.fn.maparg(mapping, "x") == "", "unexpected conflicting visual mapping " .. mapping)
 end
 
+for _, mode in ipairs({ "n", "i", "v", "x" }) do
+  for _, lhs in ipairs({ "<A-j>", "<A-k>", "<M-j>", "<M-k>" }) do
+    assert(vim.fn.maparg(lhs, mode) == "", "unexpected line move mapping " .. mode .. " " .. lhs)
+  end
+end
+
 assert(vim.fn.maparg("<Esc><Esc>", "t") ~= "", "missing terminal escape mapping")
 assert(vim.fn.maparg("<leader>as", "x") ~= "", "missing visual Crush selection mapping")
 assert(vim.fn.maparg("<leader>aS", "x") ~= "", "missing visual Crush continue selection mapping")
