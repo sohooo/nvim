@@ -4,6 +4,11 @@ This is the curated baseline extracted from the latest captured report in
 `docs/healthcheck.md`. Mason is disabled, so missing external binaries are
 tracked here instead of being auto-installed.
 
+`make verify` runs `scripts/verify-healthcheck.sh` against the captured report
+and fails when a new `ERROR` or `WARNING` appears outside this accepted
+baseline. After intentionally accepting a new finding, update both this file
+and the verifier pattern list.
+
 Latest refresh:
 
 | Command | Exit Status | Errors | Warnings |

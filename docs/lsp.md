@@ -13,7 +13,7 @@ disabled; every server binary must already be available on `PATH`.
 | `rust_analyzer` | Rust | `rust-analyzer` | `Cargo.toml`, `rust-project.json`, `.git` | Migrated from `prev_cfg/lua/sohooo/lsp.lua`. | Install `rust-analyzer` outside Neovim. |
 | `solargraph` | Ruby, ERB | `solargraph stdio` | `Gemfile`, `.git` | Restored from `prev_cfg/lua/sohooo/lsp.lua`. | Install `solargraph` in the active Ruby environment. |
 | `lua_ls` | Lua | `lua-language-server` | `.luarc.json`, `.luarc.jsonc`, `.luacheckrc`, `.stylua.toml`, `stylua.toml`, `selene.toml`, `selene.yml`, `.git` | Migrated from the old Lua LS setup. | Install Lua Language Server outside Neovim. |
-| `puppet` | Puppet | `puppet-languageserver --stdio --timeout=10 --puppet-settings=--modulepath,/modules --local-workspace=$HOME/puppetenvs/kpm` | `metadata.json`, `Puppetfile`, `.git` | Migrated from the old Puppet setup. | Install Puppet Editor Services outside Neovim. |
+| `puppet` | Puppet | `puppet-languageserver --stdio --timeout=10 --puppet-settings=--modulepath,/modules --local-workspace=<effective-home>/puppetenvs/kpm` | `metadata.json`, `Puppetfile`, `.git` | Migrated from the old Puppet setup. | Install Puppet Editor Services outside Neovim. |
 
 ## Ruby
 
@@ -32,6 +32,14 @@ ruby -v
 solargraph --version
 solargraph stdio
 ```
+
+## Puppet
+
+Puppet uses `puppet-languageserver` from `PATH`. The default local workspace is
+`<effective-home>/puppetenvs/kpm`, resolved with Neovim/libuv instead of raw
+`$HOME` so sudo/root sessions do not accidentally target the invoking user's
+home. Override it explicitly with `PUPPET_LSP_WORKSPACE=/path/to/workspace`
+when needed.
 
 ## Diagnostics And Keymaps
 

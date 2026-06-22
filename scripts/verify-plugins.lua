@@ -96,6 +96,7 @@ assert(vim.lsp.config.lua_ls.settings.Lua.runtime.version == "LuaJIT", "lua_ls s
 assert_cmd("puppet", { "puppet-languageserver", "--stdio", "--timeout=10", "--puppet-settings=--modulepath,/modules" })
 assert_contains(vim.lsp.config.puppet.filetypes, "puppet", "puppet filetypes")
 assert_contains(vim.lsp.config.puppet.root_markers, "Puppetfile", "puppet root markers")
+assert(vim.lsp.config.puppet.cmd[5]:match("^%-%-local%-workspace="), "puppet local workspace should be configured")
 
 local lsp_buf = vim.api.nvim_create_buf(false, true)
 vim.api.nvim_set_current_buf(lsp_buf)

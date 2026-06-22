@@ -11,6 +11,14 @@ local function with_blink_capabilities()
   return capabilities
 end
 
+local function puppet_workspace()
+  if vim.env.PUPPET_LSP_WORKSPACE and vim.env.PUPPET_LSP_WORKSPACE ~= "" then
+    return vim.env.PUPPET_LSP_WORKSPACE
+  end
+
+  return string.format("%s/puppetenvs/kpm", vim.uv.os_homedir())
+end
+
 vim.lsp.config("*", {
   capabilities = with_blink_capabilities(),
 })
@@ -170,7 +178,7 @@ vim.lsp.config("puppet", {
     "--stdio",
     "--timeout=10",
     "--puppet-settings=--modulepath,/modules",
-    string.format("--local-workspace=%s/puppetenvs/kpm", vim.env.HOME),
+    "--local-workspace=" .. puppet_workspace(),
   },
   filetypes = { "puppet" },
   root_markers = { "metadata.json", "Puppetfile", ".git" },

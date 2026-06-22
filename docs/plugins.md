@@ -39,7 +39,7 @@ Pinned versions are recorded in [`../lazy-lock.json`](../lazy-lock.json).
 | `folke/noice.nvim` | `lua/plugins/pickers.lua` | Command-line, message, and notification UI. | Provided by LazyVim; local keys move Noice actions under `,psn`. |
 | `folke/snacks.nvim` scroll | `lua/plugins/snacks.lua` | Smooth scrolling module from Snacks. | Disabled locally so scrolling feels immediate and snappy. |
 | `MunifTanjim/nui.nvim` | Dependencies | UI component dependency. | Pulled by LazyVim UI plugins such as Noice. |
-| `nvim-treesitter/nvim-treesitter-context` | `lua/plugins/treesitter-context.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
+| `nvim-treesitter/nvim-treesitter-context` | `lua/config/lazy.lua` | Sticky context header for large code blocks. | Imported from LazyVim's UI extra with LazyVim's default toggle. |
 | `nvim-lualine/lualine.nvim` | `lua/plugins/bufferline.lua` | Statusline. | LazyVim default layout with theme selected by `lua/config/theme.lua`. |
 | `akinsho/bufferline.nvim` | `lua/plugins/bufferline.lua` | Buffer/tab line. | LazyVim default with local `,B` remaps and optional highlights from `lua/config/theme.lua`. |
 | `nvim-mini/mini.icons` | LazyVim core | Icon provider. | Already enabled by LazyVim; used instead of adding a separate icon layer. |

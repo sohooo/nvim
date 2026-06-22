@@ -91,6 +91,10 @@ Run all local baseline checks:
 make verify
 ```
 
+This includes airgap path tests, documentation link checks, external tool
+reporting, shell script syntax/ShellCheck when available, accepted healthcheck
+finding verification, and plugin smoke tests.
+
 Check external tools expected by optional integrations:
 
 ```bash
