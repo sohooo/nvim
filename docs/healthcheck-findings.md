@@ -13,7 +13,7 @@ Latest refresh:
 
 | Command | Exit Status | Errors | Warnings |
 | --- | --- | --- | --- |
-| `make healthcheck` | `0` | `10` | `13` |
+| `make healthcheck` | `0` | `10` | `16` |
 
 ## Fixed Locally
 
@@ -36,6 +36,8 @@ not be fixed by enabling Mason or auto-downloaders.
 | `lazyvim` | `fzf` is missing. | Optional but recommended for fuzzy picker integrations. |
 | `lazyvim` | `tree-sitter` CLI is missing. | Optional for startup; install before parser maintenance or parser updates. |
 | `vim.lsp` | `puppet-languageserver` is not executable. | Optional; required only for Puppet LSP support. |
+| `vim.lsp` | `ruby-lsp` is not executable. | Optional; required only for Ruby LSP support. Install in the active Ruby environment. |
+| `vim.lsp` | `rust-analyzer` is not executable. | Optional; required only for Rust LSP support. |
 | `snacks.image` | Terminal graphics executables are missing: `kitty`, `wezterm`, or `ghostty`. | Optional; required only for Snacks image rendering in supported terminals. |
 | `snacks.image` | Image conversion tools are missing: `magick` or `convert`. | Optional; required for non-PNG image conversion. |
 | `snacks.image` | Document render tools are missing: `gs`, `tectonic` or `pdflatex`, and `mmdc`. | Optional; required for PDF, LaTeX, and Mermaid image rendering. |
@@ -64,7 +66,8 @@ baseline.
 ## Follow-Up Order
 
 1. Install external editor tools that improve daily use: `fzf`, `tree-sitter`,
-   and any desired LSP binaries such as `puppet-languageserver`.
+   and any desired LSP binaries such as `ruby-lsp`, `rust-analyzer`, or
+   `puppet-languageserver`.
 2. Decide whether Snacks image rendering should be supported; if yes, install
    the terminal/image/document tools and missing parsers documented in
    `docs/external-tools.md`.

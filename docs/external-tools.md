@@ -49,12 +49,16 @@ server only works when its binary is already available on `PATH`.
 | Go | `gopls` | `gopls` | Optional; required for Go LSP features. |
 | Python | `ruff` | `ruff server` | Optional; required for Python Ruff LSP features. |
 | Rust | `rust-analyzer` | `rust-analyzer` | Optional; required for Rust LSP features. |
-| Ruby | `solargraph` | `solargraph stdio` | Optional; required for Ruby language-server features. Install in the active Ruby environment. |
+| Ruby | `ruby-lsp` | `ruby-lsp` | Optional; required for Ruby language-server features. Install in the active Ruby environment; override with `RUBY_LSP_CMD` when a version-manager shim is needed. |
 | Lua | `lua-language-server` | `lua-language-server` | Optional; required for Lua LSP features. |
 | Puppet | `puppet-languageserver` | `puppet-languageserver --stdio ...` | Optional; required for Puppet LSP features. The local workspace defaults to `<effective-home>/puppetenvs/kpm`; override with `PUPPET_LSP_WORKSPACE`. |
 
 See [LSP](lsp.md) for server filetypes, root markers, and server-specific
 configuration.
+
+Ruby LSP has an optional integration fixture. Run `make verify-ruby-lsp` after
+installing `ruby-lsp` to confirm attachment and basic LSP requests against the
+demo project in `tests/fixtures/ruby-lsp-demo`.
 
 ## Parser And Build Tools
 

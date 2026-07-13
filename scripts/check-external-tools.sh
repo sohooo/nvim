@@ -26,7 +26,7 @@ optional=(
   gopls
   ruff
   rust-analyzer
-  solargraph
+  ruby-lsp
   lua-language-server
   puppet-languageserver
   crush

@@ -18,7 +18,7 @@ YAML, and every language with a native LSP server in `lua/config/lsp.lua`.
 | Go templates | `gotmpl` | `gotmpl` | Matches `gopls` Go template file support. |
 | Python | `python` | `python` | Matches Ruff LSP. |
 | Rust | `rust` | `rust` | Matches `rust-analyzer`. |
-| Ruby | `ruby` | `ruby` | Matches the Solargraph Ruby LSP setup. |
+| Ruby | `ruby` | `ruby` | Matches the Ruby LSP setup. |
 | ERB | `eruby` | `embedded_template` | `eruby` is registered to the `embedded_template` parser. |
 | Lua | `lua` | `lua` | Matches Lua Language Server. |
 | Puppet | `puppet` | `puppet` | Matches Puppet Language Server. |

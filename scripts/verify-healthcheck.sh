@@ -32,6 +32,8 @@ accepted_patterns=(
   'WARNING `regex`'
   'WARNING setup \{disabled\}'
   "WARNING 'puppet-languageserver' is not executable"
+  "WARNING 'ruby-lsp' is not executable"
+  "WARNING 'rust-analyzer' is not executable"
 )
 
 unaccepted=0

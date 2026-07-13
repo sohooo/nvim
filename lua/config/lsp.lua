@@ -19,6 +19,14 @@ local function puppet_workspace()
   return string.format("%s/puppetenvs/kpm", vim.uv.os_homedir())
 end
 
+local function ruby_lsp_cmd()
+  if vim.env.RUBY_LSP_CMD and vim.env.RUBY_LSP_CMD ~= "" then
+    return { vim.env.RUBY_LSP_CMD }
+  end
+
+  return { "ruby-lsp" }
+end
+
 vim.lsp.config("*", {
   capabilities = with_blink_capabilities(),
 })
@@ -134,10 +142,19 @@ vim.lsp.config("rust_analyzer", {
   root_markers = { "Cargo.toml", "rust-project.json", ".git" },
 })
 
-vim.lsp.config("solargraph", {
-  cmd = { "solargraph", "stdio" },
+vim.lsp.config("ruby_lsp", {
+  cmd = ruby_lsp_cmd(),
   filetypes = { "ruby", "eruby" },
   root_markers = { "Gemfile", ".git" },
+  init_options = {
+    formatter = "auto",
+    linters = {},
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false,
+      },
+    },
+  },
 })
 
 vim.lsp.config("lua_ls", {
@@ -188,7 +205,7 @@ vim.lsp.enable({
   "gopls",
   "ruff",
   "rust_analyzer",
-  "solargraph",
+  "ruby_lsp",
   "lua_ls",
   "puppet",
 })

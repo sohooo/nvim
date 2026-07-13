@@ -1,4 +1,4 @@
-.PHONY: airgap-appimage airgap-bundle check-airgap-paths check-doc-links check-external-tools healthcheck lint-shell migration-status update-plugins verify verify-airgap-appimage verify-airgap-bundle verify-healthcheck verify-plugins upgrade
+.PHONY: airgap-appimage airgap-bundle check-airgap-paths check-doc-links check-external-tools healthcheck lint-shell migration-status update-plugins verify verify-airgap-appimage verify-airgap-bundle verify-healthcheck verify-plugins verify-ruby-lsp upgrade
 
 airgap-appimage:
 	bash scripts/build-airgap-appimage.sh
@@ -33,7 +33,10 @@ verify-plugins:
 verify-healthcheck:
 	bash scripts/verify-healthcheck.sh
 
-verify: check-airgap-paths check-doc-links check-external-tools lint-shell verify-healthcheck verify-plugins
+verify-ruby-lsp:
+	bash scripts/verify-ruby-lsp.sh
+
+verify: check-airgap-paths check-doc-links check-external-tools lint-shell verify-healthcheck verify-plugins verify-ruby-lsp
 
 verify-airgap-bundle:
 	@test -n "$(TARBALL)" || { echo "usage: make verify-airgap-bundle TARBALL=dist/nvim-airgap-linux-x86_64-*.tar.gz" >&2; exit 2; }

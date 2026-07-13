@@ -38,7 +38,7 @@ why older plugins were migrated, replaced, deferred, or omitted.
 | `nvim-tree/nvim-tree.lua` | Snacks explorer | Use LazyVim's built-in Snacks explorer baseline, with `,d` and `mf` preserving the old directory/reveal workflows. |
 | `LuaSnip` and completion snippet glue | `mini.snippets` | Use LazyVim's Mini snippet extra for this baseline. |
 | `neovim/nvim-lspconfig` | Native `vim.lsp` | Define and enable local LSP servers in `lua/config/lsp.lua`. |
-| `solargraph`, `standardrb` LSP setup | Solargraph restored | Ruby uses `solargraph stdio` again to avoid Ruby LSP composed-bundle friction. `standardrb` is not reintroduced as an LSP yet. |
+| `solargraph`, `standardrb` LSP setup | Shopify Ruby LSP | Ruby uses `ruby-lsp` directly from `PATH` through native `vim.lsp`. Formatting and linting use Ruby LSP project defaults for now. |
 | `nvim-telescope/telescope.nvim`, `telescope-fzf-native.nvim` | Snacks picker | Use LazyVim's picker stack while preserving old short bindings. |
 | `akinsho/toggleterm.nvim` | Snacks terminal | Use LazyVim's terminal stack while preserving local terminal/lazygit keys. |
 

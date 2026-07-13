@@ -93,7 +93,7 @@ make verify
 
 This includes airgap path tests, documentation link checks, external tool
 reporting, shell script syntax/ShellCheck when available, accepted healthcheck
-finding verification, and plugin smoke tests.
+finding verification, plugin smoke tests, and the optional Ruby LSP demo check.
 
 Check external tools expected by optional integrations:
 
